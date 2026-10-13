@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrustRank · Link Graph Encyclopedia</title>
+<meta name="description" content="Pick a small set of sites a human has checked, and let trust flow outward from them along links, fading with each step. Spam sites, which reputable sites rarely link to, end up with little trust however many links they have.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html" aria-current="page">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li></ul>
+<h2>Computing at scale</h2><ul></ul>
+<h2>Comparing rankings</h2><ul></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Centrality</p><h1>TrustRank</h1>
+<p class="lede">Pick a small set of sites a human has checked, and let trust flow outward from them along links, fading with each step. Spam sites, which reputable sites rarely link to, end up with little trust however many links they have.</p>
+<p>TrustRank was proposed in 2004 by Zoltán Gyöngyi and Hector Garcia-Molina of Stanford and Jan Pedersen of Yahoo! to separate reputable sites from spam semi-automatically. Its premise is an <em>approximate isolation</em> of good sites: reputable sites rarely link to spam, while spam sites link freely to reputable ones (to look legitimate) and to each other. So start from a set of sites a human has checked, let trust flow along their out-links, and let it fade as it travels. A site many links away from any trusted seed, or reachable only through spam, gets almost no trust. Mathematically, TrustRank is <a href="personalized-pagerank.html">Personalized PageRank</a> with the jumps aimed at the seed set.</p>
+<h2 id="definition">Definition</h2>
+<p>Let <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span> be the set of good seed sites and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>S</mi></msub></mrow><annotation encoding="application/x-tex">v_S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> the uniform distribution over them. The trust vector is</p>
+<div class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>t</mi><mo>=</mo><mi>α</mi><mtext> </mtext><mi>t</mi><mi>P</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><msub><mi>v</mi><mi>S</mi></msub><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">t = \alpha\, t P + (1 - \alpha)\, v_S ,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">tP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span></span></div>
+<p>with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span> the row-normalised <a href="adjacency.html">Adjacency matrices and lists</a> matrix and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> a decay parameter; the paper used <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>0.85</mn></mrow><annotation encoding="application/x-tex">\alpha = 0.85</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0.85</span></span></span></span> and stopped after 20 iterations. Two forms of decay are built in:</p>
+<ul>
+<li><strong>Dampening.</strong> Trust shrinks by a factor <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> with each link it crosses, so a site <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> links from the seeds receives at most <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>α</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">\alpha^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span></span></span></span></span></span></span> of a seed’s trust.</li>
+<li><strong>Splitting.</strong> A site divides its trust among its out-links, so a site that links to thousands of others passes each one very little. This is the same rule <a href="pagerank.html">PageRank</a> uses, and it means a page full of paid links dilutes whatever trust it has.</li>
+</ul>
+<h2 id="choosing-the-seeds">Choosing the seeds</h2>
+<p>Human review is expensive, so the seed set must be small and must reach as much of the web as possible. The authors ranked sites by <em>inverse PageRank</em>, PageRank computed on the graph with every link reversed, which favours sites whose out-links reach many sites quickly. They reviewed the top candidates by hand, discarded spam and unclear cases, and kept a good seed set of fewer than 200 sites from an index of about 31 million. On AltaVista’s 2003 data, ranking by trust pushed spam sites far down compared with ordinary PageRank.</p>
+<p>Inverse PageRank on the running example ranks E first (0.282): it reaches every other node in at most three steps, so it would make the best single seed. Out-link reach is also what <a href="cheirank.html">CheiRank and 2DRank</a> measures.</p>
+<h2 id="worked-example">Worked example</h2>
+<p>Seed the running example with A alone:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Node</th>
+<th>A</th>
+<th>C</th>
+<th>B</th>
+<th>G</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TrustRank, seed {A}</td>
+<td>0.393</td>
+<td>0.309</td>
+<td>0.167</td>
+<td>0.131</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Ordinary PageRank</td>
+<td>0.205</td>
+<td>0.298</td>
+<td>0.138</td>
+<td>0.177</td>
+<td>0.065</td>
+<td>0.051</td>
+<td>0.065</td>
+</tr>
+</tbody>
+</table></div>
+<p>D, E and F get exactly zero trust: no path leads from A to them. G, reached through C, gets about two-fifths of C’s trust. Under ordinary PageRank, D, E and F score above zero thanks to teleportation, which hands every site the same baseline whether or not anyone vouches for it. TrustRank removes that baseline: trust comes only from the seeds.</p>
+<h2 id="weaknesses">Weaknesses</h2>
+<ul>
+<li><strong>Seed bias.</strong> Trust concentrates around the seeds. Good sites in communities the seeds do not reach, such as other languages, small countries or niche topics, get little trust and look as suspicious as spam. Larger and more diverse seed sets help; topic-specific seed sets help more.</li>
+<li><strong>Good sites do link to spam.</strong> Comment sections, forums, user profiles and hacked pages put links to spam on reputable domains. Trust leaks through them, which is one reason Google introduced <code>nofollow</code> in 2005 (see link-attributes).</li>
+<li><strong>Trust is not distrust.</strong> A low TrustRank means “not vouched for”, not “spam”. New legitimate sites start with no trust at all.</li>
+</ul>
+<h2 id="anti-trustrank">Anti-TrustRank</h2>
+<p>Krishnan and Raj (2006) ran the idea in reverse. Start from a set of known spam sites and propagate <em>distrust</em> backwards along in-links: a site that links to spam is probably spam, or at least careless. The computation is TrustRank on the transposed graph with a spam seed set. Combining the two scores separates more spam than either alone.</p>
+<h2 id="trustrank-and-the-seo-industry">TrustRank and the SEO industry</h2>
+<p>The paper left a lasting mark on how practitioners talk about links. “Trust” and “distance from trusted seeds” became common vocabulary, and commercial metrics borrowed the idea. Majestic describes its Trust Flow as a score based on how closely a site links to manually reviewed trusted seed sites (trust-flow). Ahrefs and Moz do not describe seed-based trust in their headline metrics, which rest on link quantity and the strength of the linking domains (domain-rating, domain-authority).</p>
+<p>Whatever Google does internally is not public. The safe reading for a domain buyer: links from sites that reputable sites themselves link to are worth far more than links from sites only spam links to, and no amount of the second kind substitutes for a few of the first. <a href="spam-mass.html">Spam mass</a> turns that intuition into a number.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Gyöngyi, Z., Garcia-Molina, H., &amp; Pedersen, J. (2004). Combating Web spam with TrustRank. <em>VLDB 2004</em>, 576–587.</li>
+<li>Krishnan, V., &amp; Raj, R. (2006). Web spam detection with Anti-TrustRank. <em>AIRWeb 2006</em>.</li>
+<li>Gyöngyi, Z., &amp; Garcia-Molina, H. (2005). Web spam taxonomy. <em>AIRWeb 2005</em>.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="centrality.html">Centrality</a> · <a href="cheirank.html">CheiRank and 2DRank</a> · <a href="degree-centrality.html">Degree centrality</a> · <a href="pagerank.html">PageRank</a> · <a href="personalized-pagerank.html">Personalized PageRank</a> · <a href="random-walks.html">Random walks and Markov chains</a> · <a href="spam-mass.html">Spam mass</a> · <a href="bow-tie.html">The bow-tie structure</a></p></section><nav class="prevnext"><a href="salsa.html">← SALSA</a><a href="spam-mass.html">Spam mass →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/trustrank.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#definition">Definition</a></li><li><a href="#choosing-the-seeds">Choosing the seeds</a></li><li><a href="#worked-example">Worked example</a></li><li><a href="#weaknesses">Weaknesses</a></li><li><a href="#anti-trustrank">Anti-TrustRank</a></li><li><a href="#trustrank-and-the-seo-industry">TrustRank and the SEO industry</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -35,7 +35,7 @@ E, which has the lowest ordinary PageRank, now has the highest score, because ev
 
 ## Linearity
 
-PPR is linear in the preference vector: if $v = \sum_i w_i v_i$, then $p_v = \sum_i w_i p_{v_i}$. Two consequences matter in practice:
+PPR is linear in the preference vector: if $v = \sum_i w_i v_i$, then $p_v = \sum_i w_i p_{v_i}$. (Exactly so when dangling nodes are handled the same way whatever $v$ is, for instance by letting their probability leak away; with strongly preferential jumps the mixture weights shift slightly.) Two consequences matter in practice:
 
 - **Topic-sensitive PageRank.** Haveliwala precomputed one PPR vector for each of the 16 top-level categories of the Open Directory, each teleporting to that category's pages. At query time he mixed the 16 vectors according to how well the query matched each topic. One query about jaguars the animal and another about Jaguar the car get different link-based rankings from the same 16 vectors.
 - **Personalization at scale.** In principle, the PPR vector of every single node determines the PPR of every possible preference vector. Storing $n$ vectors of length $n$ is impossible on the web, but Jeh and Widom showed how to share most of the work through a small set of hub nodes, and Monte Carlo methods store a few walk endpoints per node instead (see [[monte-carlo-pagerank]]).
