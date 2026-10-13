@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page, host and domain graphs · Link Graph Encyclopedia</title>
+<meta name="description" content="The same links give three different graphs depending on whether a node is a URL, a host name or a registered domain. Each level answers different questions and hides different problems.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html" aria-current="page">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li></ul>
+<h2>PageRank in depth</h2><ul></ul>
+<h2>Computing at scale</h2><ul></ul>
+<h2>Comparing rankings</h2><ul></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Foundations</p><h1>Page, host and domain graphs</h1>
+<p class="lede">The same links give three different graphs depending on whether a node is a URL, a host name or a registered domain. Each level answers different questions and hides different problems.</p>
+<p>A link joins two URLs, but a link graph can treat its nodes at three levels of detail. In a <strong>page graph</strong> every URL is a node. In a <strong>host graph</strong> every host name (<code>blog.example.com</code>, <code>www.example.com</code>) is a node, and every link between pages on two different hosts becomes an arc between those hosts. In a <strong>domain graph</strong> every registered domain (<code>example.com</code>, <code>example.co.uk</code>) is a node, and all its hosts merge into it. Moving up a level shrinks the graph by orders of magnitude and changes what the rankings mean.</p>
+<h2 id="folding-one-level-into-the-next">Folding one level into the next</h2>
+<p>Going from pages to hosts, or from hosts to domains, is a <em>quotient</em>: replace each node by the group it belongs to, keep one arc between two groups if any arc joined their members, and drop arcs inside a group.</p>
+<ol>
+<li>Map every URL to its host name, lower-cased.</li>
+<li>Map every host to its registered domain using the Public Suffix List, so that <code>a.example.co.uk</code> maps to <code>example.co.uk</code>, not to <code>co.uk</code> (see <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>).</li>
+<li>Collapse parallel arcs and drop self-loops.</li>
+</ol>
+<p>Step 3 discards most links. All internal navigation (a site’s menus, pagination, related-article blocks) links pages of the same host and disappears at the host level. Links between a domain’s own hosts, such as <code>shop.example.com</code> → <code>www.example.com</code>, disappear at the domain level. Common Crawl’s host-level extraction keeps only links between different hosts to begin with.</p>
+<h2 id="the-three-levels-compared">The three levels compared</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th>Page graph</th>
+<th>Host graph</th>
+<th>Domain graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node</td>
+<td>URL</td>
+<td>host name</td>
+<td>registered domain</td>
+</tr>
+<tr>
+<td>Typical size of a large crawl</td>
+<td>billions of nodes, tens to hundreds of billions of arcs</td>
+<td>hundreds of millions of nodes, billions of arcs</td>
+<td>about 120 million nodes, a few billion arcs</td>
+</tr>
+<tr>
+<td>Keeps internal linking</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Separates subdomains</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Natural question</td>
+<td>which page answers a query?</td>
+<td>which site is important?</td>
+<td>which registrable name is important?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Common Crawl publishes host-level and domain-level graphs. Its 2026 domain graph has 119,722,885 domains folded from the host graph; the <code>n_hosts</code> column of its ranks file says how many hosts went into each domain. The hosts average 1.96 per domain, about 235 million in total, and 90,515,169 domains (75.6%) consist of a single host.</p>
+<h2 id="what-merging-hides">What merging hides</h2>
+<p>Folding hosts into domains is right for most sites, where <code>www.example.com</code> and <code>example.com</code> are one organisation. It is wrong for platforms that give each customer a host of their own:</p>
+<ul>
+<li><code>blogspot.com</code> folds 4,113,910 hosts, each a separate blog, into one node.</li>
+<li><code>wordpress.com</code> folds 1,958,600 hosts.</li>
+<li><code>googleapis.com</code> includes <code>storage.googleapis.com</code>, where Google Cloud Storage serves whatever files its customers upload.</li>
+</ul>
+<p>At the domain level, every link to any blog on <code>blogspot.com</code> counts toward one node, and every link <em>from</em> any customer page counts as a link from the platform. The <a href="pagerank.html">PageRank</a> entry shows a consequence: <code>chaussurespuma.net</code> sits at PageRank position 10,000 because of a single link credited to <code>googleapis.com</code>, whatever page actually carries it. Hosting pages on a reputable shared domain to borrow its standing is a recognised spam tactic, and the domain graph rewards it.</p>
+<h2 id="what-splitting-hides">What splitting hides</h2>
+<p>The host level has the opposite problem. A site that moves from <code>www.example.com</code> to <code>example.com</code>, or spreads content across <code>shop.</code>, <code>blog.</code> and <code>help.</code> hosts, splits its in-links across several nodes. A host graph then underrates it, while the domain graph sums the pieces. Many sites also link heavily between their own hosts, which a host graph counts as external links and a domain graph rightly drops.</p>
+<h2 id="choosing-a-level">Choosing a level</h2>
+<ul>
+<li><strong>Search ranking</strong> needs pages, because queries are answered by pages. Google’s original <a href="pagerank.html">PageRank</a> ran on the page graph.</li>
+<li><strong>Crawl prioritisation</strong> works well at the host level, which is the unit of politeness for crawlers. Common Crawl ranks hosts by <a href="harmonic-centrality.html">Harmonic centrality</a> to decide what to fetch next.</li>
+<li><strong>Domain valuation</strong> needs the domain level, because a registered domain is the asset that changes hands. When you buy <code>example.com</code> you get every host under it, including links pointing at a long-dead <code>forum.example.com</code> (see expired-domains).</li>
+</ul>
+<p>Commercial link indexes report both levels. Ahrefs’ URL Rating and Moz’s Page Authority score pages; domain-rating and domain-authority score domains. The same backlink appears in both, so a strong page on a weak domain and a weak page on a strong domain look different depending on which number you read.</p>
+<h2 id="granularity-changes-rankings">Granularity changes rankings</h2>
+<p>The same crawl ranked at different levels gives different answers, and none of them is the “true” one. A popular blog on <code>blogspot.com</code> is a top host in the host graph but invisible in the domain graph, where <code>blogspot.com</code> itself takes the credit. When you compare a domain’s rank across sources, check that they measured the same kind of node: a host-level rank for <code>www.example.com</code> and a domain-level rank for <code>example.com</code> are not the same quantity.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Common Crawl. <em>cc-webgraph: Tools to construct and process web graphs from Common Crawl data.</em> GitHub, <code>commoncrawl/cc-webgraph</code> (the host-to-domain folding is in <code>HostToDomainGraph</code>).</li>
+<li>Mozilla Foundation. <em>Public Suffix List.</em> publicsuffix.org.</li>
+<li>Boldi, P., &amp; Vigna, S. (2004). The WebGraph Framework I: Compression techniques. <em>WWW 2004</em>, 595–602.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="pagerank.html">PageRank</a> · <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a> · <a href="web-graph.html">The web graph</a></p></section><nav class="prevnext"><a href="power-laws.html">← Degree distributions and power laws</a><a href="reversed-domain-names.html">Reversed domain names and public suffixes →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/graph-granularity.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#folding-one-level-into-the-next">Folding one level into the next</a></li><li><a href="#the-three-levels-compared">The three levels compared</a></li><li><a href="#what-merging-hides">What merging hides</a></li><li><a href="#what-splitting-hides">What splitting hides</a></li><li><a href="#choosing-a-level">Choosing a level</a></li><li><a href="#granularity-changes-rankings">Granularity changes rankings</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

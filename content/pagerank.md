@@ -74,9 +74,10 @@ In Common Crawl's 2026 domain graph the top of the PageRank list is the infrastr
 | `godaddy.com` | 1,472,755 | 14 | 135 |
 | `parastorage.com` | 2,923,364 | 16 | 81,305 |
 | `miit.gov.cn` | 722,788 | 28 | 981 |
-| `cookiedatabase.org` | 3 | 100 | 2,179 |
 
-PageRank pays most for links from sites that link to little else, because each such link carries a large share of its source's score. `godaddy.com` is linked from parked pages and from sites built with its tools, and `miit.gov.cn` from the registration notice that Chinese sites display. `cookiedatabase.org` shows the extreme: three in-links lift it to position 100, because the domains linking to it carry high scores and pass a large share of them. Harmonic centrality ignores how a source splits its links and only asks how close the rest of the graph is.
+PageRank pays most for links from sites that link to little else, because each such link carries a large share of its source's score. `godaddy.com` is linked from parked pages and from sites built with its tools, and `miit.gov.cn` from the registration notice that Chinese sites display. Harmonic centrality ignores how a source splits its links and only asks how close the rest of the graph is.
+
+The extreme case sits further down. `chaussurespuma.net` has seven referring domains, yet it holds PageRank position 10,000 of 119.7 million. One of the seven is `googleapis.com`, the top domain, which links to only 3,686 domains. That single link passes $0.85 \times 0.0152 / 3686 = 3.5 \times 10^{-6}$, almost all of `chaussurespuma.net`'s score of $3.53 \times 10^{-6}$. Google Cloud Storage serves user files from `storage.googleapis.com`, so the link may sit on a page any customer uploaded; the domain graph credits it to `googleapis.com` all the same (see [[graph-granularity]]).
 
 ## What it means for a domain
 

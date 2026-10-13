@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reversed domain names and public suffixes · Link Graph Encyclopedia</title>
+<meta name="description" content="Why web graphs write google.com as com.google, and how the Public Suffix List decides where a registrable domain begins.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html" aria-current="page">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li></ul>
+<h2>PageRank in depth</h2><ul></ul>
+<h2>Computing at scale</h2><ul></ul>
+<h2>Comparing rankings</h2><ul></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Foundations</p><h1>Reversed domain names and public suffixes</h1>
+<p class="lede">Why web graphs write google.com as com.google, and how the Public Suffix List decides where a registrable domain begins.</p>
+<p>Common Crawl’s vertex files list <code>com.google</code>, <code>com.facebook</code> and <code>uk.co.bbc</code>, not <code>google.com</code>. Writing host names with their labels reversed is a small trick with large consequences: sorted alphabetically, reversed names keep every host of a domain, and every domain of a top-level domain, next to each other. Graph compression, range queries and prefix grouping all depend on that locality. The second half of the story is deciding where the domain part of a name ends, which takes a list, not a rule.</p>
+<h2 id="reversing-labels">Reversing labels</h2>
+<p>A host name is a sequence of labels separated by dots, most specific first: <code>blog.example.co.uk</code>. Reversing the labels gives <code>uk.co.example.blog</code>, most general first, like a file path. Sorting reversed names produces a hierarchy:</p>
+<pre><code>com.example
+com.example.blog
+com.example.shop
+com.examples
+uk.co.example
+uk.co.example.blog
+</code></pre>
+<p>All of <code>example.com</code>’s hosts form one contiguous run, and all <code>.uk</code> names come after all <code>.com</code> names. Sorting the forward names instead would scatter them: <code>blog.example.com</code> sorts among the b’s and <code>shop.example.com</code> among the s’s.</p>
+<p>The convention is old. Java package names (<code>org.apache.commons</code>) use it, and web archives sort their indexes by SURT, the <em>Sort-friendly URI Reordering Transform</em>, which writes <code>http://www.example.com/a</code> as <code>com,example,www)/a</code>. Common Crawl’s own URL index uses SURT keys.</p>
+<h2 id="why-graphs-care">Why graphs care</h2>
+<p>Web graph tools number nodes in sorted order. With reversed names, the numbers of related hosts sit close together:</p>
+<ul>
+<li><strong>Compression.</strong> Hosts of one site link to similar targets and to each other. When related hosts get nearby numbers, successor lists repeat and the gaps between consecutive targets shrink, which is exactly what webgraph-compression exploits. Common Crawl’s vertex ids follow reversed-name order.</li>
+<li><strong>Range queries.</strong> All domains of a top-level domain form one id range: every <code>.de</code> domain is a contiguous block, so “restrict to German domains” becomes a range test.</li>
+<li><strong>Tie-breaking.</strong> Rankings with tied scores fall back on node id. Common Crawl sorts its ranks file by score with a stable sort, so ties end up in id order, which is reversed-name order (see ranks-and-scores).</li>
+</ul>
+<h2 id="public-suffixes">Public suffixes</h2>
+<p>Where does the registrable domain begin? For <code>www.example.com</code> it is <code>example.com</code>, the last two labels. For <code>www.example.co.uk</code> it is <code>example.co.uk</code>, the last three, because <code>co.uk</code> is a suffix under which anyone can register names. No rule computes this from the name. The <strong>Public Suffix List</strong> (PSL), maintained by volunteers at Mozilla since 2007, lists such suffixes: <code>com</code>, <code>co.uk</code>, <code>ac.jp</code>, <code>pvt.k12.ma.us</code> and thousands more. The <em>registrable domain</em>, also called eTLD+1, is the public suffix plus one more label.</p>
+<p>The list has two sections:</p>
+<ul>
+<li>The <strong>ICANN section</strong> holds suffixes delegated through the domain name system: TLDs and the second-level structures registries define, such as <code>co.uk</code>.</li>
+<li>The <strong>private section</strong> holds suffixes that companies submit for their own platforms: <code>github.io</code>, <code>blogspot.com</code>, <code>herokuapp.com</code>. Browsers use these entries to stop one customer’s site from setting cookies for another’s.</li>
+</ul>
+<p>Whether a graph honours the private section changes its nodes. Common Crawl’s 2026 domain graph does not: <code>github.io</code> is one domain with 310,784 hosts and <code>blogspot.com</code> one domain with 4,113,910 hosts, though the PSL’s private section lists both as public suffixes. Each GitHub Pages site or Blogspot blog is a separate site to its owner and a separate registrable domain to a browser, but a single node in this graph. The <a href="graph-granularity.html">Page, host and domain graphs</a> entry discusses what that merging does to rankings.</p>
+<h2 id="names-in-the-common-crawl-graph">Names in the Common Crawl graph</h2>
+<p>The 2026 domain graph spans 1,520 top-level domains and 7,482 distinct public suffixes. Its largest suffix groups:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Domains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.com</code></td>
+<td>59,819,443</td>
+</tr>
+<tr>
+<td><code>.org</code></td>
+<td>6,634,711</td>
+</tr>
+<tr>
+<td><code>.de</code></td>
+<td>5,022,175</td>
+</tr>
+<tr>
+<td><code>.net</code></td>
+<td>3,751,749</td>
+</tr>
+<tr>
+<td><code>.co.uk</code></td>
+<td>2,691,012</td>
+</tr>
+</tbody>
+</table></div>
+<p>Half of all domains are <code>.com</code>. Internationalised names appear in their ASCII-compatible <code>xn--</code> form (594,228 domains), about one domain in seven contains a hyphen, and one in eight a digit.</p>
+<h2 id="pitfalls">Pitfalls</h2>
+<ul>
+<li><strong>Matching on the last two labels is wrong</strong> for every country with second-level registries: it folds every <code>.co.uk</code> site into one node called <code>co.uk</code>.</li>
+<li><strong>The list changes.</strong> New gTLDs and new private suffixes appear every month. A graph built with an old copy of the PSL and one built with a new copy disagree on some nodes.</li>
+<li><strong>Hosts are not domains.</strong> A name such as <code>www.example.com</code> in one dataset and <code>example.com</code> in another are different nodes at the host level and the same node at the domain level. Normalise before joining datasets.</li>
+<li><strong>Host counts measure DNS habits, not reach.</strong> A domain that answers for any subdomain can generate unlimited hosts, and some sites mint a subdomain per page or per user. In the 2026 graph <code>hub.biz</code> folds 1,222,261 hosts and <code>adgo.kr</code> 423,413, yet <code>adgo.kr</code> ranks below position 3,000,000 by harmonic centrality (see link-spam).</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Mozilla Foundation. <em>Public Suffix List.</em> publicsuffix.org (ICANN and private sections).</li>
+<li>Internet Archive. <em>SURT: Sort-friendly URI Reordering Transform</em>, as used by the Heritrix crawler and Wayback CDX indexes.</li>
+<li>Boldi, P., &amp; Vigna, S. (2004). The WebGraph Framework I: Compression techniques. <em>WWW 2004</em>, 595–602.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="graph-granularity.html">Page, host and domain graphs</a></p></section><nav class="prevnext"><a href="graph-granularity.html">← Page, host and domain graphs</a><a href="random-walks.html">Random walks and Markov chains →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/reversed-domain-names.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#reversing-labels">Reversing labels</a></li><li><a href="#why-graphs-care">Why graphs care</a></li><li><a href="#public-suffixes">Public suffixes</a></li><li><a href="#names-in-the-common-crawl-graph">Names in the Common Crawl graph</a></li><li><a href="#pitfalls">Pitfalls</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

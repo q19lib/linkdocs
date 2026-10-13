@@ -88,7 +88,7 @@ function renderMath(html, store) {
 }
 
 function linkWikis(art, src, bySlug) {
-  return src.replace(/(?<!!)\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]/g, (_, slug, text) => {
+  return src.replace(/(?<!!)\[\[([a-z0-9-]+)(?:\\?\|([^\]]+))?\]\]/g, (_, slug, text) => {
     const target = bySlug.get(slug);
     if (!target) {
       fail(art.file, `link to missing article [[${slug}]]`);
@@ -139,7 +139,7 @@ function prose(src) {
   return src.replace(/^---\n[\s\S]*?\n---\n/, "").replace(/\n## References[\s\S]*$/, "")
     .replace(/^\s*[|#].*$/gm, "").replace(/```[\s\S]*?```/g, "")
     .replace(/\$\$[\s\S]*?\$\$/g, "").replace(/\$[^$\n]+\$/g, "x").replace(/<[^>]+>/g, "")
-    .replace(/^!\[\[.*$/gm, "").replace(/\[\[([a-z0-9-]+)\|([^\]]+)\]\]/g, "$2")
+    .replace(/^!\[\[.*$/gm, "").replace(/\[\[([a-z0-9-]+)\\?\|([^\]]+)\]\]/g, "$2")
     .replace(/\[\[([a-z0-9-]+)\]\]/g, (_, s) => s.replace(/-/g, " ")).replace(/[|*_`#>]/g, " ");
 }
 
