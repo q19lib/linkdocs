@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PageRank at scale · Link Graph Encyclopedia</title>
+<meta name="description" content="The arithmetic of ranking a hundred million nodes and billions of links. What must fit in memory, what each pass costs, why random reads dominate, and why one well-programmed machine often beats a cluster.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html" aria-current="page">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Computing at scale</p><h1>PageRank at scale</h1>
+<p class="lede">The arithmetic of ranking a hundred million nodes and billions of links. What must fit in memory, what each pass costs, why random reads dominate, and why one well-programmed machine often beats a cluster.</p>
+<p>The PageRank formula fits on a line; computing it for Common Crawl’s 119,722,885 domains and 2,450,405,793 links is an exercise in memory budgets. This entry works through the numbers for that graph. The same arithmetic applies, with larger constants, to page-level graphs with tens of billions of links.</p>
+<h2 id="what-must-be-stored">What must be stored</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Size per element</th>
+<th>Total for the CC domain graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Score vector, 64-bit doubles</td>
+<td>8 bytes per node</td>
+<td>958 MB</td>
+</tr>
+<tr>
+<td>Second score vector (for Jacobi-style passes)</td>
+<td>8 bytes per node</td>
+<td>958 MB</td>
+</tr>
+<tr>
+<td>Out-degrees (or their reciprocals)</td>
+<td>4 bytes per node</td>
+<td>479 MB</td>
+</tr>
+<tr>
+<td>Transposed graph as CSR, 32-bit ids</td>
+<td>4 bytes per arc + offsets</td>
+<td>10.3 GB</td>
+</tr>
+<tr>
+<td>Transposed graph in WebGraph format</td>
+<td>about 15 bits per arc</td>
+<td>4.6 GB</td>
+</tr>
+</tbody>
+</table></div>
+<p>A pull-style computation (each node sums over its in-links) needs the transposed graph, the out-degrees and one or two score vectors: about 6.5 GB with the compressed graph, or 12 GB with plain CSR. Gauss–Seidel updates scores in place and needs only one vector (see <a href="pagerank-linear-system.html">PageRank as a linear system</a>). Single-precision floats would halve the vectors, but the smallest scores sit near <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4 \times 10^{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span> and are sums of many tiny contributions; most serious implementations, including LAW’s, use doubles.</p>
+<h2 id="what-one-pass-costs">What one pass costs</h2>
+<p>A pass reads every arc once. The arcs themselves stream sequentially: 9.8 GB of CSR targets takes well under a second at the 20–30 GB/s a modern server’s memory delivers. The expensive part is the score lookup that each arc triggers. In a pull pass, the arc <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>→</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u \to v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span></span></span> reads <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(u)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">u</span><span class="mclose">)</span></span></span></span>, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span> can be anywhere in a 958 MB vector. If every such read misses the cache, each costs a full 64-byte cache line from main memory:</p>
+<div class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2.45</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mtext> arcs</mtext><mo>×</mo><mn>64</mn><mtext> bytes</mtext><mo>≈</mo><mn>157</mn><mtext> GB per pass</mtext><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">2.45 \times 10^{9} \text{ arcs} \times 64 \text{ bytes} \approx 157 \text{ GB per pass},</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2.45</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span><span class="mord text"><span class="mord"> arcs</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">64</span><span class="mord text"><span class="mord"> bytes</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">157</span><span class="mord text"><span class="mord"> GB per pass</span></span><span class="mpunct">,</span></span></span></span></span></div>
+<p>roughly 5 to 8 seconds of pure memory traffic per pass, far more than the sequential reads. Locality decides the real cost. A <a href="node-orderings.html">locality-preserving order</a> makes many neighbouring arcs read neighbouring scores, so one cache line serves several arcs. Heavy-tailed in-degrees help too: the scores of the few hub nodes that appear in millions of in-lists stay in cache.</p>
+<p>With 50 to 100 passes for a tight tolerance, or about half that with Gauss–Seidel, a well-ordered in-memory computation on one multicore machine takes minutes.</p>
+<h2 id="when-the-graph-does-not-fit">When the graph does not fit</h2>
+<ul>
+<li><strong>Compressed in memory.</strong> At 4.6 GB, the WebGraph form fits where CSR may not. Decoding costs CPU but saves memory bandwidth, usually a good trade. This is what Common Crawl’s pipeline does, with the LAW library’s parallel Gauss–Seidel solver reading a memory-mapped graph.</li>
+<li><strong>Semi-external.</strong> Keep the score vectors (2 GB) in memory and stream the arcs from disk on every pass. A raw edge list of 32-bit pairs is 19.6 GB; at 3 GB/s from an NVMe drive, a pass takes about 7 seconds, comparable to the in-memory random-read cost above.</li>
+<li><strong>Fully external.</strong> When even the vectors do not fit, sort-based methods process arcs and scores in matching order, at the price of sorting every pass. This was necessary in the early 2000s and is rarely needed now for domain or host graphs.</li>
+</ul>
+<h2 id="clusters-and-their-cost">Clusters and their COST</h2>
+<p>Distributed graph systems split the nodes across machines and exchange score messages along cut arcs each pass. They scale to graphs that no single machine can hold, but communication dominates: every arc between machines becomes network traffic on every pass. McSherry, Isard and Murray’s “Scalability! But at what COST?” (2015) measured the configuration that outperforms a single thread, and found that several published distributed systems needed dozens to hundreds of cores just to match one well-written single-threaded PageRank on a laptop for graphs with billions of links. For graphs the size of Common Crawl’s domain graph, a single large machine is the practical choice.</p>
+<h2 id="load-balance-and-hubs">Load balance and hubs</h2>
+<p>Pull-style parallel passes split nodes among threads. A node with 17 million in-links, such as <code>googleapis.com</code>, makes one thread do 17 million additions while the others idle, unless the work is split by arcs rather than nodes. Edge-balanced partitioning, or splitting the in-lists of the largest hubs, keeps all cores busy. Push-style passes avoid the hub problem but need atomic additions on targets.</p>
+<h2 id="stopping-and-verifying">Stopping and verifying</h2>
+<ul>
+<li><strong>Pick the tolerance from the use.</strong> If you publish positions, stop when the positions you care about have stopped changing; the tail of a 120-million-node ranking is decided by floating-point noise long before values converge (see <a href="ranks-and-scores.html">Ranks and scores</a>).</li>
+<li><strong>Check the invariants.</strong> Scores must be positive and sum to 1 within rounding, every node with no in-links must sit at the same floor, and two runs with different thread counts should agree to the tolerance.</li>
+<li><strong>Cross-check on a sample.</strong> <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a> gives an independent estimate for the top nodes in minutes.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>McSherry, F., Isard, M., &amp; Murray, D. G. (2015). Scalability! But at what COST? <em>HotOS 2015</em>.</li>
+<li>Boldi, P., &amp; Vigna, S. (2004). The WebGraph Framework I: Compression techniques. <em>WWW 2004</em>, 595–602.</li>
+<li>Haveliwala, T. H. (1999). Efficient computation of PageRank. Stanford InfoLab Technical Report 1999-31.</li>
+<li>Malewicz, G., Austern, M. H., Bik, A. J. C., Dehnert, J. C., Horn, I., Leiser, N., &amp; Czajkowski, G. (2010). Pregel: A system for large-scale graph processing. <em>SIGMOD 2010</em>, 135–146.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="adjacency.html">Adjacency matrices and lists</a> · <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a> · <a href="pagerank.html">PageRank</a> · <a href="power-iteration.html">Power iteration</a> · <a href="push-algorithms.html">Push algorithms</a></p></section><nav class="prevnext"><a href="brandes-algorithm.html">← Brandes' algorithm</a><a href="ranks-and-scores.html">Ranks and scores →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/pagerank-at-scale.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#what-must-be-stored">What must be stored</a></li><li><a href="#what-one-pass-costs">What one pass costs</a></li><li><a href="#when-the-graph-does-not-fit">When the graph does not fit</a></li><li><a href="#clusters-and-their-cost">Clusters and their COST</a></li><li><a href="#load-balance-and-hubs">Load balance and hubs</a></li><li><a href="#stopping-and-verifying">Stopping and verifying</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

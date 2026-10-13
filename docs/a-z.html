@@ -20,9 +20,9 @@
 <p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
 <h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
 <h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
-<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li></ul>
-<h2>Computing at scale</h2><ul></ul>
-<h2>Comparing rankings</h2><ul></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li></ul>
 <h2>Network structure</h2><ul></ul>
 <h2>Links in practice</h2><ul></ul>
 <h2>Domain metrics</h2><ul></ul>
@@ -37,30 +37,45 @@
 <dt>2DRank</dt><dd>See <a href="cheirank.html">CheiRank and 2DRank</a>.</dd>
 </dl>
 <h2 id="A">A</h2><dl>
+<dt><a href="pagerank-history.html">A short history of PageRank</a></dt><dd>From a Stanford research project to Google's founding idea, a 0–10 number on millions of toolbars, a market in links, and finally a retired public metric that Google says it still uses internally.</dd>
 <dt>Absolute spam mass</dt><dd>See <a href="spam-mass.html">Spam mass</a>.</dd>
+<dt>ACL algorithm</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
 <dt>Adjacency list</dt><dd>See <a href="adjacency.html">Adjacency matrices and lists</a>.</dd>
 <dt><a href="adjacency.html">Adjacency matrices and lists</a></dt><dd>Two ways to write a graph down. The matrix suits the algebra behind every spectral ranking; compressed lists are how a real web graph fits in memory.</dd>
 <dt>Adjacency matrix</dt><dd>See <a href="adjacency.html">Adjacency matrices and lists</a>.</dd>
 <dt>Alpha</dt><dd>See <a href="damping-factor.html">The damping factor</a>.</dd>
 <dt>Alpha centrality</dt><dd>See <a href="katz-centrality.html">Katz centrality</a>.</dd>
+<dt>ANF</dt><dd>See <a href="hyperball.html">HyperBall</a>.</dd>
 <dt>Anti-TrustRank</dt><dd>See <a href="trustrank.html">TrustRank</a>.</dd>
+<dt>Approximate counting</dt><dd>See <a href="hyperloglog.html">HyperLogLog</a>.</dd>
+<dt>Approximate neighbourhood function</dt><dd>See <a href="hyperball.html">HyperBall</a>.</dd>
+<dt>Approximate PageRank</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
 <dt>Attenuation factor</dt><dd>See <a href="katz-centrality.html">Katz centrality</a>.</dd>
 <dt>Authority score</dt><dd>See <a href="hits.html">HITS (hubs and authorities)</a>.</dd>
 <dt><a href="centrality-axioms.html">Axioms for centrality</a></dt><dd>Boldi and Vigna's three tests (size, density and score monotonicity) check whether a centrality measure agrees with intuition on graphs simple enough that the right answer is obvious. Only harmonic centrality passes all three.</dd>
 </dl>
 <h2 id="B">B</h2><dl>
+<dt>BackRub</dt><dd>See <a href="pagerank-history.html">A short history of PageRank</a>.</dd>
+<dt>Backward push</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
 <dt>Bavelas closeness</dt><dd>See <a href="closeness-centrality.html">Closeness centrality</a>.</dd>
 <dt>Betweenness</dt><dd>See <a href="betweenness-centrality.html">Betweenness centrality</a>.</dd>
+<dt>Betweenness algorithm</dt><dd>See <a href="brandes-algorithm.html">Brandes' algorithm</a>.</dd>
 <dt><a href="betweenness-centrality.html">Betweenness centrality</a></dt><dd>A node is central if many shortest paths between other nodes pass through it. Betweenness finds bridges and brokers, not popular destinations.</dd>
 <dt>BFS</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
+<dt>BFS order</dt><dd>See <a href="node-orderings.html">Node orderings</a>.</dd>
 <dt>Boldi–Vigna axioms</dt><dd>See <a href="centrality-axioms.html">Axioms for centrality</a>.</dd>
 <dt>Bonacich centrality</dt><dd>See <a href="eigenvector-centrality.html">Eigenvector centrality</a>.</dd>
+<dt>Bookmark coloring</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
 <dt>Bow tie</dt><dd>See <a href="bow-tie.html">The bow-tie structure</a>.</dd>
 <dt>Bowtie model</dt><dd>See <a href="bow-tie.html">The bow-tie structure</a>.</dd>
+<dt>Brandes</dt><dd>See <a href="brandes-algorithm.html">Brandes' algorithm</a>.</dd>
+<dt><a href="brandes-algorithm.html">Brandes' algorithm</a></dt><dd>Exact betweenness centrality for every node in O(nm) time. One breadth-first search per source counts shortest paths, and one backward sweep hands each node its share.</dd>
 <dt>Breadth-first search</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
 <dt>Brokerage</dt><dd>See <a href="betweenness-centrality.html">Betweenness centrality</a>.</dd>
+<dt>BVGraph</dt><dd>See <a href="webgraph-compression.html">WebGraph compression</a>.</dd>
 </dl>
 <h2 id="C">C</h2><dl>
+<dt>Cardinality estimation</dt><dd>See <a href="hyperloglog.html">HyperLogLog</a>.</dd>
 <dt><a href="centrality.html">Centrality</a></dt><dd>A centrality measure assigns every node a score of importance computed from the graph's structure alone. Different measures formalise different ideas of importance, and they disagree.</dd>
 <dt>Centrality measure</dt><dd>See <a href="centrality.html">Centrality</a>.</dd>
 <dt>CheiRank</dt><dd>See <a href="cheirank.html">CheiRank and 2DRank</a>.</dd>
@@ -68,9 +83,11 @@
 <dt>Citation count</dt><dd>See <a href="degree-centrality.html">Degree centrality</a>.</dd>
 <dt>Closeness</dt><dd>See <a href="closeness-centrality.html">Closeness centrality</a>.</dd>
 <dt><a href="closeness-centrality.html">Closeness centrality</a></dt><dd>A node is central if it is close, on average, to all other nodes. A classic idea from social network analysis that breaks down on graphs where most pairs cannot reach each other, like the web.</dd>
+<dt>Complete path method</dt><dd>See <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a>.</dd>
 <dt>Compressed sparse row</dt><dd>See <a href="adjacency.html">Adjacency matrices and lists</a>.</dd>
 <dt>Condensation</dt><dd>See <a href="strongly-connected-components.html">Strongly connected components</a>.</dd>
 <dt>Convergence</dt><dd>See <a href="power-iteration.html">Power iteration</a>.</dd>
+<dt>COST</dt><dd>See <a href="pagerank-at-scale.html">PageRank at scale</a>.</dd>
 <dt>CSR</dt><dd>See <a href="adjacency.html">Adjacency matrices and lists</a>.</dd>
 </dl>
 <h2 id="D">D</h2><dl>
@@ -83,17 +100,23 @@
 <dt>Degree distribution</dt><dd>See <a href="power-laws.html">Degree distributions and power laws</a>.</dd>
 <dt><a href="power-laws.html">Degree distributions and power laws</a></dt><dd>Most sites receive almost no links and a few receive millions. That heavy tail explains why link metrics live on logarithmic scales and why averages mislead.</dd>
 <dt>Density axiom</dt><dd>See <a href="centrality-axioms.html">Axioms for centrality</a>.</dd>
+<dt>Dependency accumulation</dt><dd>See <a href="brandes-algorithm.html">Brandes' algorithm</a>.</dd>
 <dt>Distance</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
+<dt>Distinct counting</dt><dd>See <a href="hyperloglog.html">HyperLogLog</a>.</dd>
+<dt>Distributed PageRank</dt><dd>See <a href="pagerank-at-scale.html">PageRank at scale</a>.</dd>
 <dt>Domain graph</dt><dd>See <a href="graph-granularity.html">Page, host and domain graphs</a>.</dd>
 <dt>Dominant eigenvector</dt><dd>See <a href="eigenvector-centrality.html">Eigenvector centrality</a>.</dd>
 </dl>
 <h2 id="E">E</h2><dl>
 <dt>Eigenvector</dt><dd>See <a href="eigenvector-centrality.html">Eigenvector centrality</a>.</dd>
 <dt><a href="eigenvector-centrality.html">Eigenvector centrality</a></dt><dd>A node's score is proportional to the sum of the scores of the nodes linking to it. The cleanest form of &quot;important nodes are those linked by important nodes&quot;, and the parent of PageRank.</dd>
+<dt>End-point method</dt><dd>See <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a>.</dd>
 <dt>Ergodic</dt><dd>See <a href="random-walks.html">Random walks and Markov chains</a>.</dd>
 <dt>eTLD+1</dt><dd>See <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>.</dd>
 </dl>
 <h2 id="F">F</h2><dl>
+<dt>Fingerprints</dt><dd>See <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a>.</dd>
+<dt>Forward push</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
 <dt>Freeman betweenness</dt><dd>See <a href="betweenness-centrality.html">Betweenness centrality</a>.</dd>
 </dl>
 <h2 id="G">G</h2><dl>
@@ -102,6 +125,8 @@
 <dt>Good core</dt><dd>See <a href="spam-mass.html">Spam mass</a>.</dd>
 <dt>Google PageRank</dt><dd>See <a href="pagerank.html">PageRank</a>.</dd>
 <dt>Granularity</dt><dd>See <a href="graph-granularity.html">Page, host and domain graphs</a>.</dd>
+<dt>Graph compression</dt><dd>See <a href="webgraph-compression.html">WebGraph compression</a>.</dd>
+<dt>Graph reordering</dt><dd>See <a href="node-orderings.html">Node orderings</a>.</dd>
 </dl>
 <h2 id="H">H</h2><dl>
 <dt>Harmonic</dt><dd>See <a href="harmonic-centrality.html">Harmonic centrality</a>.</dd>
@@ -112,10 +137,14 @@
 <dt>Heavy tail</dt><dd>See <a href="power-laws.html">Degree distributions and power laws</a>.</dd>
 <dt>HITS</dt><dd>See <a href="hits.html">HITS (hubs and authorities)</a>.</dd>
 <dt><a href="hits.html">HITS (hubs and authorities)</a></dt><dd>Every node gets two scores. A good authority is linked by good hubs, and a good hub links to good authorities. Kleinberg's algorithm computes both from the links around a query's results.</dd>
+<dt>HLL</dt><dd>See <a href="hyperloglog.html">HyperLogLog</a>.</dd>
 <dt>Host graph</dt><dd>See <a href="graph-granularity.html">Page, host and domain graphs</a>.</dd>
 <dt>Hub score</dt><dd>See <a href="hits.html">HITS (hubs and authorities)</a>.</dd>
 <dt>Hubs and authorities</dt><dd>See <a href="hits.html">HITS (hubs and authorities)</a>.</dd>
+<dt>HyperANF</dt><dd>See <a href="hyperball.html">HyperBall</a>.</dd>
+<dt><a href="hyperball.html">HyperBall</a></dt><dd>Grow a probabilistic counter around every node by one link per pass over the graph. After a few dozen passes you know, for every node, roughly how many nodes lie within each distance, and with it harmonic centrality, closeness and the distance distribution.</dd>
 <dt>Hyperlink graph</dt><dd>See <a href="web-graph.html">The web graph</a>.</dd>
+<dt><a href="hyperloglog.html">HyperLogLog</a></dt><dd>A counter that estimates how many distinct items it has seen, within a few percent, using a few bytes. Its counters merge by taking maxima, which is what lets HyperBall count reachable nodes for a hundred million nodes at once.</dd>
 </dl>
 <h2 id="I">I</h2><dl>
 <dt>IN component</dt><dd>See <a href="bow-tie.html">The bow-tie structure</a>.</dd>
@@ -136,18 +165,26 @@
 <dt>Kleinberg</dt><dd>See <a href="hits.html">HITS (hubs and authorities)</a>.</dd>
 </dl>
 <h2 id="L">L</h2><dl>
+<dt>Large-scale PageRank</dt><dd>See <a href="pagerank-at-scale.html">PageRank at scale</a>.</dd>
+<dt>Layered label propagation</dt><dd>See <a href="node-orderings.html">Node orderings</a>.</dd>
 <dt>Lin centrality</dt><dd>See <a href="closeness-centrality.html">Closeness centrality</a>.</dd>
 <dt>Lin's index</dt><dd>See <a href="closeness-centrality.html">Closeness centrality</a>.</dd>
 <dt>Linear system formulation</dt><dd>See <a href="pagerank-linear-system.html">PageRank as a linear system</a>.</dd>
 <dt>Link analysis</dt><dd>See <a href="centrality.html">Centrality</a>.</dd>
 <dt>Link graph</dt><dd>See <a href="web-graph.html">The web graph</a>.</dd>
+<dt>LLP</dt><dd>See <a href="node-orderings.html">Node orderings</a>.</dd>
+<dt>Local push</dt><dd>See <a href="push-algorithms.html">Push algorithms</a>.</dd>
+<dt>Locality</dt><dd>See <a href="node-orderings.html">Node orderings</a>.</dd>
+<dt>Log scale</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
 </dl>
 <h2 id="M">M</h2><dl>
 <dt>Markov chain</dt><dd>See <a href="random-walks.html">Random walks and Markov chains</a>.</dd>
 <dt>Mass estimation</dt><dd>See <a href="spam-mass.html">Spam mass</a>.</dd>
+<dt><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></dt><dd>Estimate PageRank by actually running random surfers and counting their visits. A few walks per node rank the important nodes well, the walks parallelise trivially, and they can be updated as links change.</dd>
 </dl>
 <h2 id="N">N</h2><dl>
 <dt>Node importance</dt><dd>See <a href="centrality.html">Centrality</a>.</dd>
+<dt><a href="node-orderings.html">Node orderings</a></dt><dd>Renumbering a graph's nodes changes nothing about its structure and everything about its cost. Good orders shrink compressed graphs, speed up PageRank through cache locality and balance parallel work.</dd>
 </dl>
 <h2 id="O">O</h2><dl>
 <dt>OUT component</dt><dd>See <a href="bow-tie.html">The bow-tie structure</a>.</dd>
@@ -159,12 +196,17 @@
 <dt><a href="graph-granularity.html">Page, host and domain graphs</a></dt><dd>The same links give three different graphs depending on whether a node is a URL, a host name or a registered domain. Each level answers different questions and hides different problems.</dd>
 <dt><a href="pagerank.html">PageRank</a></dt><dd>A node is important if important nodes link to it. PageRank makes that circular idea precise as the long-run behaviour of a random surfer who sometimes gets bored and jumps.</dd>
 <dt><a href="pagerank-linear-system.html">PageRank as a linear system</a></dt><dd>PageRank is also the solution of a sparse system of linear equations. That view brings faster solvers such as Gauss–Seidel, explains why the problem is well conditioned, and makes PageRank linear in the teleport vector.</dd>
+<dt><a href="pagerank-at-scale.html">PageRank at scale</a></dt><dd>The arithmetic of ranking a hundred million nodes and billions of links. What must fit in memory, what each pass costs, why random reads dominate, and why one well-programmed machine often beats a cluster.</dd>
+<dt>PageRank patent</dt><dd>See <a href="pagerank-history.html">A short history of PageRank</a>.</dd>
+<dt>PageRank sculpting</dt><dd>See <a href="pagerank-history.html">A short history of PageRank</a>.</dd>
 <dt>Pareto distribution</dt><dd>See <a href="power-laws.html">Degree distributions and power laws</a>.</dd>
 <dt><a href="paths-and-distance.html">Paths, distance and reachability</a></dt><dd>How many clicks separate two sites, and whether one can reach the other at all. Breadth-first search answers both, and geometric centralities are built on the answer.</dd>
+<dt>Percentile</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
 <dt>Perron vector</dt><dd>See <a href="perron-frobenius.html">The Perron–Frobenius theorem</a>.</dd>
 <dt>Perron–Frobenius</dt><dd>See <a href="perron-frobenius.html">The Perron–Frobenius theorem</a>.</dd>
 <dt><a href="personalized-pagerank.html">Personalized PageRank</a></dt><dd>PageRank with the random surfer's jumps aimed at chosen nodes instead of anywhere. It measures importance from a point of view, and underlies TrustRank, topic-sensitive search and local graph clustering.</dd>
 <dt>Popularity</dt><dd>See <a href="degree-centrality.html">Degree centrality</a>.</dd>
+<dt>Position</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
 <dt><a href="power-iteration.html">Power iteration</a></dt><dd>Start from any distribution and apply one random-surfer step to all nodes at once, over and over. The error shrinks by a factor of about α per pass, and each pass reads every link exactly once.</dd>
 <dt>Power law</dt><dd>See <a href="power-laws.html">Degree distributions and power laws</a>.</dd>
 <dt>Power method</dt><dd>See <a href="power-iteration.html">Power iteration</a>.</dd>
@@ -176,14 +218,19 @@
 <dt>Pseudo-PageRank</dt><dd>See <a href="pagerank-linear-system.html">PageRank as a linear system</a>.</dd>
 <dt>PSL</dt><dd>See <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>.</dd>
 <dt>Public Suffix List</dt><dd>See <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>.</dd>
+<dt><a href="push-algorithms.html">Push algorithms</a></dt><dd>Compute personalized PageRank by pushing probability outward from the seed, one node at a time, and stopping when the leftovers are small. The work depends on the precision you want, not on the size of the graph.</dd>
 </dl>
 <h2 id="R">R</h2><dl>
 <dt>Random surfer model</dt><dd>See <a href="random-surfer.html">The random surfer</a>.</dd>
 <dt>Random walk</dt><dd>See <a href="random-walks.html">Random walks and Markov chains</a>.</dd>
+<dt>Random walk sampling</dt><dd>See <a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a>.</dd>
 <dt>Random walk with restart</dt><dd>See <a href="personalized-pagerank.html">Personalized PageRank</a>.</dd>
 <dt><a href="random-walks.html">Random walks and Markov chains</a></dt><dd>A walker who follows random links visits some nodes more often than others. The long-run visit frequencies, the stationary distribution, are the mathematical core of PageRank and its relatives.</dd>
+<dt>Rank</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
+<dt><a href="ranks-and-scores.html">Ranks and scores</a></dt><dd>A centrality gives each node a value; a ranking gives it a position. Positions are easy to read and easy to misread. How values are distributed, how ties are broken and how precise the values are decide what a position means.</dd>
 <dt>Reachability</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
 <dt>Reasonable surfer</dt><dd>See <a href="random-surfer.html">The random surfer</a>.</dd>
+<dt>Reference compression</dt><dd>See <a href="webgraph-compression.html">WebGraph compression</a>.</dd>
 <dt>Registrable domain</dt><dd>See <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>.</dd>
 <dt>Relative spam mass</dt><dd>See <a href="spam-mass.html">Spam mass</a>.</dd>
 <dt>Reverse PageRank</dt><dd>See <a href="cheirank.html">CheiRank and 2DRank</a>.</dd>
@@ -196,6 +243,7 @@
 <dt>SCC</dt><dd>See <a href="strongly-connected-components.html">Strongly connected components</a>.</dd>
 <dt>Score monotonicity</dt><dd>See <a href="centrality-axioms.html">Axioms for centrality</a>.</dd>
 <dt>Seed set</dt><dd>See <a href="trustrank.html">TrustRank</a>.</dd>
+<dt>Semi-external PageRank</dt><dd>See <a href="pagerank-at-scale.html">PageRank at scale</a>.</dd>
 <dt>Shortest path</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
 <dt>Sink</dt><dd>See <a href="dangling-nodes.html">Dangling nodes</a>.</dd>
 <dt>Size axiom</dt><dd>See <a href="centrality-axioms.html">Axioms for centrality</a>.</dd>
@@ -209,6 +257,7 @@
 </dl>
 <h2 id="T">T</h2><dl>
 <dt>Tarjan's algorithm</dt><dd>See <a href="strongly-connected-components.html">Strongly connected components</a>.</dd>
+<dt>TBPR</dt><dd>See <a href="pagerank-history.html">A short history of PageRank</a>.</dd>
 <dt>Teleport</dt><dd>See <a href="random-surfer.html">The random surfer</a>.</dd>
 <dt>Teleportation</dt><dd>See <a href="random-surfer.html">The random surfer</a>.</dd>
 <dt>Teleportation probability</dt><dd>See <a href="damping-factor.html">The damping factor</a>.</dd>
@@ -218,6 +267,9 @@
 <dt><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></dt><dd>The theorem that guarantees a nonnegative matrix has a dominant eigenvector with positive entries. It is why PageRank exists, why it is unique, and why eigenvector centrality fails on graphs that are not strongly connected.</dd>
 <dt><a href="random-surfer.html">The random surfer</a></dt><dd>The story behind PageRank. A surfer clicks random links, never presses Back, and now and then jumps to a random page; the share of time spent on each page is its PageRank.</dd>
 <dt><a href="web-graph.html">The web graph</a></dt><dd>The directed graph with a node for every page, host or domain and an arc for every hyperlink between them.</dd>
+<dt>Tie-breaking</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
+<dt>Ties</dt><dd>See <a href="ranks-and-scores.html">Ranks and scores</a>.</dd>
+<dt>Toolbar PageRank</dt><dd>See <a href="pagerank-history.html">A short history of PageRank</a>.</dd>
 <dt>Topic-sensitive PageRank</dt><dd>See <a href="personalized-pagerank.html">Personalized PageRank</a>.</dd>
 <dt>Transition matrix</dt><dd>See <a href="random-walks.html">Random walks and Markov chains</a>.</dd>
 <dt>Trust propagation</dt><dd>See <a href="trustrank.html">TrustRank</a>.</dd>
@@ -225,8 +277,11 @@
 </dl>
 <h2 id="W">W</h2><dl>
 <dt>Webgraph</dt><dd>See <a href="web-graph.html">The web graph</a>.</dd>
+<dt><a href="webgraph-compression.html">WebGraph compression</a></dt><dd>How the WebGraph framework stores billions of links in a few bits each, using sorted gaps, copying from similar neighbours, runs of consecutive ids and codes tuned to power laws, while still decoding any node's links quickly.</dd>
+<dt>WebGraph framework</dt><dd>See <a href="webgraph-compression.html">WebGraph compression</a>.</dd>
 </dl>
 <h2 id="Z">Z</h2><dl>
+<dt>Zeta codes</dt><dd>See <a href="webgraph-compression.html">WebGraph compression</a>.</dd>
 <dt>Zipf's law</dt><dd>See <a href="power-laws.html">Degree distributions and power laws</a>.</dd>
 </dl>
 <h2 id="sym">Α</h2><dl>

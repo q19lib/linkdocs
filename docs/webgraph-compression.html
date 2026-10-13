@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebGraph compression · Link Graph Encyclopedia</title>
+<meta name="description" content="How the WebGraph framework stores billions of links in a few bits each, using sorted gaps, copying from similar neighbours, runs of consecutive ids and codes tuned to power laws, while still decoding any node's links quickly.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html" aria-current="page">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Computing at scale</p><h1>WebGraph compression</h1>
+<p class="lede">How the WebGraph framework stores billions of links in a few bits each, using sorted gaps, copying from similar neighbours, runs of consecutive ids and codes tuned to power laws, while still decoding any node's links quickly.</p>
+<p>A web graph is mostly a list of integers: for each node, the ids of the nodes it links to. Stored plainly as 32-bit integers, Common Crawl’s 2.45 billion domain links take 9.8 GB, plus offsets. Paolo Boldi and Sebastiano Vigna’s <strong>WebGraph</strong> framework, first described in 2004, stores the same graph in 4.6 GB, about 15 bits per link, and page-level crawls in 2 to 3 bits per link, while still letting a program read any node’s successors without decompressing the rest. Common Crawl distributes its graphs in WebGraph’s <code>BVGraph</code> format, and the LAW tools that compute its PageRank and harmonic centrality read that format directly.</p>
+<h2 id="the-structure-it-exploits">The structure it exploits</h2>
+<p>Boldi and Vigna built on observations by Randall and colleagues about real link lists:</p>
+<ul>
+<li><strong>Locality.</strong> With nodes numbered in a sensible order, such as by reversed host name (see <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>), most links point to nodes with nearby ids, especially links within a site.</li>
+<li><strong>Similarity.</strong> Nodes with nearby ids often have nearly the same successor lists: pages of one site share navigation links.</li>
+<li><strong>Consecutivity.</strong> Successor lists often contain runs of consecutive ids, such as a page linking to all pages of a section.</li>
+<li><strong>Skewed gaps.</strong> Differences between consecutive successors follow a heavy-tailed distribution: small gaps are very common, large gaps rare but present.</li>
+</ul>
+<h2 id="the-techniques">The techniques</h2>
+<ol>
+<li><strong>Gap encoding.</strong> Each successor list is sorted. The first successor is stored relative to the node’s own id, and every later one as the gap from its predecessor. Small numbers need few bits.</li>
+<li><strong>Reference compression.</strong> A node may name one of the previous <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span> nodes (the <em>window</em>) as a reference and copy part of its list. Copy blocks, alternating runs of “copy” and “skip”, say which of the reference’s successors to keep; only the remaining <em>extra</em> successors are stored. A limit on reference chains (<code>maxrefcount</code>) bounds how many lists must be decoded to recover one.</li>
+<li><strong>Intervals.</strong> Among the extra successors, runs of at least <code>minintervallength</code> consecutive ids are stored as a left end and a length.</li>
+<li><strong>Residuals.</strong> Whatever is left is stored as gaps, using <strong>ζ codes</strong>. A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ζ</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\zeta_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0738em;">ζ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0738em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> code is designed for integers following a power law with exponent near <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>k</mi></mrow><annotation encoding="application/x-tex">1 + 1/k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span>; Boldi and Vigna introduced the family because residual gaps on web graphs fit it better than Elias γ or δ codes.</li>
+<li><strong>Instantaneous codes and offsets.</strong> Every number uses a prefix-free code, so lists decode bit by bit without lookahead. A separate offsets structure (Elias–Fano coded in current versions) records where each node’s bits start, which gives random access.</li>
+</ol>
+<h2 id="the-common-crawl-domain-graph-bit-by-bit">The Common Crawl domain graph, bit by bit</h2>
+<p>The <code>.properties</code> file that ships with <code>cc-main-2026-jun-jul-aug-domain.graph</code> records the parameters and where the bits go:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes / arcs</td>
+<td>119,722,885 / 2,450,405,793</td>
+</tr>
+<tr>
+<td>Window <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span></span></span></span>, maximum reference chain, minimum interval</td>
+<td>7, 3, 4</td>
+</tr>
+<tr>
+<td>Residual code</td>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ζ</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\zeta_3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0738em;">ζ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0738em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+</tr>
+<tr>
+<td>Bits per link</td>
+<td>15.11</td>
+</tr>
+<tr>
+<td>Arcs copied from a reference</td>
+<td>213,946,881 (8.7%)</td>
+</tr>
+<tr>
+<td>Arcs stored in intervals</td>
+<td>39,703,731 (1.6%)</td>
+</tr>
+<tr>
+<td>Arcs stored as residuals</td>
+<td>2,196,755,181 (89.6%)</td>
+</tr>
+<tr>
+<td>Share of all bits spent on residuals</td>
+<td>96.7%</td>
+</tr>
+<tr>
+<td>Average log₂ of a residual gap</td>
+<td>11.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>The file is 4,627,056,342 bytes; the transposed graph, needed for in-links, is the same size again.</p>
+<p>Copying and intervals do little here. Nearly 90% of arcs end up as residuals, with gaps averaging around <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>11</mn></msup></mrow><annotation encoding="application/x-tex">2^{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span></span></span></span></span></span></span></span>, so each costs about 15 bits. That is the price of a <em>domain</em> graph. Domain-level folding removes all links inside a site (see <a href="graph-granularity.html">Page, host and domain graphs</a>), which are exactly the local, similar, consecutive links that make page graphs compress to 2 or 3 bits per link. What remains are links between unrelated domains spread across the whole id space. Fifteen bits per link is still a 2.1-fold saving over 32-bit integers.</p>
+<h2 id="performance">Performance</h2>
+<p>Compression would be useless if decoding were slow. WebGraph decodes successors sequentially at rates of tens of millions of links per second per core, and random access to one node costs decoding at most a bounded chain of reference lists. Algorithms that scan the whole graph in id order, such as one pass of PageRank or one round of <a href="hyperball.html">HyperBall</a>, read the compressed file sequentially, often memory-mapped, and pay little for decompression compared with the memory bandwidth they save. A 4.6 GB graph fits in the RAM of a workstation, where 19.6 GB of raw pairs might not.</p>
+<h2 id="ordering-matters-most">Ordering matters most</h2>
+<p>The single biggest factor in compression is the order of node ids. Lexicographic URL order made the original results possible. Later work found orders that cluster nodes by link structure rather than by name, and for social networks, which have no URL order at all, the choice is decisive. The <a href="node-orderings.html">Node orderings</a> entry covers layered label propagation and its relatives, which compress many web graphs noticeably better than name order and social networks far better than any naive order.</p>
+<h2 id="beyond-webgraph">Beyond WebGraph</h2>
+<ul>
+<li><strong>k²-trees</strong> (Brisaboa, Ladra and Navarro) store the adjacency matrix as a quadtree of nonempty blocks, supporting both successor and predecessor queries from one structure.</li>
+<li><strong>Log(Graph)</strong> and other recent work compress graphs for parallel processing with bit-level encodings tuned to modern hardware.</li>
+<li><strong>CSR with 32-bit ids</strong> remains the baseline for in-memory analytics when space is available, because it decodes nothing (see <a href="adjacency.html">Adjacency matrices and lists</a>).</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Boldi, P., &amp; Vigna, S. (2004). The WebGraph Framework I: Compression techniques. <em>WWW 2004</em>, 595–602.</li>
+<li>Randall, K. H., Stata, R., Wiener, J. L., &amp; Wickremesinghe, R. G. (2002). The Link Database: Fast access to graphs of the Web. <em>Data Compression Conference 2002</em>, 122–131.</li>
+<li>Boldi, P., &amp; Vigna, S. (2005). Codes for the World Wide Web. <em>Internet Mathematics</em> 2(4), 407–429.</li>
+<li>Brisaboa, N. R., Ladra, S., &amp; Navarro, G. (2014). Compact representation of Web graphs with extended functionality. <em>Information Systems</em> 39, 152–174.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="adjacency.html">Adjacency matrices and lists</a> · <a href="degree.html">Degree</a> · <a href="power-laws.html">Degree distributions and power laws</a> · <a href="hyperball.html">HyperBall</a> · <a href="node-orderings.html">Node orderings</a> · <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a> · <a href="web-graph.html">The web graph</a></p></section><nav class="prevnext"><a href="pagerank-history.html">← A short history of PageRank</a><a href="node-orderings.html">Node orderings →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/webgraph-compression.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#the-structure-it-exploits">The structure it exploits</a></li><li><a href="#the-techniques">The techniques</a></li><li><a href="#the-common-crawl-domain-graph-bit-by-bit">The Common Crawl domain graph, bit by bit</a></li><li><a href="#performance">Performance</a></li><li><a href="#ordering-matters-most">Ordering matters most</a></li><li><a href="#beyond-webgraph">Beyond WebGraph</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

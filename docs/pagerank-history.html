@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A short history of PageRank · Link Graph Encyclopedia</title>
+<meta name="description" content="From a Stanford research project to Google's founding idea, a 0–10 number on millions of toolbars, a market in links, and finally a retired public metric that Google says it still uses internally.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html" aria-current="page">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">PageRank in depth</p><h1>A short history of PageRank</h1>
+<p class="lede">From a Stanford research project to Google's founding idea, a 0–10 number on millions of toolbars, a market in links, and finally a retired public metric that Google says it still uses internally.</p>
+<p>PageRank began as an academic idea, became the technical story of the world’s largest search engine, and spent sixteen years as a public number that website owners obsessed over. Its history explains why so many link metrics exist today, and why the industry still talks about “link juice” and 0–10 scores long after Google stopped showing them.</p>
+<h2 id="origins-at-stanford-1996-1998">Origins at Stanford, 1996–1998</h2>
+<p>Larry Page and Sergey Brin started the project in 1996 as Stanford graduate students, crawling the web with a system first called BackRub. The idea drew on citation analysis, where a paper cited by influential papers is itself influential, and on earlier work such as Katz’s 1953 status index (see <a href="katz-centrality.html">Katz centrality</a>). In April 1998 they presented “The Anatomy of a Large-Scale Hypertextual Web Search Engine” at the WWW7 conference, describing Google and its use of PageRank. A companion technical report with Rajeev Motwani and Terry Winograd, “The PageRank Citation Ranking: Bringing Order to the Web”, gave the mathematics, including the <a href="random-surfer.html">The random surfer</a> interpretation and personalisation. Jon Kleinberg’s <a href="hits.html">HITS (hubs and authorities)</a> appeared the same year, independently, at IBM.</p>
+<h2 id="the-patent">The patent</h2>
+<p>Page filed US patent 6,285,999, “Method for node ranking in a linked database”, on 9 January 1998; it was granted on 4 September 2001. The patent belonged to Stanford, not Google, which held an exclusive licence. Stanford received 1.8 million Google shares for the licence and sold them in 2005 for about $336 million, one of the most lucrative university licensing deals ever. The patent ran for twenty years from filing and has expired; the method has been free to use for years, and graph libraries ship it as a standard function.</p>
+<h2 id="toolbar-pagerank-2000-2016">Toolbar PageRank, 2000–2016</h2>
+<p>On 11 December 2000 Google released the Google Toolbar, a browser add-on that, among other features, displayed a green bar scoring the current page from 0 to 10. This <em>Toolbar PageRank</em> (TBPR) was a coarse, roughly logarithmic bucketing of the page’s internal PageRank, updated only every few months. Google never published the bucket boundaries.</p>
+<p>The number became a currency. Site owners checked it obsessively, link sellers priced links by the TBPR of the selling page, and expired domains were valued by the TBPR they had accumulated (see expired-domains). Google’s response was a series of steps away from the public number:</p>
+<ul>
+<li><strong>2005:</strong> Google introduced <code>rel=&quot;nofollow&quot;</code> with other search engines, to let sites mark links they did not vouch for (see link-attributes).</li>
+<li><strong>2007:</strong> Google lowered the displayed TBPR of sites it judged to be selling links that passed PageRank, a visible penalty for an invisible offence.</li>
+<li><strong>2009:</strong> Google removed PageRank from its Webmaster Tools in October, saying it was telling site owners not to focus on the number while showing it to them. In the same year it clarified that links marked <code>nofollow</code> still use up a page’s PageRank share, ending the practice of “PageRank sculpting” with <code>nofollow</code>.</li>
+<li><strong>December 2013:</strong> the last Toolbar PageRank update.</li>
+<li><strong>2014:</strong> Google’s John Mueller said the public scores would probably not be updated again.</li>
+<li><strong>April 2016:</strong> Google confirmed that Toolbar PageRank had been removed entirely.</li>
+</ul>
+<h2 id="still-in-use-says-google">Still in use, says Google</h2>
+<p>Retiring the public number did not retire the algorithm. In 2017, Google’s Gary Illyes wrote that Google still used PageRank, among hundreds of other signals, in ranking. How it is computed today, on what graph, with which spam filtering and link weighting, is not public. Google has published patents describing variants, such as weighting links by how likely a reader is to click them (the “reasonable surfer”) and computing scores by distance from trusted seed pages, but patents describe possibilities, not confirmed practice.</p>
+<h2 id="after-the-toolbar-third-party-metrics">After the toolbar: third-party metrics</h2>
+<p>The demand that Toolbar PageRank created did not go away when it did. SEO software companies built their own link indexes and their own 0–100 or 0–10 scores to fill the gap: Moz’s domain-authority, Ahrefs’ domain-rating, Majestic’s trust-flow and Citation Flow, and Semrush’s authority-score. Each is computed from its vendor’s own crawl, with its own definitions and, usually, without disclosed formulas. Several free services also publish 0–10 “PageRank-style” scores derived from open data such as Common Crawl’s graph (see common-crawl-graph).</p>
+<p>None of these numbers is Google’s PageRank, and none should be read as a prediction of how Google ranks a site. The metric-audit entry compares several of them against Common Crawl’s open centralities on one day’s auction inventory and finds large disagreements.</p>
+<h2 id="what-the-history-teaches">What the history teaches</h2>
+<ul>
+<li><strong>A public ranking number invites manipulation.</strong> Once TBPR had market value, sites manufactured links to raise it, which corrupted the signal it summarised. Every successor metric faces the same pressure (see link-spam).</li>
+<li><strong>Coarse buckets hide a lot.</strong> A TBPR of 4 covered pages whose underlying scores differed several-fold. Logarithmic 0–10 or 0–100 scales still compress enormous differences into a few points (see <a href="ranks-and-scores.html">Ranks and scores</a>).</li>
+<li><strong>The method is open; the inputs are not.</strong> Anyone can compute PageRank. What distinguished Google’s version was its crawl, its spam filtering and its link weighting, none of which the formula captures.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Brin, S., &amp; Page, L. (1998). The anatomy of a large-scale hypertextual Web search engine. <em>Computer Networks and ISDN Systems</em> 30(1–7), 107–117.</li>
+<li>Page, L., Brin, S., Motwani, R., &amp; Winograd, T. (1999). The PageRank citation ranking: Bringing order to the Web. Stanford InfoLab Technical Report 1999-66.</li>
+<li>Page, L. (2001). Method for node ranking in a linked database. US Patent 6,285,999.</li>
+<li>Google Search Central Blog (2019). Evolving “nofollow” – new ways to identify the nature of links. 10 September 2019.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="power-laws.html">Degree distributions and power laws</a> · <a href="pagerank.html">PageRank</a> · <a href="ranks-and-scores.html">Ranks and scores</a></p></section><nav class="prevnext"><a href="push-algorithms.html">← Push algorithms</a><a href="webgraph-compression.html">WebGraph compression →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/pagerank-history.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#origins-at-stanford-1996-1998">Origins at Stanford, 1996–1998</a></li><li><a href="#the-patent">The patent</a></li><li><a href="#toolbar-pagerank-2000-2016">Toolbar PageRank, 2000–2016</a></li><li><a href="#still-in-use-says-google">Still in use, says Google</a></li><li><a href="#after-the-toolbar-third-party-metrics">After the toolbar: third-party metrics</a></li><li><a href="#what-the-history-teaches">What the history teaches</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>
