@@ -2,6 +2,7 @@
 title: Trust Flow and Citation Flow (Majestic)
 group: Domain metrics
 order: 5
+link: Trust Flow
 summary: Majestic's two 0–100 scores. Citation Flow measures link volume and power; Trust Flow measures closeness in the link graph to manually reviewed trusted sites, a TrustRank-style idea. Their ratio is a popular spam heuristic.
 aliases: TF, CF, Majestic, Topical Trust Flow, TTF, TF/CF ratio
 ---

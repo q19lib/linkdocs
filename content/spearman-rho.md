@@ -2,6 +2,7 @@
 title: Spearman's rho
 group: Comparing rankings
 order: 3
+link: Spearman's rho
 summary: The ordinary correlation coefficient computed on positions instead of values. Easy to compute and explain, robust to skewed scores, and like Kendall's tau blind to whether disagreements happen at the top or in the tail.
 aliases: Spearman correlation, Spearman rank correlation, ρ, Rank correlation
 ---

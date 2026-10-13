@@ -2,6 +2,7 @@
 title: Push algorithms
 group: PageRank in depth
 order: 8
+link: push algorithms
 summary: Compute personalized PageRank by pushing probability outward from the seed, one node at a time, and stopping when the leftovers are small. The work depends on the precision you want, not on the size of the graph.
 aliases: Forward push, Local push, Backward push, Approximate PageRank, ACL algorithm, Bookmark coloring
 ---

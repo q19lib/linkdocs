@@ -2,6 +2,7 @@
 title: Paths, distance and reachability
 group: Foundations
 order: 4
+link: paths and distance
 summary: How many clicks separate two sites, and whether one can reach the other at all. Breadth-first search answers both, and geometric centralities are built on the answer.
 aliases: Distance, Shortest path, Reachability, Breadth-first search, BFS, Geodesic
 ---

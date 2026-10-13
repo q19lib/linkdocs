@@ -2,6 +2,7 @@
 title: Redirects and canonicalisation
 group: Links in practice
 order: 4
+link: redirects
 summary: How 301s, 302s and canonical tags move link signals from one URL to another. They decide where a moved site's links end up, and they are the main mechanism by which an expired domain's links are put to new use.
 aliases: Redirect, 301 redirect, 302 redirect, Canonical tag, rel=canonical, Link equity transfer
 ---

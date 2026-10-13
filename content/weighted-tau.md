@@ -2,6 +2,7 @@
 title: Weighted tau
 group: Comparing rankings
 order: 4
+link: weighted tau
 summary: Kendall's tau with each pair weighted by how high its items rank, so disagreements at the top count more than disagreements in the tail. Designed by Sebastiano Vigna for comparing web-scale rankings with many ties.
 aliases: Weighted Kendall tau, τ_w, Hyperbolic weighting, Vigna's tau
 ---

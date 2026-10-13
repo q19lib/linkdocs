@@ -2,6 +2,7 @@
 title: Ranks and scores
 group: Comparing rankings
 order: 1
+link: ranks and scores
 summary: A centrality gives each node a value; a ranking gives it a position. Positions are easy to read and easy to misread. How values are distributed, how ties are broken and how precise the values are decide what a position means.
 aliases: Rank, Position, Percentile, Log scale, Ties, Tie-breaking
 ---

@@ -2,6 +2,7 @@
 title: The Perron–Frobenius theorem
 group: PageRank in depth
 order: 5
+link: Perron–Frobenius
 summary: The theorem that guarantees a nonnegative matrix has a dominant eigenvector with positive entries. It is why PageRank exists, why it is unique, and why eigenvector centrality fails on graphs that are not strongly connected.
 aliases: Perron–Frobenius, Perron vector, Spectral radius, Irreducible matrix, Primitive matrix
 ---

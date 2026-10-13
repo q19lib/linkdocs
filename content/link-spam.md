@@ -2,6 +2,7 @@
 title: Link spam
 group: Links in practice
 order: 5
+link: link spam
 summary: Links created to manipulate rankings rather than to help readers. Link farms, bought links, private blog networks and parasite pages, what each does to PageRank and harmonic centrality, and the traces they leave in a link graph.
 aliases: Link farm, PBN, Private blog network, Link scheme, Paid links, Parasite hosting, Comment spam
 ---

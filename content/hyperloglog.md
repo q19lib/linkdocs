@@ -2,6 +2,7 @@
 title: HyperLogLog
 group: Computing at scale
 order: 3
+link: HyperLogLog
 summary: A counter that estimates how many distinct items it has seen, within a few percent, using a few bytes. Its counters merge by taking maxima, which is what lets HyperBall count reachable nodes for a hundred million nodes at once.
 aliases: HLL, Distinct counting, Cardinality estimation, Approximate counting
 ---

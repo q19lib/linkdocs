@@ -2,6 +2,7 @@
 title: The bow-tie structure
 group: Foundations
 order: 6
+link: bow tie
 summary: Seen from its largest strongly connected component, the web looks like a bow tie. Pages that reach the core sit on one side, pages the core reaches sit on the other, and stragglers hang off both.
 aliases: Bow tie, Bowtie model, IN component, OUT component, Tendrils
 ---

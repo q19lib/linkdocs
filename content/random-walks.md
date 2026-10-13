@@ -2,6 +2,7 @@
 title: Random walks and Markov chains
 group: Foundations
 order: 10
+link: random walks
 summary: A walker who follows random links visits some nodes more often than others. The long-run visit frequencies, the stationary distribution, are the mathematical core of PageRank and its relatives.
 aliases: Random walk, Markov chain, Stationary distribution, Transition matrix, Ergodic
 ---

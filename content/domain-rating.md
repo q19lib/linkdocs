@@ -2,6 +2,7 @@
 title: Domain Rating (Ahrefs)
 group: Domain metrics
 order: 4
+link: Domain Rating
 summary: Ahrefs' 0–100 score for the strength of a domain's backlink profile. By Ahrefs' own description it is a PageRank-like computation on a domain graph of followed links, mapped to a logarithmic scale.
 aliases: DR, Ahrefs DR, URL Rating, UR
 ---

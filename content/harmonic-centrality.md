@@ -2,6 +2,7 @@
 title: Harmonic centrality
 group: Centrality
 order: 5
+link: harmonic centrality
 summary: Add up one over the distance from every other node. Nodes that the whole graph reaches in few steps score high, unreachable nodes simply count zero, and link farms gain almost nothing.
 aliases: Harmonic, Harmonic closeness, hc, harmonicc
 ---

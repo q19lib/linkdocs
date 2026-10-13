@@ -2,6 +2,7 @@
 title: WebGraph compression
 group: Computing at scale
 order: 1
+link: WebGraph compression
 summary: How the WebGraph framework stores billions of links in a few bits each, using sorted gaps, copying from similar neighbours, runs of consecutive ids and codes tuned to power laws, while still decoding any node's links quickly.
 aliases: BVGraph, WebGraph framework, Graph compression, Zeta codes, Reference compression
 ---

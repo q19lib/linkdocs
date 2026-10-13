@@ -2,6 +2,7 @@
 title: k-core decomposition
 group: Network structure
 order: 5
+link: k-core
 summary: Repeatedly peel off every node with fewer than k links until none is left. The layer at which a node falls off, its core number, measures how deeply it is embedded in a dense part of the graph, in linear time.
 aliases: k-core, Core number, Coreness, k-shell, Degeneracy, Peeling
 ---

@@ -2,6 +2,7 @@
 title: Degree centrality
 group: Centrality
 order: 3
+link: degree centrality
 summary: Score each node by how many nodes link to it. The oldest, cheapest and most transparent centrality, and the one that "referring domains" reports.
 aliases: In-degree centrality, Prestige, Popularity, Citation count
 ---

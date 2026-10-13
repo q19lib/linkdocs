@@ -2,6 +2,7 @@
 title: HyperBall
 group: Computing at scale
 order: 4
+link: HyperBall
 summary: Grow a probabilistic counter around every node by one link per pass over the graph. After a few dozen passes you know, for every node, roughly how many nodes lie within each distance, and with it harmonic centrality, closeness and the distance distribution.
 aliases: HyperANF, ANF, Approximate neighbourhood function
 ---

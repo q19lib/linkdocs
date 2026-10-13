@@ -2,6 +2,7 @@
 title: Degree
 group: Foundations
 order: 2
+link: degree
 summary: In-degree counts the links a node receives and out-degree the links it makes; their distributions shape everything built on a link graph.
 aliases: In-degree, Out-degree, Indegree, Outdegree
 ---

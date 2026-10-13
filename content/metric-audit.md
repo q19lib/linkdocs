@@ -2,6 +2,7 @@
 title: Auditing vendor metrics
 group: Domain metrics
 order: 7
+link: metric audit
 summary: Checking Semrush and Majestic numbers from one day of GoDaddy's auction inventory against Common Crawl's open graph. A referring-domain floor made of the same few domains, a Majestic feed that is mostly empty, and a nearly constant Authority Score.
 aliases: Metric audit, Vendor metric quality, Spam floor, Semrush referring domains
 ---

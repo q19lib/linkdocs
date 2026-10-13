@@ -2,6 +2,7 @@
 title: Centrality
 group: Centrality
 order: 1
+link: centrality
 summary: A centrality measure assigns every node a score of importance computed from the graph's structure alone. Different measures formalise different ideas of importance, and they disagree.
 aliases: Centrality measure, Node importance, Link analysis
 ---

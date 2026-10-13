@@ -2,6 +2,7 @@
 title: Spam mass
 group: Centrality
 order: 14
+link: spam mass
 summary: The share of a node's PageRank that does not come from known good nodes. A high-PageRank site whose rank comes mostly from outside the reputable web is a link-spam suspect.
 aliases: Relative spam mass, Absolute spam mass, Mass estimation, Good core
 ---

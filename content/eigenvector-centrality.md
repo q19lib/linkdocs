@@ -2,6 +2,7 @@
 title: Eigenvector centrality
 group: Centrality
 order: 7
+link: eigenvector centrality
 summary: A node's score is proportional to the sum of the scores of the nodes linking to it. The cleanest form of "important nodes are those linked by important nodes", and the parent of PageRank.
 aliases: Eigenvector, Bonacich centrality, Dominant eigenvector
 ---

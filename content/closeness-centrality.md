@@ -2,6 +2,7 @@
 title: Closeness centrality
 group: Centrality
 order: 4
+link: closeness centrality
 summary: A node is central if it is close, on average, to all other nodes. A classic idea from social network analysis that breaks down on graphs where most pairs cannot reach each other, like the web.
 aliases: Closeness, Bavelas closeness, Lin's index, Lin centrality
 ---

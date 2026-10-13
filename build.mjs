@@ -87,15 +87,23 @@ function renderMath(html, store) {
     .replace(/MATH(?:DISPLAY|INLINE)(\d+)X/g, (_, k) => tex(k));
 }
 
+// A bare [[slug]] reads as the target's `link` name (its title if none), capitalised
+// when it starts a sentence, a line, a list item or a table cell.
+const SENTENCE_START = /(?:(?:^|\n)\s*|[.!?]\s+|(?:^|\n)\s*(?:[-*+]|\d+\.)\s+|\|\s*)(?:\*\*)?$/;
+
 function linkWikis(art, src, bySlug) {
-  return src.replace(/(?<!!)\[\[([a-z0-9-]+)(?:\\?\|([^\]]+))?\]\]/g, (_, slug, text) => {
+  return src.replace(/(?<!!)\[\[([a-z0-9-]+)(?:\\?\|([^\]]+))?\]\]/g, (_, slug, text, offset) => {
     const target = bySlug.get(slug);
     if (!target) {
       fail(art.file, `link to missing article [[${slug}]]`);
       return text ?? slug;
     }
     if (slug !== art.slug) art.links.add(slug);
-    return `[${text ?? target.title}](${slug}.html)`;
+    let label = text ?? target.link ?? target.title;
+    if (!text && SENTENCE_START.test(src.slice(Math.max(0, offset - 12), offset))) {
+      label = label[0].toUpperCase() + label.slice(1);
+    }
+    return `[${label}](${slug}.html)`;
   });
 }
 

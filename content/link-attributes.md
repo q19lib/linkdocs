@@ -2,6 +2,7 @@
 title: Link attributes (nofollow, sponsored, ugc)
 group: Links in practice
 order: 2
+link: link attributes
 summary: The rel values that let a publisher say a link is not an endorsement. Introduced in 2005 against comment spam, extended in 2019, and since then treated by Google as hints rather than commands.
 aliases: nofollow, rel=nofollow, sponsored, ugc, dofollow, rel attribute
 ---

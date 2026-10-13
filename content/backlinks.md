@@ -2,6 +2,7 @@
 title: Backlinks and referring domains
 group: Links in practice
 order: 1
+link: backlinks
 summary: A backlink is a link from someone else's page to yours; referring domains count the distinct sites those links come from. Both are in-degree at different granularities, and both depend entirely on whose crawl counted them.
 aliases: Backlink, Inbound link, Inlink, Referring domain, Ref domains, Linking root domains
 ---

@@ -2,6 +2,7 @@
 title: Community detection
 group: Network structure
 order: 4
+link: community detection
 summary: Finding groups of nodes that link to each other much more than to the rest of the graph. Modularity, Louvain, Leiden, label propagation and Infomap are the standard tools; on the web they find topics, regions and link farms.
 aliases: Communities, Clustering, Modularity, Louvain, Leiden, Label propagation, Infomap, Graph partitioning
 ---

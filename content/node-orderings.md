@@ -2,6 +2,7 @@
 title: Node orderings
 group: Computing at scale
 order: 2
+link: node orderings
 summary: Renumbering a graph's nodes changes nothing about its structure and everything about its cost. Good orders shrink compressed graphs, speed up PageRank through cache locality and balance parallel work.
 aliases: Graph reordering, Layered label propagation, LLP, BFS order, Locality
 ---

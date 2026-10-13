@@ -2,6 +2,7 @@
 title: Authority Score (Semrush)
 group: Domain metrics
 order: 6
+link: Authority Score
 summary: Semrush's compound 100-point score combining link power, estimated organic traffic and spam signals. Designed to resist manipulation, and in the 2026-09-23 auction data almost constant.
 aliases: AS, Semrush AS, Semrush Authority Score
 ---

@@ -2,6 +2,7 @@
 title: Personalized PageRank
 group: Centrality
 order: 10
+link: personalized PageRank
 summary: PageRank with the random surfer's jumps aimed at chosen nodes instead of anywhere. It measures importance from a point of view, and underlies TrustRank, topic-sensitive search and local graph clustering.
 aliases: PPR, Topic-sensitive PageRank, Random walk with restart, Preference vector
 ---

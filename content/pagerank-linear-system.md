@@ -2,6 +2,7 @@
 title: PageRank as a linear system
 group: PageRank in depth
 order: 6
+link: PageRank as a linear system
 summary: PageRank is also the solution of a sparse system of linear equations. That view brings faster solvers such as Gauss–Seidel, explains why the problem is well conditioned, and makes PageRank linear in the teleport vector.
 aliases: Gauss–Seidel, Jacobi method, Linear system formulation, Pseudo-PageRank
 ---

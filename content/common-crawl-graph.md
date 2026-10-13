@@ -2,6 +2,7 @@
 title: The Common Crawl web graph
 group: Domain metrics
 order: 1
+link: Common Crawl web graph
 summary: Common Crawl publishes free host- and domain-level link graphs every few months, with harmonic centrality and PageRank for every node. What the files contain, how they are built, and how to read them.
 aliases: Common Crawl, CC web graph, Common Crawl ranks, hyperlinkgraph, cc-main
 ---

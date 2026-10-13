@@ -2,6 +2,7 @@
 title: Small worlds
 group: Network structure
 order: 2
+link: small-world
 summary: Real networks combine dense local clusters with surprisingly short paths between any two nodes. That combination explains why "six degrees of separation" holds, why harmonic values crowd together and why links travel far.
 aliases: Small-world network, Six degrees of separation, Watts–Strogatz model, Milgram experiment
 ---

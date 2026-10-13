@@ -2,6 +2,7 @@
 title: Expired domains
 group: Links in practice
 order: 7
+link: expired domains
 summary: Domains whose owners let the registration lapse, sold at auction or re-registered by someone else. Their links often outlive their sites, which is why buyers value them and why search engines watch how they are reused.
 aliases: Expired domain, Dropped domain, Domain auction, Aged domain, Link equity
 ---

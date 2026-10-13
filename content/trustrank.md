@@ -2,6 +2,7 @@
 title: TrustRank
 group: Centrality
 order: 13
+link: TrustRank
 summary: Pick a small set of sites a human has checked, and let trust flow outward from them along links, fading with each step. Spam sites, which reputable sites rarely link to, end up with little trust however many links they have.
 aliases: Trust propagation, Anti-TrustRank, Seed set
 ---

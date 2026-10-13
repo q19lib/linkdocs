@@ -2,6 +2,7 @@
 title: Rank-biased overlap
 group: Comparing rankings
 order: 5
+link: rank-biased overlap
 summary: Compare two rankings by how much their top lists overlap at every depth, with geometrically decreasing weight on deeper levels. Works on truncated lists and on lists that do not contain the same items.
 aliases: RBO, Top-k overlap, Jaccard at k, Intersection at depth
 ---

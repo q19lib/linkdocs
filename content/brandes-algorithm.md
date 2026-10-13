@@ -2,6 +2,7 @@
 title: Brandes' algorithm
 group: Computing at scale
 order: 5
+link: Brandes' algorithm
 summary: Exact betweenness centrality for every node in O(nm) time. One breadth-first search per source counts shortest paths, and one backward sweep hands each node its share.
 aliases: Brandes, Dependency accumulation, Betweenness algorithm
 ---

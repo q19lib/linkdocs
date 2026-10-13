@@ -2,6 +2,7 @@
 title: Reading a domain's link metrics
 group: Domain metrics
 order: 2
+link: reading domain metrics
 summary: A practical guide for buyers. Which numbers to look at, what thresholds mean on real data, how to tell real link standing from noise, and two worked examples from the 2026-09-23 auction inventory.
 aliases: Domain evaluation, Domain appraisal, Link metrics guide
 ---

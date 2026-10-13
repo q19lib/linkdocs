@@ -2,6 +2,7 @@
 title: HITS (hubs and authorities)
 group: Centrality
 order: 11
+link: HITS
 summary: Every node gets two scores. A good authority is linked by good hubs, and a good hub links to good authorities. Kleinberg's algorithm computes both from the links around a query's results.
 aliases: HITS, Hubs and authorities, Hub score, Authority score, Kleinberg
 ---

@@ -2,6 +2,7 @@
 title: The random surfer
 group: PageRank in depth
 order: 1
+link: random surfer
 summary: The story behind PageRank. A surfer clicks random links, never presses Back, and now and then jumps to a random page; the share of time spent on each page is its PageRank.
 aliases: Random surfer model, Reasonable surfer, Teleportation, Teleport
 ---

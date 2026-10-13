@@ -2,6 +2,7 @@
 title: Power iteration
 group: PageRank in depth
 order: 4
+link: power iteration
 summary: Start from any distribution and apply one random-surfer step to all nodes at once, over and over. The error shrinks by a factor of about α per pass, and each pass reads every link exactly once.
 aliases: Power method, Jacobi iteration, Convergence
 ---

@@ -2,6 +2,7 @@
 title: Monte Carlo PageRank
 group: PageRank in depth
 order: 7
+link: Monte Carlo PageRank
 summary: Estimate PageRank by actually running random surfers and counting their visits. A few walks per node rank the important nodes well, the walks parallelise trivially, and they can be updated as links change.
 aliases: Random walk sampling, Complete path method, End-point method, Fingerprints
 ---

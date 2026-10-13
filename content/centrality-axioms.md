@@ -2,6 +2,7 @@
 title: Axioms for centrality
 group: Centrality
 order: 2
+link: axioms for centrality
 summary: Boldi and Vigna's three tests (size, density and score monotonicity) check whether a centrality measure agrees with intuition on graphs simple enough that the right answer is obvious. Only harmonic centrality passes all three.
 aliases: Size axiom, Density axiom, Score monotonicity, Boldi–Vigna axioms
 ---

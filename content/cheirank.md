@@ -2,6 +2,7 @@
 title: CheiRank and 2DRank
 group: Centrality
 order: 15
+link: CheiRank
 summary: PageRank computed on the graph with every link reversed. It scores nodes by how well they link out to the rest of the graph, and paired with ordinary PageRank it places every node on a two-dimensional map.
 aliases: CheiRank, 2DRank, Inverse PageRank, Reverse PageRank
 ---

@@ -2,6 +2,7 @@
 title: Dangling nodes
 group: PageRank in depth
 order: 3
+link: dangling nodes
 summary: Nodes with no out-links, where a random surfer has nowhere to go. On a crawled web graph they are the majority, and how a PageRank implementation treats them changes the scores of everyone.
 aliases: Dangling node, Dangling page, Sink, Dangling mass
 ---

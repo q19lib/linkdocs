@@ -2,6 +2,7 @@
 title: PageRank at scale
 group: Computing at scale
 order: 6
+link: PageRank at scale
 summary: The arithmetic of ranking a hundred million nodes and billions of links. What must fit in memory, what each pass costs, why random reads dominate, and why one well-programmed machine often beats a cluster.
 aliases: Large-scale PageRank, Semi-external PageRank, Distributed PageRank, COST
 ---

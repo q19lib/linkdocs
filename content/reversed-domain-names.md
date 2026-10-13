@@ -2,6 +2,7 @@
 title: Reversed domain names and public suffixes
 group: Foundations
 order: 9
+link: reversed domain names
 summary: Why web graphs write google.com as com.google, and how the Public Suffix List decides where a registrable domain begins.
 aliases: Reversed host names, SURT, Public Suffix List, PSL, Registrable domain, eTLD+1
 ---

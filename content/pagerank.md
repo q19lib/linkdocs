@@ -2,6 +2,7 @@
 title: PageRank
 group: Centrality
 order: 9
+link: PageRank
 summary: A node is important if important nodes link to it. PageRank makes that circular idea precise as the long-run behaviour of a random surfer who sometimes gets bored and jumps.
 aliases: PR, Google PageRank
 ---

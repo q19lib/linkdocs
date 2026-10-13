@@ -2,6 +2,7 @@
 title: Degree distributions and power laws
 group: Foundations
 order: 7
+link: power laws
 summary: Most sites receive almost no links and a few receive millions. That heavy tail explains why link metrics live on logarithmic scales and why averages mislead.
 aliases: Power law, Heavy tail, Scale-free, Degree distribution, Pareto distribution, Zipf's law
 ---

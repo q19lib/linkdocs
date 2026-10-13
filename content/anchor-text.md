@@ -2,6 +2,7 @@
 title: Anchor text
 group: Links in practice
 order: 3
+link: anchor text
 summary: The clickable words of a link. Search engines have used them since 1998 to learn what the target is about, which made them a prime target for manipulation and makes them the quickest way to read a domain's past.
 aliases: Anchor, Link text, Exact-match anchor, Google bomb
 ---

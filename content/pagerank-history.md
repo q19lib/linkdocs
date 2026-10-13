@@ -2,6 +2,7 @@
 title: A short history of PageRank
 group: PageRank in depth
 order: 9
+link: history of PageRank
 summary: From a Stanford research project to Google's founding idea, a 0–10 number on millions of toolbars, a market in links, and finally a retired public metric that Google says it still uses internally.
 aliases: Toolbar PageRank, TBPR, PageRank patent, BackRub, PageRank sculpting
 ---

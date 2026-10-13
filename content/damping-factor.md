@@ -2,6 +2,7 @@
 title: The damping factor
 group: PageRank in depth
 order: 2
+link: damping factor
 summary: The probability α that PageRank's random surfer follows a link rather than jumping. It trades link structure against uniformity, sets the speed of convergence, and is conventionally 0.85 for no deep reason.
 aliases: Alpha, α, Teleportation probability, 0.85
 ---

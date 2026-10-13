@@ -23,7 +23,7 @@
 <h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
 <h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
 <h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
-<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html">Assortativity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
 <h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
 <h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html" aria-current="page">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
 </nav>
@@ -34,9 +34,9 @@
 <h2 id="what-goes-into-it">What goes into it</h2>
 <p>Moz does not publish the formula. It describes the inputs and method in general terms:</p>
 <ul>
-<li><strong>Link data from Moz’s index</strong>, chiefly the number of distinct <em>linking root domains</em> (referring domains, see <a href="backlinks.html">Backlinks and referring domains</a>) and the total number of links, along with signals of the quality of those linking domains.</li>
+<li><strong>Link data from Moz’s index</strong>, chiefly the number of distinct <em>linking root domains</em> (referring domains, see <a href="backlinks.html">backlinks</a>) and the total number of links, along with signals of the quality of those linking domains.</li>
 <li><strong>A machine-learning model.</strong> Since <em>Domain Authority 2.0</em>, released in March 2019, the score comes from a model trained to predict whether one domain outranks another in Google’s results, rather than from a hand-tuned combination of link counts. Moz said the 2019 version also incorporated its Spam Score and patterns of link manipulation to resist inflated profiles.</li>
-<li><strong>Scaling to 1–100.</strong> The model’s output is mapped onto a 1–100 scale on which, by Moz’s account, it is much easier to move from 20 to 30 than from 70 to 80, the behaviour of a logarithmic scale (see <a href="ranks-and-scores.html">Ranks and scores</a>).</li>
+<li><strong>Scaling to 1–100.</strong> The model’s output is mapped onto a 1–100 scale on which, by Moz’s account, it is much easier to move from 20 to 30 than from 70 to 80, the behaviour of a logarithmic scale (see <a href="ranks-and-scores.html">ranks and scores</a>).</li>
 </ul>
 <p><strong>Page Authority</strong> (PA) is the page-level counterpart, predicting how well a single page will rank.</p>
 <h2 id="how-to-read-it">How to read it</h2>
@@ -47,20 +47,20 @@
 <li><strong>It is not Google’s.</strong> Google does not use Domain Authority. A higher DA correlates with better rankings because both depend on links, not because one causes the other.</li>
 </ul>
 <h2 id="relation-to-the-graph-measures">Relation to the graph measures</h2>
-<p>DA is, roughly, a learned function of in-degree and of the strength of the linking domains, which is the information <a href="pagerank.html">PageRank</a> and <a href="harmonic-centrality.html">Harmonic centrality</a> use as well. Where it differs:</p>
+<p>DA is, roughly, a learned function of in-degree and of the strength of the linking domains, which is the information <a href="pagerank.html">PageRank</a> and <a href="harmonic-centrality.html">harmonic centrality</a> use as well. Where it differs:</p>
 <ul>
-<li><strong>The graph.</strong> Moz’s index is its own crawl, with its own coverage and freshness, and its own choices about which links count (see <a href="web-graph.html">The web graph</a>).</li>
+<li><strong>The graph.</strong> Moz’s index is its own crawl, with its own coverage and freshness, and its own choices about which links count (see <a href="web-graph.html">web graph</a>).</li>
 <li><strong>The target.</strong> DA is fitted to predict rankings, so it can absorb any link feature that predicts them, while PageRank and harmonic centrality are fixed definitions.</li>
-<li><strong>Spam handling.</strong> DA explicitly tries to discount manipulative patterns; Common Crawl’s open centralities do not filter anything (see <a href="link-spam.html">Link spam</a>).</li>
+<li><strong>Spam handling.</strong> DA explicitly tries to discount manipulative patterns; Common Crawl’s open centralities do not filter anything (see <a href="link-spam.html">link spam</a>).</li>
 </ul>
 <h2 id="using-it-for-domain-evaluation">Using it for domain evaluation</h2>
 <p>DA is a reasonable first filter, and a poor final judge:</p>
 <ol>
 <li><strong>Look at the linking domains Moz lists</strong>, not only the score. A DA built on a few strong, relevant domains is worth more than the same DA built on many weak ones.</li>
-<li><strong>Cross-check with other sources.</strong> Compare DA with <a href="domain-rating.html">Domain Rating (Ahrefs)</a>, <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a> and Common Crawl’s positions (see <a href="reading-domain-metrics.html">Reading a domain’s link metrics</a>). When they disagree strongly, find out why before trusting any of them.</li>
+<li><strong>Cross-check with other sources.</strong> Compare DA with <a href="domain-rating.html">Domain Rating</a>, <a href="trust-flow.html">Trust Flow</a> and Common Crawl’s positions (see <a href="reading-domain-metrics.html">reading domain metrics</a>). When they disagree strongly, find out why before trusting any of them.</li>
 <li><strong>Watch for inflated profiles.</strong> A high DA on a domain with no traffic, a short history and links mostly from unrelated sites is a classic sign of a manufactured link profile, which Google may already ignore.</li>
 </ol>
-<p>GoDaddy’s auction inventory, which this encyclopedia’s <a href="metric-audit.html">Auditing vendor metrics</a> examines, does not include Moz metrics, so the audit cannot test DA directly. The same questions apply to it as to the metrics it does include: how much of the score comes from links that carry information about this particular domain?</p>
+<p>GoDaddy’s auction inventory, which this encyclopedia’s <a href="metric-audit.html">metric audit</a> examines, does not include Moz metrics, so the audit cannot test DA directly. The same questions apply to it as to the metrics it does include: how much of the score comes from links that carry information about this particular domain?</p>
 <h2 id="references">References</h2>
 <ul>
 <li>Moz. <em>What is Domain Authority?</em> moz.com/learn/seo/domain-authority.</li>

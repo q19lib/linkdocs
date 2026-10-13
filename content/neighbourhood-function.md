@@ -2,6 +2,7 @@
 title: The neighbourhood function
 group: Network structure
 order: 3
+link: neighbourhood function
 summary: For each distance t, how many pairs of nodes are within t links of each other. From it come the distance distribution, the average distance and the effective diameter, the robust ways to say how "small" a graph is.
 aliases: Distance distribution, Effective diameter, Average distance, Hop plot, spid
 ---

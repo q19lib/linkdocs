@@ -2,6 +2,7 @@
 title: Adjacency matrices and lists
 group: Foundations
 order: 3
+link: adjacency
 summary: Two ways to write a graph down. The matrix suits the algebra behind every spectral ranking; compressed lists are how a real web graph fits in memory.
 aliases: Adjacency matrix, Adjacency list, CSR, Compressed sparse row
 ---

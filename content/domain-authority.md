@@ -2,6 +2,7 @@
 title: Domain Authority (Moz)
 group: Domain metrics
 order: 3
+link: Domain Authority
 summary: Moz's 1–100 score that predicts how likely a domain is to rank in search results, computed by a machine-learning model over Moz's own link index. A comparative, logarithmic-feeling number, not a Google metric.
 aliases: DA, Moz DA, Page Authority, PA, Domain Authority 2.0
 ---

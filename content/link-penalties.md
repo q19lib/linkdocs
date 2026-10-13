@@ -2,6 +2,7 @@
 title: Link penalties and the disavow tool
 group: Links in practice
 order: 6
+link: link penalties
 summary: How Google acts on manipulative links, from the 2012 Penguin update and manual actions to today's practice of silently ignoring spam links, and what the disavow tool does.
 aliases: Penguin, Manual action, Unnatural links, Disavow, Link spam update, SpamBrain
 ---

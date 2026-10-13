@@ -2,6 +2,7 @@
 title: Strongly connected components
 group: Foundations
 order: 5
+link: strongly connected components
 summary: Groups of nodes that can all reach each other along links. They decide where a random surfer gets trapped and which nodes a spectral ranking can see.
 aliases: SCC, Strong components, Condensation, Tarjan's algorithm
 ---

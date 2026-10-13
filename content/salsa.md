@@ -2,6 +2,7 @@
 title: SALSA
 group: Centrality
 order: 12
+link: SALSA
 summary: A random-walk version of HITS that alternates forward and backward steps. Its authority scores turn out to be in-degree, normalised within each group of co-cited nodes, which makes them immune to topic drift.
 aliases: Stochastic Approach for Link-Structure Analysis
 ---

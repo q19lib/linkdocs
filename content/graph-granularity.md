@@ -2,6 +2,7 @@
 title: Page, host and domain graphs
 group: Foundations
 order: 8
+link: page, host and domain graphs
 summary: The same links give three different graphs depending on whether a node is a URL, a host name or a registered domain. Each level answers different questions and hides different problems.
 aliases: Host graph, Domain graph, Page graph, Granularity
 ---

@@ -2,6 +2,7 @@
 title: The web graph
 group: Foundations
 order: 1
+link: web graph
 summary: The directed graph with a node for every page, host or domain and an arc for every hyperlink between them.
 aliases: Link graph, Hyperlink graph, Webgraph
 ---

@@ -2,6 +2,7 @@
 title: Kendall's tau
 group: Comparing rankings
 order: 2
+link: Kendall's tau
 summary: Compare two rankings by counting pairs of items they order the same way and pairs they order oppositely. The standard measure of agreement between centralities, computable in O(n log n) time.
 aliases: Kendall tau, Kendall rank correlation, τ, Concordant pairs, Discordant pairs
 ---

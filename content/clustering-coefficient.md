@@ -2,6 +2,7 @@
 title: Clustering coefficient
 group: Network structure
 order: 1
+link: clustering coefficient
 summary: How often two neighbours of a node are also neighbours of each other. Real networks form far more triangles than chance predicts, and unnaturally dense triangles are a classic fingerprint of link farms.
 aliases: Clustering, Transitivity, Triangles, Local clustering coefficient
 ---

@@ -2,6 +2,7 @@
 title: Betweenness centrality
 group: Centrality
 order: 6
+link: betweenness centrality
 summary: A node is central if many shortest paths between other nodes pass through it. Betweenness finds bridges and brokers, not popular destinations.
 aliases: Betweenness, Freeman betweenness, Brokerage
 ---

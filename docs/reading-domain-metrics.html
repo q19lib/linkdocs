@@ -23,7 +23,7 @@
 <h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
 <h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
 <h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
-<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html">Assortativity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
 <h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
 <h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html" aria-current="page">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
 </nav>
@@ -32,7 +32,7 @@
 <p class="lede">A practical guide for buyers. Which numbers to look at, what thresholds mean on real data, how to tell real link standing from noise, and two worked examples from the 2026-09-23 auction inventory.</p>
 <p>A domain listing typically shows a dozen link numbers from several vendors. They measure related things, on different crawls, with different definitions and different blind spots. This guide puts the rest of the encyclopedia to work: what to look at first, what the numbers mean on real data, and how to tell a domain with real link standing from one whose metrics are noise. Every threshold below comes from Common Crawl’s 2026 domain graph and GoDaddy’s auction inventory of 2026-09-23.</p>
 <h2 id="step-1-is-the-domain-in-an-open-graph-at-all">Step 1: Is the domain in an open graph at all?</h2>
-<p>Start with the free, reproducible source. Look the domain up in Common Crawl’s ranks file (see <a href="common-crawl-graph.html">The Common Crawl web graph</a>):</p>
+<p>Start with the free, reproducible source. Look the domain up in Common Crawl’s ranks file (see <a href="common-crawl-graph.html">Common Crawl web graph</a>):</p>
 <ul>
 <li><strong>Absent</strong> (88.8% of the 2026-09-23 inventory): no page in three months of crawling linked to it. Whatever a vendor reports, the domain has little current link presence.</li>
 <li><strong>Present:</strong> note its in-degree (referring domains in the graph), its harmonic position and its PageRank position.</li>
@@ -69,21 +69,21 @@
 </tr>
 </tbody>
 </table></div>
-<p>Harmonic values are flat, so positions exaggerate small differences, and PageRank is flat at the bottom, so positions there are close to arbitrary (see <a href="ranks-and-scores.html">Ranks and scores</a>). A domain strong on both is well embedded; strong PageRank with weak harmonic often means one or two strong links carry it (see <a href="pagerank.html">PageRank</a>).</p>
+<p>Harmonic values are flat, so positions exaggerate small differences, and PageRank is flat at the bottom, so positions there are close to arbitrary (see <a href="ranks-and-scores.html">ranks and scores</a>). A domain strong on both is well embedded; strong PageRank with weak harmonic often means one or two strong links carry it (see <a href="pagerank.html">PageRank</a>).</p>
 <h2 id="step-3-read-the-vendor-scores-with-their-caveats">Step 3: Read the vendor scores with their caveats</h2>
 <ul>
-<li><strong>Subtract the floor.</strong> One vendor reports a median of 96 referring domains even for domains Common Crawl never saw linked, mostly the same few domains on every listing. Counts near that level carry no information (see <a href="metric-audit.html">Auditing vendor metrics</a>).</li>
-<li><strong>Treat zero as unknown</strong> for Majestic fields delivered through the auction feed: more than half of the best-linked listed domains show zero there (see <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a>).</li>
-<li><strong>Expect Authority Score to be flat.</strong> 87.7% of listings share the value 2 (see <a href="authority-score.html">Authority Score (Semrush)</a>).</li>
-<li><strong>Use TF/CF and DR or DA comparatively</strong>, and only from the same date and source (see <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a>, <a href="domain-rating.html">Domain Rating (Ahrefs)</a>, <a href="domain-authority.html">Domain Authority (Moz)</a>).</li>
+<li><strong>Subtract the floor.</strong> One vendor reports a median of 96 referring domains even for domains Common Crawl never saw linked, mostly the same few domains on every listing. Counts near that level carry no information (see <a href="metric-audit.html">metric audit</a>).</li>
+<li><strong>Treat zero as unknown</strong> for Majestic fields delivered through the auction feed: more than half of the best-linked listed domains show zero there (see <a href="trust-flow.html">Trust Flow</a>).</li>
+<li><strong>Expect Authority Score to be flat.</strong> 87.7% of listings share the value 2 (see <a href="authority-score.html">Authority Score</a>).</li>
+<li><strong>Use TF/CF and DR or DA comparatively</strong>, and only from the same date and source (see <a href="trust-flow.html">Trust Flow</a>, <a href="domain-rating.html">Domain Rating</a>, <a href="domain-authority.html">Domain Authority</a>).</li>
 </ul>
 <h2 id="step-4-look-at-who-links">Step 4: Look at who links</h2>
 <p>Every number above is a summary. The list behind it decides the value:</p>
 <ol>
 <li>Do you recognise the referring domains? Are they related to the domain’s name or intended use?</li>
 <li>Are the links in content, or in footers, profiles and comment sections?</li>
-<li>What do the anchors say about the old site’s topic, language and history (see <a href="anchor-text.html">Anchor text</a>)?</li>
-<li>Do the links still exist? Prefer recent crawl data over historic indexes (see <a href="backlinks.html">Backlinks and referring domains</a>).</li>
+<li>What do the anchors say about the old site’s topic, language and history (see <a href="anchor-text.html">anchor text</a>)?</li>
+<li>Do the links still exist? Prefer recent crawl data over historic indexes (see <a href="backlinks.html">backlinks</a>).</li>
 </ol>
 <h2 id="step-5-check-consistency">Step 5: Check consistency</h2>
 <p>Sources should broadly agree for a genuinely well-linked domain. When they do not, the disagreement is the finding:</p>
@@ -105,7 +105,7 @@
 </tr>
 <tr>
 <td>High CF, very low TF</td>
-<td>many links from low-trust sources (see <a href="link-spam.html">Link spam</a>)</td>
+<td>many links from low-trust sources (see <a href="link-spam.html">link spam</a>)</td>
 </tr>
 <tr>
 <td>High PageRank position, low harmonic position</td>
@@ -113,7 +113,7 @@
 </tr>
 <tr>
 <td>Strong metrics, but anchors in an unrelated topic or language</td>
-<td>a repurposed or spammed domain (see <a href="expired-domains.html">Expired domains</a>)</td>
+<td>a repurposed or spammed domain (see <a href="expired-domains.html">expired domains</a>)</td>
 </tr>
 </tbody>
 </table></div>
@@ -122,7 +122,7 @@
 <p><strong>A domain with metrics but no standing.</strong> <code>blacknailtechs.org</code> appears in Common Crawl’s graph with 3 referring domains, harmonic position 87,011,879 and PageRank position 85,126,572, essentially at the floor. Semrush lists 166 referring domains, but its top three are <code>bye.fyi</code>, <code>shortenurls.eu</code> and <code>southfwb.com</code>, domains that appear among the top referrers of a large share of all listings. Majestic shows Trust Flow 0. The vendor count is the floor; the domain’s own link standing is negligible.</p>
 <p>A third pattern is worth knowing. Another listed domain has 878 referring domains in Common Crawl and positions around 1–2 million, but Semrush counts 22,901 referring domains, 26 times as many, and Majestic shows Trust Flow 1 against Citation Flow 23. Real links exist; the vendor numbers suggest that many more come from low-trust sources. That domain needs Step 4 more than any other.</p>
 <h2 id="what-no-metric-tells-you">What no metric tells you</h2>
-<p>Link metrics cannot see Google’s discounts, manual actions or disavow files (see <a href="link-penalties.html">Link penalties and the disavow tool</a>), trademark conflicts, or whether the planned use fits the old links. They estimate how much of the web’s link attention reaches a name. Whether that attention is worth paying for is a judgement about the links themselves.</p>
+<p>Link metrics cannot see Google’s discounts, manual actions or disavow files (see <a href="link-penalties.html">link penalties</a>), trademark conflicts, or whether the planned use fits the old links. They estimate how much of the web’s link attention reaches a name. Whether that attention is worth paying for is a judgement about the links themselves.</p>
 <h2 id="references">References</h2>
 <ul>
 <li>Common Crawl. <em>Web Graph Release cc-main-2026-jun-jul-aug.</em></li>

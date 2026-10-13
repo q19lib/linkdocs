@@ -23,7 +23,7 @@
 <h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
 <h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
 <h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
-<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html">Assortativity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
 <h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html" aria-current="page">Expired domains</a></li></ul>
 <h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
 </nav>
@@ -67,7 +67,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>Links decay over time: pages are edited, sites close, and links to a dead domain are removed by careful webmasters. A link index’s historic data can overstate what still exists, which is why fresh-versus-historic distinctions matter (see <a href="backlinks.html">Backlinks and referring domains</a>).</p>
+<p>Links decay over time: pages are edited, sites close, and links to a dead domain are removed by careful webmasters. A link index’s historic data can overstate what still exists, which is why fresh-versus-historic distinctions matter (see <a href="backlinks.html">backlinks</a>).</p>
 <h2 id="how-much-link-equity-is-there-really">How much link equity is there, really?</h2>
 <p>Most auctioned domains have almost none. Of the 1,068,241 domains in GoDaddy’s 2026-09-23 inventory:</p>
 <ul>
@@ -75,21 +75,21 @@
 <li>Of the 119,453 that do appear, the median has one referring domain in Common Crawl, the 90th percentile 5 and the 99th percentile 57.</li>
 <li>Only 676 domains, 0.06% of the inventory, have more than 100 referring domains in Common Crawl’s graph.</li>
 </ul>
-<p>Vendor metrics paint a rosier picture because they include links that carry no information: one vendor reports a median of 96 referring domains even for domains Common Crawl never saw linked, mostly from the same few spam domains (see <a href="metric-audit.html">Auditing vendor metrics</a>).</p>
+<p>Vendor metrics paint a rosier picture because they include links that carry no information: one vendor reports a median of 96 referring domains even for domains Common Crawl never saw linked, mostly from the same few spam domains (see <a href="metric-audit.html">metric audit</a>).</p>
 <h2 id="uses-of-an-expired-domain">Uses of an expired domain</h2>
 <ul>
 <li><strong>Rebuilding the old site</strong> or a close successor, which keeps the links relevant.</li>
 <li><strong>A new site on a good name</strong>, using the domain for its brandability and any residual type-in traffic.</li>
-<li><strong>Redirecting</strong> it to a related site, as after an acquisition (see <a href="redirects.html">Redirects and canonicalisation</a>).</li>
-<li><strong>Link schemes</strong>: building a private blog network on domains with existing links, or redirecting unrelated domains into a commercial site. These are the uses search engines target (see <a href="link-spam.html">Link spam</a>).</li>
+<li><strong>Redirecting</strong> it to a related site, as after an acquisition (see <a href="redirects.html">redirects</a>).</li>
+<li><strong>Link schemes</strong>: building a private blog network on domains with existing links, or redirecting unrelated domains into a commercial site. These are the uses search engines target (see <a href="link-spam.html">link spam</a>).</li>
 </ul>
 <h2 id="google-s-position">Google’s position</h2>
 <p>Google’s March 2024 spam policies define <em>expired domain abuse</em>: buying an expired domain and repurposing it primarily to manipulate rankings with content that provides little to no value to users. Google’s example is a former medical site’s domain reused for low-quality casino content. Google staff have also said for years that its systems try to recognise when a domain has changed hands and purpose, in which case the old links may not count for the new site. Neither the policy nor those statements forbid buying expired domains; they make old links worth little unless the new use makes sense for them.</p>
 <h2 id="checklist-for-evaluating-one">Checklist for evaluating one</h2>
 <ol>
 <li><strong>Who links, and are the links still live?</strong> Look at the referring domains themselves, not counts. Prefer recent crawl data.</li>
-<li><strong>Is the domain in Common Crawl’s graph?</strong> If so, what are its in-degree, harmonic position and PageRank position? See <a href="reading-domain-metrics.html">Reading a domain’s link metrics</a> and <a href="common-crawl-graph.html">The Common Crawl web graph</a>.</li>
-<li><strong>What was it?</strong> Archived snapshots and anchor texts reveal the old topic, language and any spam history (see <a href="anchor-text.html">Anchor text</a>).</li>
+<li><strong>Is the domain in Common Crawl’s graph?</strong> If so, what are its in-degree, harmonic position and PageRank position? See <a href="reading-domain-metrics.html">reading domain metrics</a> and <a href="common-crawl-graph.html">Common Crawl web graph</a>.</li>
+<li><strong>What was it?</strong> Archived snapshots and anchor texts reveal the old topic, language and any spam history (see <a href="anchor-text.html">anchor text</a>).</li>
 <li><strong>Do the links fit your plan?</strong> Links from a former bakery’s suppliers help a bakery, not a crypto exchange.</li>
 <li><strong>Does it redirect, or did it?</strong> A domain redirecting elsewhere shares its link profile with its target in many indexes.</li>
 <li><strong>Trademarks.</strong> A name that matches someone else’s mark can be lost in a dispute, whatever its links.</li>

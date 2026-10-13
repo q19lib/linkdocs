@@ -2,6 +2,7 @@
 title: Random graph models
 group: Network structure
 order: 8
+link: random graph models
 summary: Recipes for generating graphs at random, from uniform random links to preferential attachment and copying. They explain where web structure comes from, serve as null models for measurements, and provide test graphs for algorithms.
 aliases: Erdős–Rényi model, Configuration model, Preferential attachment, Barabási–Albert model, Copying model, Null model
 ---

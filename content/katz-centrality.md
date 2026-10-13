@@ -2,6 +2,7 @@
 title: Katz centrality
 group: Centrality
 order: 8
+link: Katz centrality
 summary: Count every walk that ends at a node, weighting a walk of length k by β to the power k. Short walks count most, everyone gets a baseline, and one parameter slides the measure from in-degree to eigenvector centrality.
 aliases: Katz, Katz index, Attenuation factor, Alpha centrality
 ---
