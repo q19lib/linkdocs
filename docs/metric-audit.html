@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auditing vendor metrics · Link Graph Encyclopedia</title>
+<meta name="description" content="Checking Semrush and Majestic numbers from one day of GoDaddy's auction inventory against Common Crawl's open graph. A referring-domain floor made of the same few domains, a Majestic feed that is mostly empty, and a nearly constant Authority Score.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
+<h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html" aria-current="page">Auditing vendor metrics</a></li></ul>
+</nav>
+<main class="article">
+<p class="kicker">Domain metrics</p><h1>Auditing vendor metrics</h1>
+<p class="lede">Checking Semrush and Majestic numbers from one day of GoDaddy's auction inventory against Common Crawl's open graph. A referring-domain floor made of the same few domains, a Majestic feed that is mostly empty, and a nearly constant Authority Score.</p>
+<p>Link metrics are only useful if they vary with the thing they claim to measure. This entry tests the third-party metrics in GoDaddy’s public auction inventory against an independent reference, Common Crawl’s 2026 domain graph. The results are specific to one day and one population, auction listings, and to the vendor values as delivered in GoDaddy’s feed, but the method applies to any metric and any list of domains.</p>
+<h2 id="data-and-method">Data and method</h2>
+<ul>
+<li><strong>Listings.</strong> GoDaddy’s inventory export of 2026-09-23: 1,068,241 domains with, among other fields, Semrush Authority Score, referring domains, backlinks, “Indexed Pages” and the top three referring domains, and Majestic Trust Flow, Citation Flow, backlinks and referring domains.</li>
+<li><strong>Reference.</strong> For each listed domain, its presence, in-degree, harmonic position and PageRank position in Common Crawl’s <code>cc-main-2026-jun-jul-aug</code> domain graph, joined by domain name (see <a href="common-crawl-graph.html">The Common Crawl web graph</a>). 119,453 listed domains (11.2%) are in the graph; 948,788 are not.</li>
+<li><strong>Statistics.</strong> Medians and percentiles within groups defined by Common Crawl in-degree; shares of zero values; Spearman rank correlations (see <a href="spearman-rho.html">Spearman’s rho</a>); and the probability that a metric ranks a random in-graph domain above a random absent one (the AUC).</li>
+</ul>
+<p>Common Crawl is not ground truth: it is one crawl, it counts more link types than most vendors, and it ignores <code>nofollow</code>. It is, however, independent, open and the same for every domain, which is what a reference needs.</p>
+<h2 id="finding-1-a-semrush-referring-domain-floor">Finding 1: a Semrush referring-domain floor</h2>
+<p>Semrush reports referring domains for nearly every listing, including domains that no page in Common Crawl’s crawl links to:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Common Crawl in-degree</th>
+<th>Listed domains</th>
+<th>Semrush referring domains: 25th / 50th / 75th percentile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not in the graph</td>
+<td>948,788</td>
+<td>64 / 96 / 148</td>
+</tr>
+<tr>
+<td>0 (in the graph via out-links only)</td>
+<td>24,943</td>
+<td>136 / 163 / 188</td>
+</tr>
+<tr>
+<td>1</td>
+<td>55,813</td>
+<td>113 / 158 / 189</td>
+</tr>
+<tr>
+<td>2–5</td>
+<td>28,652</td>
+<td>155 / 179 / 205</td>
+</tr>
+<tr>
+<td>6–20</td>
+<td>6,842</td>
+<td>179 / 228 / 301</td>
+</tr>
+<tr>
+<td>21–100</td>
+<td>2,527</td>
+<td>249 / 342 / 525</td>
+</tr>
+<tr>
+<td>over 100</td>
+<td>676</td>
+<td>483 / 775 / 1,328</td>
+</tr>
+</tbody>
+</table></div>
+<p>Domains with no observed links carry a hundred-odd referring domains, and the first four rows barely differ. The feed’s top-three lists show where those links come from. <code>bye.fyi</code> is among the top three referrers of 79.6% of <em>all</em> listings, <code>southfwb.com</code> of 48.0%, <code>metamagic.top</code> of 36.9% and <code>shortenurls.eu</code> of 34.7%. Among domains absent from Common Crawl’s graph the shares are higher still: 82%, 50%, 38% and 36%. Only from about six Common Crawl referring domains up do recognisable sites such as <code>wikipedia.org</code>, <code>medium.com</code> and <code>google.com</code> replace them at the top of the lists.</p>
+<p>A small set of domains that link to, or list, nearly every expiring domain adds the same hundred or so referring domains to almost every row. That floor tells you nothing about any particular domain.</p>
+<h2 id="finding-2-signal-above-the-floor">Finding 2: signal above the floor</h2>
+<p>Above the floor, Semrush’s counts do track Common Crawl:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Population</th>
+<th>Spearman ρ, Semrush referring domains vs Common Crawl in-degree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all 119,453 listed domains in the graph</td>
+<td>0.27</td>
+</tr>
+<tr>
+<td>Common Crawl in-degree at least 1 (94,510)</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>at least 2 (38,697)</td>
+<td>0.38</td>
+</tr>
+<tr>
+<td>at least 6 (10,045)</td>
+<td>0.45</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ranking all listings by Semrush referring domains puts a random in-graph domain above a random absent one 76% of the time. The count is informative; the floor blunts it for the weakly linked majority.</p>
+<h2 id="finding-3-a-mostly-empty-majestic-feed">Finding 3: a mostly empty Majestic feed</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Population</th>
+<th>Majestic referring domains = 0</th>
+<th>Trust Flow = 0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all listings</td>
+<td>82.7%</td>
+<td>98.6%</td>
+</tr>
+<tr>
+<td>over 100 Common Crawl referring domains (676)</td>
+<td>54.6%</td>
+<td>66.9%</td>
+</tr>
+<tr>
+<td>1,000 or more Common Crawl referring domains (17)</td>
+<td>88.2%</td>
+<td>94.1%</td>
+</tr>
+</tbody>
+</table></div>
+<p>More than half of the best-linked listings show no Majestic data. Where values exist, they correlate with Common Crawl in-degree about as well as Semrush’s do above the floor (ρ = 0.41 for Trust Flow, 0.35 for Citation Flow, over 31,472 in-graph domains with nonzero Citation Flow), but referring domains rank in-graph above absent domains only 57% of the time, barely above chance, because of the zeros. The pattern points to coverage of the feed rather than of Majestic’s own index (see <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a>). Either way, a zero in this column means “unknown”.</p>
+<h2 id="finding-4-a-nearly-constant-authority-score">Finding 4: a nearly constant Authority Score</h2>
+<p>87.7% of listings have Semrush Authority Score 2 and 9.3% have 0. The median is 2 in every group of the table above, and the Spearman correlation with Common Crawl in-degree is 0.16. For ranking auction listings the column carries almost no information (see <a href="authority-score.html">Authority Score (Semrush)</a>).</p>
+<h2 id="finding-5-a-duplicated-column">Finding 5: a duplicated column</h2>
+<p>The feed’s Semrush “Indexed Pages” value lies within 2% of its Semrush backlink count on 95.9% of rows, with a Spearman correlation of 0.999. Despite its name, the column repeats the backlink count.</p>
+<h2 id="caveats">Caveats</h2>
+<ul>
+<li><strong>One day, one population.</strong> Auction listings are mostly weakly linked domains; the metrics may behave better on established sites.</li>
+<li><strong>Feed, not vendor.</strong> Values come through GoDaddy’s export and may differ from what the vendors’ own tools show on the same day.</li>
+<li><strong>Reference bias.</strong> Common Crawl counts scripts, redirects and <code>nofollow</code> links that vendors may exclude, and misses pages it did not crawl.</li>
+</ul>
+<h2 id="how-to-apply-this">How to apply this</h2>
+<p>Before trusting any metric on a list of domains, check how it varies with an independent reference, what share of values are zero or at a common floor, and which linking domains appear on most rows. The <a href="reading-domain-metrics.html">Reading a domain’s link metrics</a> entry turns these findings into a buyer’s checklist, and <a href="spam-mass.html">Spam mass</a> gives the theory behind subtracting links that come from outside the web you trust.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>GoDaddy Auctions. Daily inventory export, 2026-09-23.</li>
+<li>Common Crawl. <em>Web Graph Release cc-main-2026-jun-jul-aug.</em></li>
+<li>Semrush Knowledge Base. <em>Authority Score.</em> Majestic. <em>Glossary.</em></li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="pagerank-history.html">A short history of PageRank</a> · <a href="authority-score.html">Authority Score (Semrush)</a> · <a href="backlinks.html">Backlinks and referring domains</a> · <a href="clustering-coefficient.html">Clustering coefficient</a> · <a href="degree-centrality.html">Degree centrality</a> · <a href="power-laws.html">Degree distributions and power laws</a> · <a href="domain-authority.html">Domain Authority (Moz)</a> · <a href="domain-rating.html">Domain Rating (Ahrefs)</a> · <a href="expired-domains.html">Expired domains</a> · <a href="link-penalties.html">Link penalties and the disavow tool</a> · <a href="reading-domain-metrics.html">Reading a domain's link metrics</a> · <a href="spam-mass.html">Spam mass</a> · <a href="spearman-rho.html">Spearman's rho</a> · <a href="web-graph.html">The web graph</a> · <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></p></section><nav class="prevnext"><a href="authority-score.html">← Authority Score (Semrush)</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/metric-audit.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#data-and-method">Data and method</a></li><li><a href="#finding-1-a-semrush-referring-domain-floor">Finding 1: a Semrush referring-domain floor</a></li><li><a href="#finding-2-signal-above-the-floor">Finding 2: signal above the floor</a></li><li><a href="#finding-3-a-mostly-empty-majestic-feed">Finding 3: a mostly empty Majestic feed</a></li><li><a href="#finding-4-a-nearly-constant-authority-score">Finding 4: a nearly constant Authority Score</a></li><li><a href="#finding-5-a-duplicated-column">Finding 5: a duplicated column</a></li><li><a href="#caveats">Caveats</a></li><li><a href="#how-to-apply-this">How to apply this</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

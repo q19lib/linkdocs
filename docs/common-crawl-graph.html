@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Common Crawl web graph · Link Graph Encyclopedia</title>
+<meta name="description" content="Common Crawl publishes free host- and domain-level link graphs every few months, with harmonic centrality and PageRank for every node. What the files contain, how they are built, and how to read them.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
+<h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html" aria-current="page">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
+</nav>
+<main class="article">
+<p class="kicker">Domain metrics</p><h1>The Common Crawl web graph</h1>
+<p class="lede">Common Crawl publishes free host- and domain-level link graphs every few months, with harmonic centrality and PageRank for every node. What the files contain, how they are built, and how to read them.</p>
+<p>Common Crawl is a non-profit that crawls the web and publishes the data for free. Alongside its page archives, it releases <strong>web graphs</strong>: one at the host level and one at the domain level, each built from three consecutive monthly crawls, with <a href="harmonic-centrality.html">Harmonic centrality</a> and <a href="pagerank.html">PageRank</a> computed for every node. These graphs are the only large, open, reproducible source of link-based rankings for the whole web, which makes them the natural reference against which commercial metrics can be checked. This encyclopedia’s real-world numbers come from the release <code>cc-main-2026-jun-jul-aug</code>.</p>
+<h2 id="the-2026-june-august-release">The 2026 June–August release</h2>
+<p>The release combines the crawls CC-MAIN-2026-25, CC-MAIN-2026-30 and CC-MAIN-2026-34:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th></th>
+<th>Host graph</th>
+<th>Domain graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nodes</td>
+<td>235,013,701</td>
+<td>119,722,885</td>
+</tr>
+<tr>
+<td>Arcs</td>
+<td>3,104,683,414</td>
+<td>2,450,405,793</td>
+</tr>
+<tr>
+<td>Dangling nodes (no out-links)</td>
+<td>173.0 million (73.6%)</td>
+<td>76.4 million (63.8%)</td>
+</tr>
+<tr>
+<td>Largest strongly connected component</td>
+<td>35.9 million (15.3%)</td>
+<td>30.2 million (25.2%)</td>
+</tr>
+<tr>
+<td>BVGraph size, bits per link</td>
+<td>15.6</td>
+<td>15.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>The domain graph folds hosts into registered domains: on average 1.96 hosts per domain (see <a href="graph-granularity.html">Page, host and domain graphs</a>).</p>
+<h2 id="the-files">The files</h2>
+<p>For the domain graph:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>…-domain-vertices.txt.gz</code> (852 MiB)</td>
+<td><code>id</code>, reversed domain name, number of hosts, one line per node, sorted by reversed name</td>
+</tr>
+<tr>
+<td><code>…-domain-edges.txt.gz</code> (8.8 GiB)</td>
+<td><code>from_id</code>, <code>to_id</code>, one line per arc</td>
+</tr>
+<tr>
+<td><code>…-domain.graph</code>, <code>…-domain-t.graph</code> (4.3 GiB each)</td>
+<td>the graph and its transpose in WebGraph’s BVGraph format</td>
+</tr>
+<tr>
+<td><code>….properties</code>, <code>….stats</code></td>
+<td>compression parameters and graph statistics</td>
+</tr>
+<tr>
+<td><code>…-domain-ranks.txt.gz</code> (2.2 GiB)</td>
+<td>harmonic centrality and PageRank for every domain</td>
+</tr>
+</tbody>
+</table></div>
+<p>Node ids are positions in reversed-name order, so <code>com.google</code> and <code>com.googleapis</code> are numerically close (see <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>). The ranks file has one line per domain, sorted by harmonic centrality:</p>
+<pre><code>#harmonicc_pos  #harmonicc_val  #pr_pos  #pr_val                #host_rev       #n_hosts
+1               2.881964E7      1        0.015169512448465185   com.googleapis  2860
+2               2.8571234E7     3        0.009397995804377878   com.facebook    3126
+3               2.8490256E7     2        0.015103803560313364   com.google      24993
+</code></pre>
+<p>Positions are 1-based. Ties in value keep vertex order, that is reversed-name order, because the files are produced by a stable sort (see <a href="ranks-and-scores.html">Ranks and scores</a>).</p>
+<h2 id="how-the-graph-is-built">How the graph is built</h2>
+<ol>
+<li><strong>Extract links.</strong> From the WAT metadata of every crawled page, Common Crawl’s extractor collects every URL the page references: anchors, <code>&lt;link&gt;</code> elements, scripts, many <code>&lt;meta&gt;</code> URLs such as <code>og:image</code>, HTTP redirects, <code>Link</code> and <code>Content-Location</code> headers, and sitemap lines from <code>robots.txt</code>. It does not filter <code>nofollow</code>. Only links between different hosts are kept.</li>
+<li><strong>Normalise hosts.</strong> Host names are lower-cased, IDNA-encoded and reversed; IP addresses and single-label hosts are dropped.</li>
+<li><strong>Build the host graph</strong> from the distinct host-to-host pairs, then <strong>fold it into domains</strong>. The folding treats <code>blogspot.com</code> (4,113,910 hosts) and <code>github.io</code> (310,784 hosts) each as one domain, although the Public Suffix List’s private section lists both as public suffixes.</li>
+<li><strong>Compress</strong> with WebGraph and compute <strong>ranks</strong> with the LAW library: <code>HyperBall</code> for harmonic centrality, with counters on disk, and <code>PageRankParallelGaussSeidel</code> for PageRank, both on the transposed graph.</li>
+</ol>
+<h2 id="reading-the-ranks">Reading the ranks</h2>
+<ul>
+<li><strong>The top is infrastructure.</strong> Because scripts, fonts and <code>&lt;link&gt;</code> elements count as links, the domains embedded in millions of pages lead both rankings: <code>googleapis.com</code>, <code>google.com</code>, <code>facebook.com</code>, <code>googletagmanager.com</code>, <code>gstatic.com</code>. <code>gmpg.org</code>, whose only role is a profile link in WordPress page headers, is tenth by both measures. A high position means “referenced from many places”, not “popular with readers”.</li>
+<li><strong>Harmonic values are approximate and flat.</strong> They come from probabilistic counters (see <a href="hyperball.html">HyperBall</a>), only 5.9 million distinct values occur, and position 10 million still scores 43% of the top value.</li>
+<li><strong>PageRank sits on a floor.</strong> 14.9 million domains with no in-links share the floor value <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.13351</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4.13351 \times 10^{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4.13351</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span>, which implies that dangling domains hold about 41% of all PageRank (see <a href="dangling-nodes.html">Dangling nodes</a>).</li>
+<li><strong>Absent is not the same as last.</strong> A domain missing from the graph was never linked from a crawled page, or never seen. Of GoDaddy’s 2026-09-23 auction inventory, 88.8% is absent.</li>
+<li><strong>The two rankings disagree in instructive ways.</strong> <code>parastorage.com</code> is 16th by PageRank and 81,305th by harmonic centrality; the <a href="pagerank.html">PageRank</a> entry explains why.</li>
+</ul>
+<h2 id="limits">Limits</h2>
+<ul>
+<li><strong>A crawl is a sample.</strong> Common Crawl fetches billions of pages per month but not the whole web, and its graph reflects its crawl priorities, which themselves use harmonic centrality.</li>
+<li><strong>Three months of links.</strong> Links seen in any of the three crawls count; older links do not. This makes the graph fresh but blind to history.</li>
+<li><strong>No weights or anchors.</strong> Every arc is equal, whatever the number of links behind it, their placement or their text (see <a href="anchor-text.html">Anchor text</a>).</li>
+<li><strong>No spam filtering.</strong> Link farms appear as they are, which is useful for studying them and means the raw in-degree can be inflated (see <a href="link-spam.html">Link spam</a>).</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Common Crawl. <em>Web Graph Release cc-main-2026-jun-jul-aug.</em> data.commoncrawl.org/projects/hyperlinkgraph/cc-main-2026-jun-jul-aug/index.html.</li>
+<li>Common Crawl. <em>cc-webgraph</em> (graph construction and ranking scripts) and <em>cc-pyspark</em> (<code>wat_extract_links.py</code>). github.com/commoncrawl.</li>
+<li>Boldi, P., &amp; Vigna, S. (2004). The WebGraph Framework I: Compression techniques. <em>WWW 2004</em>, 595–602.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="pagerank-history.html">A short history of PageRank</a> · <a href="metric-audit.html">Auditing vendor metrics</a> · <a href="backlinks.html">Backlinks and referring domains</a> · <a href="degree-centrality.html">Degree centrality</a> · <a href="expired-domains.html">Expired domains</a> · <a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a> · <a href="reading-domain-metrics.html">Reading a domain's link metrics</a></p></section><nav class="prevnext"><a href="expired-domains.html">← Expired domains</a><a href="reading-domain-metrics.html">Reading a domain's link metrics →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/common-crawl-graph.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#the-2026-june-august-release">The 2026 June–August release</a></li><li><a href="#the-files">The files</a></li><li><a href="#how-the-graph-is-built">How the graph is built</a></li><li><a href="#reading-the-ranks">Reading the ranks</a></li><li><a href="#limits">Limits</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

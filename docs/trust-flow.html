@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trust Flow and Citation Flow (Majestic) · Link Graph Encyclopedia</title>
+<meta name="description" content="Majestic's two 0–100 scores. Citation Flow measures link volume and power; Trust Flow measures closeness in the link graph to manually reviewed trusted sites, a TrustRank-style idea. Their ratio is a popular spam heuristic.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
+<h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html" aria-current="page">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
+</nav>
+<main class="article">
+<p class="kicker">Domain metrics</p><h1>Trust Flow and Citation Flow (Majestic)</h1>
+<p class="lede">Majestic's two 0–100 scores. Citation Flow measures link volume and power; Trust Flow measures closeness in the link graph to manually reviewed trusted sites, a TrustRank-style idea. Their ratio is a popular spam heuristic.</p>
+<p>Majestic, a link-intelligence company running its own web crawl, publishes two headline scores for every URL and domain. <strong>Citation Flow</strong> (CF) estimates how much link power a site has, from the number and strength of the sites linking to it. <strong>Trust Flow</strong> (TF) estimates link <em>quality</em>: sites closely linked to a set of manually reviewed trusted seed sites score higher, and sites with questionable links score lower. The pair maps neatly onto two ideas in this encyclopedia: CF resembles <a href="pagerank.html">PageRank</a> and TF resembles <a href="trustrank.html">TrustRank</a>.</p>
+<h2 id="definitions">Definitions</h2>
+<p>Majestic’s glossary describes:</p>
+<ul>
+<li><strong>Citation Flow:</strong> “a score between 0–100 which helps to measure the link equity or ‘power’ the website or link carries.” It predicts how influential a URL might be based on how many sites link to it.</li>
+<li><strong>Trust Flow:</strong> “a score based on quality, on a scale between 0–100.” Sites closely linked to trusted seed sites can see higher scores, whereas sites that have questionable links would see lower scores.</li>
+<li><strong>Topical Trust Flow:</strong> a set of log-scaled 0–100 scores showing a page’s relative influence within topical categories, so that a site can have high trust in, say, health and low trust in finance.</li>
+<li><strong>Fresh and Historic Index:</strong> the Fresh index holds links seen in roughly the last 120 days; the Historic index holds links back to 2006. Scores differ between the two.</li>
+</ul>
+<p>Majestic does not publish formulas. The descriptions match the classic constructions: CF behaves like a link-volume score with a recursive weighting, TF like trust propagated outward from seeds with decay at each step.</p>
+<h2 id="the-tf-cf-ratio">The TF/CF ratio</h2>
+<p>Practitioners often divide TF by CF. A ratio near 1 or above suggests that a site’s links come largely from trusted parts of the web; a TF far below CF suggests many links from low-trust sources, the profile of bought or farmed links. The heuristic follows directly from the definitions: a <a href="link-spam.html">link farm</a> adds citation volume without adding closeness to trusted seeds, exactly as it raises in-degree and PageRank without raising TrustRank. It is a heuristic, not a law: new legitimate sites in niches far from Majestic’s seeds can also show low TF.</p>
+<h2 id="what-the-auction-data-shows">What the auction data shows</h2>
+<p>GoDaddy’s daily auction inventory includes Majestic fields (Trust Flow, Citation Flow, backlinks and referring domains) for each listed domain. On 2026-09-23, across 1,068,241 domains:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Population</th>
+<th>Majestic referring domains = 0</th>
+<th>Trust Flow = 0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All listed domains</td>
+<td>82.7%</td>
+<td>98.6%</td>
+</tr>
+<tr>
+<td>Not in Common Crawl’s graph (948,788)</td>
+<td>84.1%</td>
+<td>99.4%</td>
+</tr>
+<tr>
+<td>More than 100 referring domains in Common Crawl’s graph (676)</td>
+<td>54.6%</td>
+<td>66.9%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Even among the best-linked domains, ones that more than 100 distinct domains link to in Common Crawl’s crawl, more than half show no Majestic referring domains at all in this feed. Where the fields are populated, they track Common Crawl’s in-degree moderately: among the 31,472 domains in Common Crawl’s graph with nonzero Citation Flow, the Spearman correlation with Common Crawl in-degree is 0.41 for Trust Flow and 0.35 for Citation Flow.</p>
+<p>These figures describe Majestic’s numbers <em>as delivered in GoDaddy’s feed</em> on one day. They may reflect how GoDaddy obtains or refreshes the data, for instance a particular index or update schedule, rather than gaps in Majestic’s own index; Majestic’s tools may show values where the feed shows zero. The practical point stands for anyone filtering auction lists by these columns: a zero here usually means “no data”, not “no links” (see <a href="metric-audit.html">Auditing vendor metrics</a>).</p>
+<h2 id="reading-tf-and-cf-for-a-domain">Reading TF and CF for a domain</h2>
+<ol>
+<li><strong>Check both numbers and their ratio.</strong> High CF with very low TF is the classic warning sign.</li>
+<li><strong>Look at Topical Trust Flow.</strong> A domain whose trust lies in a topic unrelated to its name or intended use probably had a different past (see <a href="expired-domains.html">Expired domains</a>).</li>
+<li><strong>Distinguish Fresh from Historic.</strong> An expired domain’s Historic numbers can be far above its Fresh ones, as old links disappear.</li>
+<li><strong>Treat zero as unknown</strong> when the data comes through a third party, and confirm in Majestic’s own tools or another index.</li>
+<li><strong>Cross-check</strong> against <a href="domain-rating.html">Domain Rating (Ahrefs)</a>, <a href="domain-authority.html">Domain Authority (Moz)</a> and Common Crawl’s open centralities (see <a href="reading-domain-metrics.html">Reading a domain’s link metrics</a>).</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>Majestic. <em>Glossary</em> (Trust Flow, Citation Flow, Topical Trust Flow, Fresh Index, Historic Index). majestic.com/help/glossary.</li>
+<li>Gyöngyi, Z., Garcia-Molina, H., &amp; Pedersen, J. (2004). Combating Web spam with TrustRank. <em>VLDB 2004</em>, 576–587.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="pagerank-history.html">A short history of PageRank</a> · <a href="metric-audit.html">Auditing vendor metrics</a> · <a href="authority-score.html">Authority Score (Semrush)</a> · <a href="domain-authority.html">Domain Authority (Moz)</a> · <a href="domain-rating.html">Domain Rating (Ahrefs)</a> · <a href="personalized-pagerank.html">Personalized PageRank</a> · <a href="reading-domain-metrics.html">Reading a domain's link metrics</a> · <a href="trustrank.html">TrustRank</a></p></section><nav class="prevnext"><a href="domain-rating.html">← Domain Rating (Ahrefs)</a><a href="authority-score.html">Authority Score (Semrush) →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/trust-flow.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#definitions">Definitions</a></li><li><a href="#the-tf-cf-ratio">The TF/CF ratio</a></li><li><a href="#what-the-auction-data-shows">What the auction data shows</a></li><li><a href="#reading-tf-and-cf-for-a-domain">Reading TF and CF for a domain</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

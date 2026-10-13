@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link spam · Link Graph Encyclopedia</title>
+<meta name="description" content="Links created to manipulate rankings rather than to help readers. Link farms, bought links, private blog networks and parasite pages, what each does to PageRank and harmonic centrality, and the traces they leave in a link graph.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li><li><a href="power-laws.html">Degree distributions and power laws</a></li><li><a href="graph-granularity.html">Page, host and domain graphs</a></li><li><a href="reversed-domain-names.html">Reversed domain names and public suffixes</a></li><li><a href="random-walks.html">Random walks and Markov chains</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="centrality.html">Centrality</a></li><li><a href="centrality-axioms.html">Axioms for centrality</a></li><li><a href="degree-centrality.html">Degree centrality</a></li><li><a href="closeness-centrality.html">Closeness centrality</a></li><li><a href="harmonic-centrality.html">Harmonic centrality</a></li><li><a href="betweenness-centrality.html">Betweenness centrality</a></li><li><a href="eigenvector-centrality.html">Eigenvector centrality</a></li><li><a href="katz-centrality.html">Katz centrality</a></li><li><a href="pagerank.html">PageRank</a></li><li><a href="personalized-pagerank.html">Personalized PageRank</a></li><li><a href="hits.html">HITS (hubs and authorities)</a></li><li><a href="salsa.html">SALSA</a></li><li><a href="trustrank.html">TrustRank</a></li><li><a href="spam-mass.html">Spam mass</a></li><li><a href="cheirank.html">CheiRank and 2DRank</a></li></ul>
+<h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
+<h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
+<h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html" aria-current="page">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
+<h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
+</nav>
+<main class="article">
+<p class="kicker">Links in practice</p><h1>Link spam</h1>
+<p class="lede">Links created to manipulate rankings rather than to help readers. Link farms, bought links, private blog networks and parasite pages, what each does to PageRank and harmonic centrality, and the traces they leave in a link graph.</p>
+<p>Once links influence rankings, links have a price, and some people manufacture them. <strong>Link spam</strong> is any link placed primarily to manipulate a ranking rather than to serve a reader. Google’s spam policies call such practices <em>link schemes</em> and name examples: buying or selling links that pass ranking credit, excessive link exchanges, large-scale guest posting with keyword-rich anchors, automated link creation, and links hidden in widgets and footers. Every link metric in this encyclopedia is a target, and each responds to spam differently.</p>
+<h2 id="the-main-techniques">The main techniques</h2>
+<ul>
+<li><strong>Link farms.</strong> Many sites created to link to each other and to a few target sites. Gyöngyi and Garcia-Molina analysed the optimal structure: a set of “booster” pages that each link only to the target, with the target linking back, traps the random surfer and multiplies the target’s PageRank.</li>
+<li><strong>Private blog networks (PBNs).</strong> A more careful farm: sites built on <a href="expired-domains.html">Expired domains</a> that already have links of their own, each made to look independent, with different hosts, designs and owners on record, linking out to the operator’s commercial sites.</li>
+<li><strong>Bought links.</strong> Paid placements in articles or sidebars on real sites, without the <code>sponsored</code> or <code>nofollow</code> attribute (see <a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a>).</li>
+<li><strong>Comment, forum and profile spam.</strong> Automated posting of links wherever a site accepts user input. This is what <code>nofollow</code> was invented for in 2005.</li>
+<li><strong>Parasite pages.</strong> Pages hosted on a reputable domain, through user uploads, hacked sites or rented sections, to borrow its standing. In a domain graph they are credited to the host domain: in Common Crawl’s 2026 graph, a single link credited to <code>googleapis.com</code>, which serves Google Cloud Storage files, lifts <code>chaussurespuma.net</code> to PageRank position 10,000 on seven referring domains (see <a href="pagerank.html">PageRank</a>). Google’s 2024 <em>site reputation abuse</em> policy targets the rented-section version of this practice.</li>
+<li><strong>Mass out-linking.</strong> Generated pages that link to millions of sites, to sell links or to catch traffic. <code>mp3fresh.net</code> links to 6,113,126 domains in Common Crawl’s 2026 graph, one domain in twenty, the largest out-degree of any domain.</li>
+<li><strong>Subdomain farms.</strong> Wildcard DNS lets one domain answer for unlimited hosts. In the 2026 graph <code>hub.biz</code> folds 1,222,261 hosts and <code>adgo.kr</code> 423,413 (see <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a>).</li>
+</ul>
+<h2 id="what-spam-buys-under-each-metric">What spam buys under each metric</h2>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Effect of 1,000 new domains that link only to a target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In-degree, referring domains</td>
+<td>+1,000, full effect</td>
+</tr>
+<tr>
+<td><a href="pagerank.html">PageRank</a></td>
+<td>about <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.5</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow><annotation encoding="application/x-tex">3.5 \times 10^{-6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3.5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span>, from the floor to position ~10,000 in Common Crawl’s graph</td>
+</tr>
+<tr>
+<td><a href="harmonic-centrality.html">Harmonic centrality</a></td>
+<td>+1,000 to a value where the median domain has millions: still below position 100,000,000</td>
+</tr>
+<tr>
+<td><a href="trustrank.html">TrustRank</a></td>
+<td>nothing, unless a trusted site links into the farm</td>
+</tr>
+</tbody>
+</table></div>
+<p>The difference comes from what each metric counts. In-degree counts links; PageRank counts probability flowing in, and even worthless farm domains pass their teleport share; harmonic centrality counts closeness to the whole web, which farm domains, linked by nobody, cannot provide. The <a href="harmonic-centrality.html">Harmonic centrality</a> entry works through the arithmetic.</p>
+<h2 id="traces-in-the-graph">Traces in the graph</h2>
+<p>Spam leaves structural fingerprints:</p>
+<ul>
+<li><strong>Degree anomalies.</strong> Common Crawl’s 2026 in-degree distribution has a bump of about 39,400 domains with in-degree between 19,000 and 29,000, where the smooth tail predicts fewer than 2,000, with a matching bump in out-degree (see <a href="power-laws.html">Degree distributions and power laws</a>). Organic link growth produces smooth distributions; coordinated networks produce bumps.</li>
+<li><strong>Dense, isolated clusters.</strong> Farms link internally far more than to the outside, so they show up as tight communities with high <a href="clustering-coefficient.html">clustering</a>, deep <a href="k-core.html">cores</a> and few in-links from the rest of the web (see <a href="community-detection.html">Community detection</a>).</li>
+<li><strong>Mass from outside the trusted web.</strong> A high-ranking node whose PageRank comes mostly from nodes unreachable from reputable seeds has high <a href="spam-mass.html">Spam mass</a>.</li>
+<li><strong>Uniform patterns.</strong> Identical anchor texts, links appearing in bursts on newly registered domains, shared hosting, templates and analytics IDs. These are not graph features, but link indexes and search engines combine them with graph features.</li>
+</ul>
+<h2 id="how-search-engines-respond">How search engines respond</h2>
+<p>Google’s responses have shifted from punishing to ignoring. The 2012 Penguin update demoted sites with manipulative link profiles; since Penguin 4.0 in 2016, Google says it mostly devalues spam links rather than demoting whole sites. Its December 2022 link spam update used SpamBrain, an AI-based system, to detect both sites buying links and sites used to pass outgoing links, and to neutralise their links. Manual actions for unnatural links remain for flagrant cases (see <a href="link-penalties.html">Link penalties and the disavow tool</a>).</p>
+<h2 id="what-it-means-for-a-domain">What it means for a domain</h2>
+<p>Link spam is the main reason a domain’s metrics can look strong and be worth little:</p>
+<ul>
+<li><strong>Metrics can be bought.</strong> Referring-domain counts, and scores built mainly on them, rise with farm links. Check <em>who</em> links, not how many.</li>
+<li><strong>Discounted links are invisible in the numbers.</strong> A domain whose links search engines already ignore keeps its vendor scores, because vendors cannot see the discount.</li>
+<li><strong>A spam past can follow a domain.</strong> An expired domain used in a PBN or for parasite pages may carry manual actions, or links that attract new ones if reused (see <a href="expired-domains.html">Expired domains</a>).</li>
+<li><strong>Prefer metrics that resist farms.</strong> Harmonic centrality and trust-based scores are harder to inflate than counts; compare several sources (see <a href="reading-domain-metrics.html">Reading a domain’s link metrics</a>).</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Gyöngyi, Z., &amp; Garcia-Molina, H. (2005). Web spam taxonomy. <em>AIRWeb 2005</em>.</li>
+<li>Gyöngyi, Z., &amp; Garcia-Molina, H. (2005). Link spam alliances. <em>VLDB 2005</em>, 517–528.</li>
+<li>Google Search Central. <em>Spam policies for Google web search</em> (link spam; site reputation abuse; expired domain abuse).</li>
+<li>Google Search Central Blog (2022). December 2022 link spam update. 14 December 2022.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="pagerank-history.html">A short history of PageRank</a> · <a href="authority-score.html">Authority Score (Semrush)</a> · <a href="backlinks.html">Backlinks and referring domains</a> · <a href="betweenness-centrality.html">Betweenness centrality</a> · <a href="centrality.html">Centrality</a> · <a href="clustering-coefficient.html">Clustering coefficient</a> · <a href="degree.html">Degree</a> · <a href="degree-centrality.html">Degree centrality</a> · <a href="power-laws.html">Degree distributions and power laws</a> · <a href="domain-authority.html">Domain Authority (Moz)</a> · <a href="domain-rating.html">Domain Rating (Ahrefs)</a> · <a href="expired-domains.html">Expired domains</a> · <a href="harmonic-centrality.html">Harmonic centrality</a> · <a href="katz-centrality.html">Katz centrality</a> · <a href="pagerank.html">PageRank</a> · <a href="push-algorithms.html">Push algorithms</a> · <a href="random-graph-models.html">Random graph models</a> · <a href="reading-domain-metrics.html">Reading a domain's link metrics</a> · <a href="redirects.html">Redirects and canonicalisation</a> · <a href="reversed-domain-names.html">Reversed domain names and public suffixes</a> · <a href="spam-mass.html">Spam mass</a> · <a href="common-crawl-graph.html">The Common Crawl web graph</a> · <a href="web-graph.html">The web graph</a> · <a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></p></section><nav class="prevnext"><a href="redirects.html">← Redirects and canonicalisation</a><a href="link-penalties.html">Link penalties and the disavow tool →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/link-spam.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#the-main-techniques">The main techniques</a></li><li><a href="#what-spam-buys-under-each-metric">What spam buys under each metric</a></li><li><a href="#traces-in-the-graph">Traces in the graph</a></li><li><a href="#how-search-engines-respond">How search engines respond</a></li><li><a href="#what-it-means-for-a-domain">What it means for a domain</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

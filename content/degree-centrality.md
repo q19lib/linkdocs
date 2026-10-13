@@ -59,7 +59,7 @@ Every link index reports in-degree in two forms (see [[backlinks]]):
 - **Backlinks** count individual links, so a sitewide footer link on a 10,000-page site counts 10,000 times.
 - **Referring domains** count distinct linking domains: the in-degree of the domain graph.
 
-Referring domains is the more robust of the two, but it inherits all of degree centrality's weaknesses, and vendors' counts include domains that link to almost everything. The [[metric-audit]] entry shows a floor of about 150 spam referring domains that one vendor reports for most listed auction domains, so a raw count below that floor says nothing at all.
+Referring domains is the more robust of the two, but it inherits all of degree centrality's weaknesses, and vendors' counts include domains that link to almost everything. The [[metric-audit]] entry shows that one vendor reports a median of 96 referring domains even for auction domains that no page in Common Crawl links to, mostly the same handful of spam domains, so a raw count near that floor says nothing at all.
 
 ## When degree is the right choice
 
