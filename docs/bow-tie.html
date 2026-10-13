@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The bow-tie structure · Link Graph Encyclopedia</title>
+<meta name="description" content="Seen from its largest strongly connected component, the web looks like a bow tie. Pages that reach the core sit on one side, pages the core reaches sit on the other, and stragglers hang off both.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html">Strongly connected components</a></li><li><a href="bow-tie.html" aria-current="page">The bow-tie structure</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="pagerank.html">PageRank</a></li></ul>
+<h2>PageRank in depth</h2><ul></ul>
+<h2>Computing at scale</h2><ul></ul>
+<h2>Comparing rankings</h2><ul></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Foundations</p><h1>The bow-tie structure</h1>
+<p class="lede">Seen from its largest strongly connected component, the web looks like a bow tie. Pages that reach the core sit on one side, pages the core reaches sit on the other, and stragglers hang off both.</p>
+<p>In 1999 a team from AltaVista, IBM and Compaq mapped a crawl of 203 million pages and found that its connectivity had a shape. A giant <strong>core</strong> of pages all reach each other. An <strong>IN</strong> set of pages reach the core but cannot be reached from it, and an <strong>OUT</strong> set can be reached from the core but cannot get back. Drawn with IN on the left and OUT on the right, the picture looks like a bow tie. The model gives names to the parts of any directed graph relative to its largest <a href="strongly-connected-components.html">strongly connected component</a>, and those parts behave very differently under every ranking method.</p>
+<figure class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" role="img" aria-label="The bow-tie: IN on the left feeds the core in the middle, which feeds OUT on the right; tendrils hang off IN and OUT, a tube joins IN to OUT, and disconnected pieces float apart">
+<defs><marker id="bt-tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="tip" d="M0,0L10,5L0,10z"/></marker></defs>
+<path class="area" d="M40,70 C120,60 200,100 230,150 C200,200 120,240 40,230 C10,200 10,100 40,70z"/>
+<path class="area" d="M560,70 C480,60 400,100 370,150 C400,200 480,240 560,230 C590,200 590,100 560,70z"/>
+<ellipse class="hl" cx="300" cy="150" rx="78" ry="62"/>
+<text class="t" x="300" y="145" text-anchor="middle" font-weight="700">CORE</text>
+<text class="m" x="300" y="164" text-anchor="middle">largest SCC</text>
+<text class="t" x="100" y="145" text-anchor="middle" font-weight="700">IN</text>
+<text class="m" x="100" y="164" text-anchor="middle">reaches the core</text>
+<text class="t" x="500" y="145" text-anchor="middle" font-weight="700">OUT</text>
+<text class="m" x="500" y="164" text-anchor="middle">reached from it</text>
+<path class="e" d="M190,150 L218,150" marker-end="url(#bt-tip)"/>
+<path class="e" d="M382,150 L410,150" marker-end="url(#bt-tip)"/>
+<path class="e" d="M120,228 C180,300 420,300 480,228" marker-end="url(#bt-tip)"/>
+<text class="m" x="300" y="290" text-anchor="middle">tube: IN to OUT, bypassing the core</text>
+<path class="e" d="M110,72 L130,34" marker-end="url(#bt-tip)"/>
+<ellipse class="n" cx="140" cy="22" rx="34" ry="12"/>
+<text class="m" x="190" y="26">tendril</text>
+<path class="e" d="M470,30 L488,68" marker-end="url(#bt-tip)"/>
+<ellipse class="n" cx="452" cy="22" rx="34" ry="12"/>
+<text class="m" x="364" y="26">tendril</text>
+<ellipse class="n" cx="560" cy="282" rx="22" ry="9"/>
+<ellipse class="n" cx="30" cy="282" rx="18" ry="8"/>
+<text class="m" x="530" y="285" text-anchor="end">disconnected</text>
+</svg><figcaption>The bow-tie decomposition. Every node belongs to exactly one part, defined by whether it can reach the core, can be reached from it, both, or neither.</figcaption></figure>
+<h2 id="the-parts">The parts</h2>
+<p>Let <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> be the largest strongly connected component. Every other node falls into one part:</p>
+<ul>
+<li><strong>CORE:</strong> the nodes of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span>. Every core node reaches every other.</li>
+<li><strong>IN:</strong> nodes that reach <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> but cannot be reached from it. New sites that link to popular sites before anyone links back live here.</li>
+<li><strong>OUT:</strong> nodes reachable from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> that cannot reach it. Corporate sites that link only internally, and pages the crawler found but did not fetch, live here.</li>
+<li><strong>TENDRILS:</strong> nodes reachable from IN that cannot reach the core, and nodes that reach OUT without being reachable from the core.</li>
+<li><strong>TUBES:</strong> paths from IN to OUT that bypass the core.</li>
+<li><strong>DISCONNECTED:</strong> nodes with no path to or from the core in either direction.</li>
+</ul>
+<p>In the running example (see <a href="web-graph.html">The web graph</a>) the core is {A, B, C}. D and E form IN, since both reach the core and nothing in the core reaches them. G is OUT. F is a tendril: E, in IN, reaches it, but F cannot reach the core.</p>
+<h2 id="computing-the-decomposition">Computing the decomposition</h2>
+<p>The decomposition costs a few linear passes:</p>
+<ol>
+<li>Find the strongly connected components and pick the largest, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> (Tarjan’s algorithm, one depth-first search).</li>
+<li>Run a breadth-first search forward from all of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> at once. Every node it reaches outside <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> belongs to OUT or to the parts hanging off it.</li>
+<li>Run a breadth-first search backward, on the transposed graph, from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span>. Every node it reaches outside <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> belongs to IN.</li>
+<li>Search forward from IN and backward from OUT, skipping the core, to separate tendrils and tubes from the disconnected remainder.</li>
+</ol>
+<p>Each search costs <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n + m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>, so the whole decomposition is linear in the size of the graph (see <a href="paths-and-distance.html">Paths, distance and reachability</a>).</p>
+<h2 id="how-big-are-the-parts">How big are the parts?</h2>
+<p>The proportions depend heavily on the crawl:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Broder et al., 1999 crawl</th>
+<th>Meusel et al., Common Crawl 2012</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pages</td>
+<td>203 million</td>
+<td>3.5 billion</td>
+</tr>
+<tr>
+<td>CORE</td>
+<td>27.7%</td>
+<td>51.3%</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>21.3%</td>
+<td>32.0%</td>
+</tr>
+<tr>
+<td>OUT</td>
+<td>21.2%</td>
+<td>6.1%</td>
+</tr>
+<tr>
+<td>Everything else (tendrils, tubes, disconnected)</td>
+<td>29.7%</td>
+<td>10.7%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Broder’s crawl gave four parts of nearly equal size, a striking symmetry that became textbook material. Thirteen years later, Meusel, Vigna, Lehmberg and Bizer found a core twice as large and a tiny OUT set in Common Crawl’s 2012 page graph. They argued that the proportions depend largely on how a crawl is gathered, so they describe the crawler as much as the web. The shape recurs; the sizes do not.</p>
+<p>Common Crawl’s 2026 domain graph has a core of 30,219,288 domains, 25.2% of the total. Its 76 million domains with no recorded out-links cannot be in the core or in IN, so they must sit in OUT, the tendrils or the disconnected remainder. Most of them are domains the crawl saw only as link targets.</p>
+<h2 id="why-the-parts-matter-for-ranking">Why the parts matter for ranking</h2>
+<ul>
+<li><strong>Random surfers drain into OUT.</strong> A random walk can leave the core for OUT but never return. Without teleportation, all of <a href="pagerank.html">PageRank</a>’s probability would end up in OUT and in other sinks. The damping-factor and the treatment of dangling-nodes exist largely because of this part of the bow tie.</li>
+<li><strong>IN pages have no in-link credit from the core.</strong> Under eigenvector-centrality, IN nodes score exactly zero, since no walk from the core reaches them. harmonic-centrality gives them small but nonzero scores, from whatever IN nodes link to them.</li>
+<li><strong>Core membership is a quality signal.</strong> A site that the core links to and that links back into it is embedded in the web’s mainstream. Spam networks often sit outside the core: they link to popular sites, or to each other and their targets, but the core rarely links back. trustrank exploits the same asymmetry by spreading trust outward from hand-checked sites, which seldom link to spam.</li>
+</ul>
+<h2 id="the-fractal-view">The fractal view</h2>
+<p>Each part of the bow tie, examined alone, often looks like a smaller bow tie. Dill and colleagues found the pattern in thematically and geographically defined subsets of the web as early as 2002. The bow tie is less a fixed architecture than the generic shape of a directed graph built by many independent actors who link mostly to things that already exist.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Broder, A., Kumar, R., Maghoul, F., Raghavan, P., Rajagopalan, S., Stata, R., Tomkins, A., &amp; Wiener, J. (2000). Graph structure in the Web. <em>Computer Networks</em> 33(1–6), 309–320.</li>
+<li>Meusel, R., Vigna, S., Lehmberg, O., &amp; Bizer, C. (2014). Graph structure in the web — revisited: a trick of the heavy tail. <em>WWW 2014 Companion</em>, 427–432.</li>
+<li>Dill, S., Kumar, R., McCurley, K. S., Rajagopalan, S., Sivakumar, D., &amp; Tomkins, A. (2002). Self-similarity in the web. <em>ACM Transactions on Internet Technology</em> 2(3), 205–223.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="paths-and-distance.html">Paths, distance and reachability</a> · <a href="strongly-connected-components.html">Strongly connected components</a> · <a href="web-graph.html">The web graph</a></p></section><nav class="prevnext"><a href="strongly-connected-components.html">← Strongly connected components</a><a href="pagerank.html">PageRank →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/bow-tie.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#the-parts">The parts</a></li><li><a href="#computing-the-decomposition">Computing the decomposition</a></li><li><a href="#how-big-are-the-parts">How big are the parts?</a></li><li><a href="#why-the-parts-matter-for-ranking">Why the parts matter for ranking</a></li><li><a href="#the-fractal-view">The fractal view</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

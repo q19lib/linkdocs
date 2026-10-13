@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 25 360 245" width="420" role="img" aria-label="The running example: seven nodes A to G and ten links">
+<line class="ea" x1="215.7" y1="66.5" x2="296.0" y2="100.0"/>
+<polygon class="tipa" points="302.5,102.7 292.4,103.4 295.9,95.1"/>
+<line class="ea" x1="199.3" y1="77.7" x2="218.8" y2="156.0"/>
+<polygon class="tipa" points="220.5,162.8 214.0,155.1 222.7,153.0"/>
+<line class="ea" x1="306.6" y1="120.4" x2="250.5" y2="164.0"/>
+<polygon class="tipa" points="245.0,168.3 249.3,159.3 254.9,166.4"/>
+<line class="ea" x1="230.7" y1="162.3" x2="211.2" y2="84.0"/>
+<polygon class="tipa" points="209.5,77.2 216.0,84.9 207.3,87.0"/>
+<line class="e" x1="245.7" y1="186.4" x2="315.9" y2="215.2"/>
+<polygon class="tip" points="322.4,217.8 312.4,218.6 315.8,210.2"/>
+<line class="e" x1="105.5" y1="103.0" x2="176.3" y2="70.8"/>
+<polygon class="tip" points="182.7,67.9 176.4,75.7 172.6,67.5"/>
+<line class="e" x1="105.2" y1="117.6" x2="206.7" y2="168.4"/>
+<polygon class="tip" points="213.0,171.5 202.9,171.5 207.0,163.5"/>
+<line class="e" x1="64.9" y1="193.7" x2="82.5" y2="134.9"/>
+<polygon class="tip" points="84.5,128.2 86.3,138.1 77.6,135.5"/>
+<line class="e" x1="76.7" y1="207.0" x2="204.4" y2="184.5"/>
+<polygon class="tip" points="211.3,183.3 203.2,189.3 201.6,180.4"/>
+<line class="e" x1="76.1" y1="215.4" x2="125.3" y2="231.8"/>
+<polygon class="tip" points="132.0,234.0 122.0,235.4 124.9,226.9"/>
+<circle class="hl" cx="200" cy="60" r="17"/>
+<text class="t" x="200" y="64.5" text-anchor="middle" font-weight="600">A</text>
+<circle class="hl" cx="320" cy="110" r="17"/>
+<text class="t" x="320" y="114.5" text-anchor="middle" font-weight="600">B</text>
+<circle class="hl" cx="230" cy="180" r="17"/>
+<text class="t" x="230" y="184.5" text-anchor="middle" font-weight="600">C</text>
+<circle class="n" cx="90" cy="110" r="17"/>
+<text class="t" x="90" y="114.5" text-anchor="middle" font-weight="600">D</text>
+<circle class="n" cx="60" cy="210" r="17"/>
+<text class="t" x="60" y="214.5" text-anchor="middle" font-weight="600">E</text>
+<circle class="n" cx="150" cy="240" r="17"/>
+<text class="t" x="150" y="244.5" text-anchor="middle" font-weight="600">F</text>
+<circle class="n" cx="340" cy="225" r="17"/>
+<text class="t" x="340" y="229.5" text-anchor="middle" font-weight="600">G</text>
+</svg>

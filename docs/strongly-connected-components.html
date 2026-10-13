@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strongly connected components · Link Graph Encyclopedia</title>
+<meta name="description" content="Groups of nodes that can all reach each other along links. They decide where a random surfer gets trapped and which nodes a spectral ranking can see.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%232f6fde%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%229%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2224%22%20r%3D%225%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M8%209L24%209M8%209L16%2024M24%209L16%2024%22%20stroke%3D%22%232f6fde%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="assets/site.js"></script>
+</head>
+<body>
+<header class="top">
+<button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
+<a class="brand" href="index.html">Link Graph Encyclopedia</a>
+<div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
+</header>
+<div class="layout">
+<nav class="side" id="side" aria-label="Entries">
+<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<h2>Foundations</h2><ul><li><a href="web-graph.html">The web graph</a></li><li><a href="degree.html">Degree</a></li><li><a href="adjacency.html">Adjacency matrices and lists</a></li><li><a href="paths-and-distance.html">Paths, distance and reachability</a></li><li><a href="strongly-connected-components.html" aria-current="page">Strongly connected components</a></li><li><a href="bow-tie.html">The bow-tie structure</a></li></ul>
+<h2>Centrality</h2><ul><li><a href="pagerank.html">PageRank</a></li></ul>
+<h2>PageRank in depth</h2><ul></ul>
+<h2>Computing at scale</h2><ul></ul>
+<h2>Comparing rankings</h2><ul></ul>
+<h2>Network structure</h2><ul></ul>
+<h2>Links in practice</h2><ul></ul>
+<h2>Domain metrics</h2><ul></ul>
+</nav>
+<main class="article">
+<p class="kicker">Foundations</p><h1>Strongly connected components</h1>
+<p class="lede">Groups of nodes that can all reach each other along links. They decide where a random surfer gets trapped and which nodes a spectral ranking can see.</p>
+<p>Two nodes are <strong>strongly connected</strong> when each can reach the other by following links. Strong connection is an equivalence relation: every node is strongly connected to itself, the relation is symmetric by definition, and if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span></span></span> reach each other and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span></span></span></span> reach each other, so do <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0269em;">w</span></span></span></span>. It therefore splits the nodes into disjoint groups, the <strong>strongly connected components</strong> (SCCs). Inside a component, every node reaches every other; between components, traffic flows one way at most.</p>
+<h2 id="the-running-example">The running example</h2>
+<p>The running example (see <a href="web-graph.html">The web graph</a>) has five SCCs:</p>
+<figure class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="20 25 360 245" width="420" role="img" aria-label="The running example: seven nodes A to G and ten links">
+<line class="ea" x1="215.7" y1="66.5" x2="296.0" y2="100.0"/>
+<polygon class="tipa" points="302.5,102.7 292.4,103.4 295.9,95.1"/>
+<line class="ea" x1="199.3" y1="77.7" x2="218.8" y2="156.0"/>
+<polygon class="tipa" points="220.5,162.8 214.0,155.1 222.7,153.0"/>
+<line class="ea" x1="306.6" y1="120.4" x2="250.5" y2="164.0"/>
+<polygon class="tipa" points="245.0,168.3 249.3,159.3 254.9,166.4"/>
+<line class="ea" x1="230.7" y1="162.3" x2="211.2" y2="84.0"/>
+<polygon class="tipa" points="209.5,77.2 216.0,84.9 207.3,87.0"/>
+<line class="e" x1="245.7" y1="186.4" x2="315.9" y2="215.2"/>
+<polygon class="tip" points="322.4,217.8 312.4,218.6 315.8,210.2"/>
+<line class="e" x1="105.5" y1="103.0" x2="176.3" y2="70.8"/>
+<polygon class="tip" points="182.7,67.9 176.4,75.7 172.6,67.5"/>
+<line class="e" x1="105.2" y1="117.6" x2="206.7" y2="168.4"/>
+<polygon class="tip" points="213.0,171.5 202.9,171.5 207.0,163.5"/>
+<line class="e" x1="64.9" y1="193.7" x2="82.5" y2="134.9"/>
+<polygon class="tip" points="84.5,128.2 86.3,138.1 77.6,135.5"/>
+<line class="e" x1="76.7" y1="207.0" x2="204.4" y2="184.5"/>
+<polygon class="tip" points="211.3,183.3 203.2,189.3 201.6,180.4"/>
+<line class="e" x1="76.1" y1="215.4" x2="125.3" y2="231.8"/>
+<polygon class="tip" points="132.0,234.0 122.0,235.4 124.9,226.9"/>
+<circle class="hl" cx="200" cy="60" r="17"/>
+<text class="t" x="200" y="64.5" text-anchor="middle" font-weight="600">A</text>
+<circle class="hl" cx="320" cy="110" r="17"/>
+<text class="t" x="320" y="114.5" text-anchor="middle" font-weight="600">B</text>
+<circle class="hl" cx="230" cy="180" r="17"/>
+<text class="t" x="230" y="184.5" text-anchor="middle" font-weight="600">C</text>
+<circle class="n" cx="90" cy="110" r="17"/>
+<text class="t" x="90" y="114.5" text-anchor="middle" font-weight="600">D</text>
+<circle class="n" cx="60" cy="210" r="17"/>
+<text class="t" x="60" y="214.5" text-anchor="middle" font-weight="600">E</text>
+<circle class="n" cx="150" cy="240" r="17"/>
+<text class="t" x="150" y="244.5" text-anchor="middle" font-weight="600">F</text>
+<circle class="n" cx="340" cy="225" r="17"/>
+<text class="t" x="340" y="229.5" text-anchor="middle" font-weight="600">G</text>
+</svg><figcaption>The core A → B → C → A (with the shortcut A → C and the return C → A) is the only component with more than one node. D, E, F and G each form a component of their own.</figcaption></figure>
+<p>A, B and C reach each other, so they form one component. Every other node is a component by itself: D reaches the core but the core never reaches D; G is reached from the core but reaches nothing; E reaches everything and nothing reaches it; F only receives a link.</p>
+<h2 id="the-condensation">The condensation</h2>
+<p>Shrink each component to a single node and keep one arc between two components whenever some arc joins them. The result is the <strong>condensation</strong>, and it is always a directed acyclic graph: if two components could reach each other, they would be one component. For the running example:</p>
+<pre><code>E → D → {A,B,C} → G
+E → {A,B,C}
+E → F
+</code></pre>
+<p>The condensation shows the large-scale flow of a graph at a glance. Components with no incoming arcs are <em>sources</em> (E); components with no outgoing arcs are <em>sinks</em> (F, G and, at web scale, much larger groups). The <a href="bow-tie.html">The bow-tie structure</a> picture of the web is the condensation viewed from its largest component.</p>
+<h2 id="why-ranking-cares">Why ranking cares</h2>
+<ul>
+<li><strong>Random surfers get trapped in sink components.</strong> A random walk that enters a component with no exits never leaves. Without teleportation, all of <a href="pagerank.html">PageRank</a>’s probability would drain into sinks; the damping-factor exists to pull it back out.</li>
+<li><strong>Spectral rankings see only part of the graph.</strong> eigenvector-centrality gives zero to every node that the dominant component cannot reach. In the running example, D, E and F all get exactly zero, though D and E link into the core.</li>
+<li><strong>Reachability bounds geometric centralities.</strong> A node’s harmonic-centrality counts only the nodes that can reach it. A node in a large component, or downstream of one, has far more candidates to count.</li>
+</ul>
+<h2 id="finding-the-components">Finding the components</h2>
+<p>Two classic algorithms find all SCCs in linear time, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n + m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>:</p>
+<ul>
+<li><strong>Tarjan’s algorithm</strong> (1972) runs one depth-first search. Each node records the order in which the search discovered it and the earliest-discovered node reachable from its subtree that is still on the stack (its <em>low-link</em>). When a node’s low-link equals its own discovery index, the nodes above it on the stack form a complete component.</li>
+<li><strong>Kosaraju’s algorithm</strong> runs two searches: one on the graph to record finishing order, then one on the transposed graph in reverse finishing order. Each tree of the second search is a component.</li>
+</ul>
+<p>Both are depth-first, and web graphs have paths millions of nodes long, so a recursive implementation overflows any call stack. Production code keeps an explicit stack. Common Crawl computes its components with the WebGraph framework’s <code>StronglyConnectedComponents</code>, which works directly on the compressed graph.</p>
+<h2 id="components-in-a-real-web-graph">Components in a real web graph</h2>
+<p>Common Crawl’s 2026 domain graph splits into 89,324,507 strongly connected components:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domains</td>
+<td>119,722,885</td>
+</tr>
+<tr>
+<td>Strongly connected components</td>
+<td>89,324,507</td>
+</tr>
+<tr>
+<td>Largest component</td>
+<td>30,219,288 domains (25.2%)</td>
+</tr>
+<tr>
+<td>Domains outside the largest component</td>
+<td>89,503,597</td>
+</tr>
+<tr>
+<td>Domains with no out-links (each its own component)</td>
+<td>76,352,306</td>
+</tr>
+</tbody>
+</table></div>
+<p>One giant component holds a quarter of all domains. Everything else is shattered: the remaining 89.5 million domains form 89.3 million components, so nearly all of them are single domains. Every domain with no out-links is necessarily a singleton, which accounts for most of the count.</p>
+<p>A crawl-based graph understates the giant component. The crawler fetched only some of the 76 million domains with no recorded out-links; many of them do link back into the core in reality. Studies of page-level graphs find much larger giant components. Broder and colleagues found 28% of 203 million pages in theirs in 1999, and Meusel and colleagues found about half of 3.5 billion pages in Common Crawl’s 2012 page graph.</p>
+<h2 id="weak-components">Weak components</h2>
+<p>Ignoring arc directions gives <strong>weakly connected components</strong>: groups linked by any chain of arcs, in either direction. The running example is one weak component. Web graphs typically have one weak component containing almost every node, plus many tiny islands. Weak components are cheap to find with union–find in nearly linear time, and they are the first thing to check when a graph looks wrong: a crawl that produced two large weak components probably mangled its URLs.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Tarjan, R. E. (1972). Depth-first search and linear graph algorithms. <em>SIAM Journal on Computing</em> 1(2), 146–160.</li>
+<li>Sharir, M. (1981). A strong-connectivity algorithm and its applications in data flow analysis. <em>Computers &amp; Mathematics with Applications</em> 7(1), 67–72.</li>
+<li>Broder, A., et al. (2000). Graph structure in the Web. <em>Computer Networks</em> 33(1–6), 309–320.</li>
+<li>Meusel, R., Vigna, S., Lehmberg, O., &amp; Bizer, C. (2014). Graph structure in the web — revisited. <em>WWW 2014 Companion</em>, 427–432.</li>
+</ul>
+<section class="backlinks"><h2>Links here</h2><p><a href="paths-and-distance.html">Paths, distance and reachability</a> · <a href="bow-tie.html">The bow-tie structure</a> · <a href="web-graph.html">The web graph</a></p></section><nav class="prevnext"><a href="paths-and-distance.html">← Paths, distance and reachability</a><a href="bow-tie.html">The bow-tie structure →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/strongly-connected-components.md">Edit this entry on GitHub</a></p>
+</main>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#the-running-example">The running example</a></li><li><a href="#the-condensation">The condensation</a></li><li><a href="#why-ranking-cares">Why ranking cares</a></li><li><a href="#finding-the-components">Finding the components</a></li><li><a href="#components-in-a-real-web-graph">Components in a real web graph</a></li><li><a href="#weak-components">Weak components</a></li><li><a href="#references">References</a></li></ul></aside>
+</div>
+</body>
+</html>

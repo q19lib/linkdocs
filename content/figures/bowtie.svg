@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" role="img" aria-label="The bow-tie: IN on the left feeds the core in the middle, which feeds OUT on the right; tendrils hang off IN and OUT, a tube joins IN to OUT, and disconnected pieces float apart">
+<defs><marker id="bt-tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="tip" d="M0,0L10,5L0,10z"/></marker></defs>
+<path class="area" d="M40,70 C120,60 200,100 230,150 C200,200 120,240 40,230 C10,200 10,100 40,70z"/>
+<path class="area" d="M560,70 C480,60 400,100 370,150 C400,200 480,240 560,230 C590,200 590,100 560,70z"/>
+<ellipse class="hl" cx="300" cy="150" rx="78" ry="62"/>
+<text class="t" x="300" y="145" text-anchor="middle" font-weight="700">CORE</text>
+<text class="m" x="300" y="164" text-anchor="middle">largest SCC</text>
+<text class="t" x="100" y="145" text-anchor="middle" font-weight="700">IN</text>
+<text class="m" x="100" y="164" text-anchor="middle">reaches the core</text>
+<text class="t" x="500" y="145" text-anchor="middle" font-weight="700">OUT</text>
+<text class="m" x="500" y="164" text-anchor="middle">reached from it</text>
+<path class="e" d="M190,150 L218,150" marker-end="url(#bt-tip)"/>
+<path class="e" d="M382,150 L410,150" marker-end="url(#bt-tip)"/>
+<path class="e" d="M120,228 C180,300 420,300 480,228" marker-end="url(#bt-tip)"/>
+<text class="m" x="300" y="290" text-anchor="middle">tube: IN to OUT, bypassing the core</text>
+<path class="e" d="M110,72 L130,34" marker-end="url(#bt-tip)"/>
+<ellipse class="n" cx="140" cy="22" rx="34" ry="12"/>
+<text class="m" x="190" y="26">tendril</text>
+<path class="e" d="M470,30 L488,68" marker-end="url(#bt-tip)"/>
+<ellipse class="n" cx="452" cy="22" rx="34" ry="12"/>
+<text class="m" x="364" y="26">tendril</text>
+<ellipse class="n" cx="560" cy="282" rx="22" ry="9"/>
+<ellipse class="n" cx="30" cy="282" rx="18" ry="8"/>
+<text class="m" x="530" y="285" text-anchor="end">disconnected</text>
+</svg>
