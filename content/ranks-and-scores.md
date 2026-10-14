@@ -56,7 +56,7 @@ A position is only as good as the values behind it:
 ## Better ways to compare
 
 - **Compare values, on a log scale.** For PageRank, $\log_{10}(p / p_{\min})$ runs from 0 at the floor to about 6.6 at the top of Common Crawl's domain graph and spreads the meaningful range evenly. Toolbar PageRank's 0–10 scale was a bucketed log scale of this kind (see [[pagerank-history]]).
-- **Use percentiles with care.** "Top 1%" is meaningful for PageRank, where the top percent holds most of the mass, and much less so for harmonic centrality, where the top percent spans a narrow band of values.
+- **Use percentiles with care.** "Top 1%" is meaningful for PageRank, where the top percent holds 43% of the mass, and much less so for harmonic centrality, where the top percent spans a narrow band of values.
 - **Treat missing as missing.** Of the 1,068,241 domains in GoDaddy's 2026-09-23 auction inventory, 89% do not appear in Common Crawl's graph at all. They have no position, which is not the same as the worst position: they were never linked from a crawled page, or never seen.
 - **Report the distribution.** Any table of positions should come with the values at a few reference positions, like the one above.
 

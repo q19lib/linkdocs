@@ -54,7 +54,7 @@ On the 119,453 domains from GoDaddy's 2026-09-23 auction inventory that appear i
 | Semrush referring domains and Common Crawl in-degree, all 119,453 | 0.27 |
 | Same, only the 10,045 with at least 6 referring domains in Common Crawl | 0.45 |
 
-The two Common Crawl centralities agree substantially but far from perfectly. The third row looks like a weak relationship between a vendor's referring-domain count and Common Crawl's. Most of the vendor's counts, though, include a floor of around a hundred domains that link to almost every listed domain, which buries the real links of weakly linked domains. Among domains with real links, the fourth row, the correlation is much stronger. The [[metric-audit]] entry unpacks this.
+The two Common Crawl centralities agree substantially but far from perfectly. The fourth row looks like a weak relationship between a vendor's referring-domain count and Common Crawl's. Most of the vendor's counts, though, include a floor of around a hundred domains that link to almost every listed domain, which buries the real links of weakly linked domains. Among domains with real links, the fifth row, the correlation is much stronger. The [[metric-audit]] entry unpacks this.
 
 ## Limits
 
@@ -70,5 +70,5 @@ Sorting both score vectors gives the positions in $O(n \log n)$, and the correla
 ## References
 
 - Spearman, C. (1904). The proof and measurement of association between two things. *American Journal of Psychology* 15(1), 72–101.
-- Daniels, H. E. (1950). Rank correlation and population models. *Journal of the Royal Statistical Society, Series B* 12(2), 171–191.
+- Daniels, H. E. (1950). Rank correlation and population models. *Journal of the Royal Statistical Society, Series B* 12(2), 171–181.
 - Kendall, M. G., & Gibbons, J. D. (1990). *Rank Correlation Methods* (5th ed.). Edward Arnold.

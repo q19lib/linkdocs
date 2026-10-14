@@ -22,7 +22,7 @@ For domains in the graph, rough bands:
 
 | Signal | Weak | Meaningful | Strong |
 |---|---|---|---|
-| Common Crawl referring domains | 1–5 (90% of listed domains in the graph) | 6–100 | over 100 (676 listed domains, 0.06% of the inventory) |
+| Common Crawl referring domains | 0–5 (92% of listed domains in the graph) | 6–100 | over 100 (676 listed domains, 0.06% of the inventory) |
 | PageRank position | below 30 million (within 8% of the floor) | 1–10 million (1.5 to 9 times the floor) | top 1 million |
 | Harmonic position | below 50 million | 1–10 million | top 1 million |
 

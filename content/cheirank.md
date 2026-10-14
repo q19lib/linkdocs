@@ -7,7 +7,7 @@ summary: PageRank computed on the graph with every link reversed. It scores node
 aliases: CheiRank, 2DRank, Inverse PageRank, Reverse PageRank
 ---
 
-Ordinary [[pagerank]] rewards nodes that the rest of the graph links *to*. Reverse every arc and compute PageRank again, and you reward nodes that link *out* well: nodes whose out-links lead, directly or in a few steps, to much of the graph. Gyöngyi and colleagues used this *inverse PageRank* in 2004 to pick seeds for [[trustrank]]. Alexei Chepelianskii, studying the call graph of the Linux kernel in 2010, named it **CheiRank**, and Zhirov, Zhirov and Shepelyansky combined the two rankings into **2DRank** to map Wikipedia. Where PageRank measures how *popular* a node is, CheiRank measures how *communicative* it is.
+Ordinary [[pagerank]] rewards nodes that the rest of the graph links *to*. Reverse every arc and compute PageRank again, and you reward nodes that link *out* well: nodes whose out-links lead, directly or in a few steps, to much of the graph. Gyöngyi and colleagues used this *inverse PageRank* in 2004 to pick seeds for [[trustrank]]. Alexei Chepelianskii used it in 2010 as an "influence PageRank" on the call graph of the Linux kernel, and Zhirov, Zhirov and Shepelyansky named it **CheiRank** later that year, combining the two rankings into **2DRank** to map Wikipedia. Where PageRank measures how *popular* a node is, CheiRank measures how *communicative* it is.
 
 ## Definition
 

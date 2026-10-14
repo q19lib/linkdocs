@@ -44,9 +44,9 @@ Markov chain theory gives two conditions:
 
 The core above has a cycle of length 2 (A → C → A) and one of length 3 (A → B → C → A), so it is aperiodic, and $x_t$ converges to $(2/5, 1/5, 2/5)$. A chain that is both irreducible and aperiodic is called *ergodic*. The [[perron-frobenius]] theorem is the linear-algebra version of this result.
 
-## Why the raw web breaks both conditions
+## Why the raw web fails
 
-The web graph is neither irreducible nor safe to walk on:
+On the raw web graph the walk is not even defined everywhere, and it is far from irreducible:
 
 - **Dangling nodes.** A node with no out-links has an empty row in $P$. A walker who lands there has nowhere to go, and probability leaks out of the system. In Common Crawl's domain graph, 63.8% of nodes are dangling (see [[dangling-nodes]]).
 - **Traps.** Groups of nodes with links in but no links out, such as the OUT part of the [[bow-tie]], absorb the walker forever. The stationary distribution of the raw walk puts all its mass in such traps and gives zero to everything else, including the core.

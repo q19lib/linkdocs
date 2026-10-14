@@ -62,7 +62,7 @@ $$
 h(x) \approx \sum_{t \ge 1} \frac{|B(x, t)| - |B(x, t - 1)|}{t} .
 $$
 
-The passes stop when no counter changes, which takes as many passes as the longest shortest path in the graph. Common Crawl runs WebGraph's `HyperBall` on the transposed graph, with counters kept on disk (`--offline`), to produce the `#harmonicc_val` column of its ranks files.
+The passes stop when no counter changes, which takes as many passes as the longest shortest path in the graph. Common Crawl runs WebGraph's `HyperBall` on the transposed graph, reading the graph from disk rather than loading it into memory (`--offline`), to produce the `#harmonicc_val` column of its ranks files.
 
 The approximation shows in the data. Of the 119.7 million domains, only 5,940,987 distinct harmonic values occur, and 14,903,700 domains have value 0. That is 293 more than the 14,903,407 domains with no in-links: for a few domains with a single in-link, the counters missed it. Treat harmonic values as estimates with a few percent of relative error, and differences in the last digits as noise.
 

@@ -30,13 +30,19 @@ function personal(g, s) {
   return pr(g, s.alpha, pref);
 }
 
+// A graph with a cycle has λ ≥ 1; without one λ = 0 and the iteration's estimate only
+// creeps towards it.
+const ACYCLIC = 0.5;
+
 function eigen(g) {
   const { scores, lambda } = c.eigenvector(g);
+  if (lambda < ACYCLIC) return { scores: NAMES.map(() => 0), note: "No cycles: λ = 0, so eigenvector centrality is zero everywhere." };
   return { scores, note: `Dominant eigenvalue λ ≈ ${lambda.toFixed(4)}.` };
 }
 
 function katzScores(g, s) {
   const { lambda } = c.eigenvector(g);
+  if (lambda < ACYCLIC) return { scores: c.katz(g, s.beta), note: "No cycles: every walk is short, so the sum converges for any β." };
   if (s.beta * lambda >= 1) {
     return { scores: NAMES.map(() => NaN), note: `β ≥ 1/λ = ${(1 / lambda).toFixed(3)}: the sum of walks diverges.` };
   }

@@ -11,7 +11,7 @@ A random graph model is a procedure for building a graph with some randomness: d
 
 ## Erdős–Rényi: every link independent
 
-Paul Erdős and Alfréd Rényi, and independently Edgar Gilbert, studied graphs in which each of the $\binom{n}{2}$ possible links is present independently with probability $p$, written $G(n, p)$. The model is the reference point for everything else:
+Paul Erdős and Alfréd Rényi studied random graphs with a fixed number of links placed uniformly at random. Edgar Gilbert, independently, studied graphs in which each of the $\binom{n}{2}$ possible links is present independently with probability $p$, written $G(n, p)$; for large graphs the two models behave alike, and $G(n, p)$ is the one usually meant. The model is the reference point for everything else:
 
 - **Degrees** are binomial, close to Poisson with mean $\bar k = p(n - 1)$: tightly concentrated around the average, with no hubs.
 - **A giant component** appears suddenly when $\bar k$ crosses 1, a phase transition. Above it, one component holds a constant fraction of the nodes.
@@ -36,13 +36,13 @@ Preferential attachment explains hubs but not much else. It produces exponent 3 
 
 ## Copying: links that imitate links
 
-Kleinberg, Kumar, Raghavan, Rajagopalan and Tomkins proposed a model specific to the web. A new page picks an existing *prototype* page and, for each of its links, either copies one of the prototype's links or links to a random page. Copying produces power-law in-degrees, because a popular page is likely to be copied, and it produces many small bipartite cores: groups of pages that all link to the same set of targets, the signature of web communities and of [[hits|hubs and authorities]]. It also matches the observation that pages near each other in name order have similar link lists, the property [[webgraph-compression]] exploits.
+Kleinberg, Kumar, Raghavan, Rajagopalan and Tomkins proposed a model specific to the web in 1999, and Kumar and colleagues analysed it in 2000. A new page picks an existing *prototype* page and, for each of its links, either copies one of the prototype's links or links to a random page. Copying produces power-law in-degrees, because a popular page is likely to be copied, and it produces many small bipartite cores: groups of pages that all link to the same set of targets, the signature of web communities and of [[hits|hubs and authorities]]. It also matches the observation that pages near each other in name order have similar link lists, the property [[webgraph-compression]] exploits.
 
 ## Models of change
 
 - **Forest fire** (Leskovec, Kleinberg and Faloutsos, 2005). A new node links to an "ambassador" and then recursively to some of its neighbours, like a fire spreading. It reproduces two observations about real graphs over time: they *densify*, gaining links faster than nodes, and their effective diameters *shrink* (see [[neighbourhood-function]]).
 - **Kronecker graphs** (Leskovec and colleagues, 2010). A small initiator matrix raised to a Kronecker power generates a self-similar graph whose degree, distance and spectral properties can be fitted to real networks. The Graph500 benchmark generates its test graphs this way.
-- **Small-world rewiring** (Watts and Strogatz, 1998) explains clustering plus short paths (see [[small-world]]).
+- **Small-world rewiring** (Watts and Strogatz, 1998) explains clustering plus short paths (see [[small-world|small worlds]]).
 
 ## Why models matter for link analysis
 
@@ -55,6 +55,8 @@ Kleinberg, Kumar, Raghavan, Rajagopalan and Tomkins proposed a model specific to
 - Erdős, P., & Rényi, A. (1960). On the evolution of random graphs. *Publications of the Mathematical Institute of the Hungarian Academy of Sciences* 5, 17–61.
 - Molloy, M., & Reed, B. (1995). A critical point for random graphs with a given degree sequence. *Random Structures & Algorithms* 6(2–3), 161–180.
 - Barabási, A.-L., & Albert, R. (1999). Emergence of scaling in random networks. *Science* 286(5439), 509–512.
+- Gilbert, E. N. (1959). Random graphs. *Annals of Mathematical Statistics* 30(4), 1141–1144.
+- Kleinberg, J. M., Kumar, R., Raghavan, P., Rajagopalan, S., & Tomkins, A. S. (1999). The Web as a graph: Measurements, models, and methods. *COCOON 1999*, LNCS 1627, 1–17.
 - Kumar, R., Raghavan, P., Rajagopalan, S., Sivakumar, D., Tomkins, A., & Upfal, E. (2000). Stochastic models for the Web graph. *FOCS 2000*, 57–65.
 - Leskovec, J., Kleinberg, J., & Faloutsos, C. (2005). Graphs over time: Densification laws, shrinking diameters and possible explanations. *KDD 2005*, 177–187.
 - Leskovec, J., Chakrabarti, D., Kleinberg, J., Faloutsos, C., & Ghahramani, Z. (2010). Kronecker graphs: An approach to modeling networks. *Journal of Machine Learning Research* 11, 985–1042.

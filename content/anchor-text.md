@@ -33,7 +33,7 @@ A site that earns links naturally tends to get mostly branded, naked-URL and gen
 Because anchors influenced rankings, they were manipulated:
 
 - **Google bombs.** Coordinated groups linked to a target with the same phrase until the target ranked for it, regardless of its content. The best-known case made a politician's biography the top result for "miserable failure" in the mid-2000s. Google changed its algorithm in January 2007 to defuse most such bombs.
-- **Exact-match link building.** SEO campaigns bought or placed links with commercial keyword anchors. Google's Penguin update in 2012 targeted exactly this pattern of over-optimised anchors, and its spam policies still list links with optimised anchor text in articles or press releases as link schemes (see [[link-penalties]]).
+- **Exact-match link building.** SEO campaigns bought or placed links with commercial keyword anchors. Google's Penguin update in 2012 targeted link schemes of this kind, and its spam policies still list links with optimised anchor text in articles or press releases as link schemes (see [[link-penalties]]).
 
 ## What the graph loses
 

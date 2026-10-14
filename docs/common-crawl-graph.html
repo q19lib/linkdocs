@@ -115,7 +115,7 @@
 <li><strong>Extract links.</strong> From the WAT metadata of every crawled page, Common Crawl’s extractor collects every URL the page references: anchors, <code>&lt;link&gt;</code> elements, scripts, many <code>&lt;meta&gt;</code> URLs such as <code>og:image</code>, HTTP redirects, <code>Link</code> and <code>Content-Location</code> headers, and sitemap lines from <code>robots.txt</code>. It does not filter <code>nofollow</code>. Only links between different hosts are kept.</li>
 <li><strong>Normalise hosts.</strong> Host names are lower-cased, IDNA-encoded and reversed; IP addresses and single-label hosts are dropped.</li>
 <li><strong>Build the host graph</strong> from the distinct host-to-host pairs, then <strong>fold it into domains</strong>. The folding treats <code>blogspot.com</code> (4,113,910 hosts) and <code>github.io</code> (310,784 hosts) each as one domain, although the Public Suffix List’s private section lists both as public suffixes.</li>
-<li><strong>Compress</strong> with WebGraph and compute <strong>ranks</strong> with the LAW library: <code>HyperBall</code> for harmonic centrality, with counters on disk, and <code>PageRankParallelGaussSeidel</code> for PageRank, both on the transposed graph.</li>
+<li><strong>Compress</strong> with WebGraph and compute <strong>ranks</strong>: WebGraph’s <code>HyperBall</code> for harmonic centrality, reading the graph from disk, and the LAW library’s <code>PageRankParallelGaussSeidel</code> for PageRank, both on the transposed graph.</li>
 </ol>
 <h2 id="reading-the-ranks">Reading the ranks</h2>
 <ul>

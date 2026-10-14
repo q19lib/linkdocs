@@ -40,7 +40,7 @@ Common Crawl's 2026 domain ranks put that floor at $4.13351 \times 10^{-9}$: the
 
 ## Other treatments
 
-- **Remove, rank, restore.** Page and colleagues' 1999 report removed dangling nodes (repeatedly, since removing some creates others), computed PageRank on the rest, and then gave each dangling node a score from its in-links. This is cheaper but leaves dangling nodes out of the redistribution.
+- **Remove, rank, restore.** Page and colleagues' 1999 report removed dangling nodes, computed PageRank on the rest, and then added them back, giving each a score from its in-links. This is cheaper but leaves dangling nodes out of the redistribution.
 - **Jump to the preference vector.** In [[personalized-pagerank]], the surfer can leave a dangling node according to the personalisation vector ("strongly preferential") or uniformly ("weakly preferential"). Boldi, Posenato, Santini and Vigna showed that the two give noticeably different rankings, and that mixing them up is a common bug.
 - **Self-loops.** Adding a link from each dangling node to itself keeps the matrix stochastic but turns every dangling node into a trap that soaks up probability. It inflates exactly the nodes that should not be inflated and is generally a mistake.
 - **Let it leak.** Ignore the problem: probability reaching a dangling node vanishes, and the result sums to less than 1. Normalised afterwards, this *pseudo-PageRank* ranks nodes exactly like the uniform-jump version, a result shown by Del Corso, Gullì and Romani, and it is linear in the teleport vector, which [[spam-mass]] relies on.

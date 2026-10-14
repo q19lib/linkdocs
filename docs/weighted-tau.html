@@ -92,7 +92,7 @@ M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 </table></div>
 <p>In-degree and HITS authority agree with PageRank on the top node, C, and on most of the next few; their disagreements are lower down, so weighting raises their scores. Closeness puts D and F, two of PageRank’s bottom three, at its top, so weighting makes its agreement vanish.</p>
 <h2 id="on-real-data">On real data</h2>
-<p>For a random sample of 3,000 domains from the 2026-09-23 auction inventory that appear in Common Crawl’s graph, harmonic and PageRank positions have Kendall τ_b = 0.51 but weighted τ = 0.70. The two centralities agree considerably better on the best-ranked domains in the sample than on its long tail, where small value differences and ties shuffle positions. The top is what a buyer looks at first, and on the top the two Common Crawl rankings tell a more consistent story than classical τ suggests.</p>
+<p>For a random sample of 4,000 domains from the 2026-09-23 auction inventory that appear in Common Crawl’s graph, the same sample as in the <a href="kendall-tau">Kendall’s tau</a> entry, harmonic and PageRank positions have Kendall τ_b = 0.51 but weighted τ = 0.72. The two centralities agree considerably better on the best-ranked domains in the sample than on its long tail, where small value differences and ties shuffle positions. The top is what a buyer looks at first, and on the top the two Common Crawl rankings tell a more consistent story than classical τ suggests.</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li><strong>Ties are handled as in τ_b.</strong> Pairs tied in one ranking still carry weight in the denominator, so a ranking that ties many top items is penalised.</li>

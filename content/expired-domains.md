@@ -27,7 +27,8 @@ Country-code domains follow their own rules. GoDaddy's daily auction inventory, 
 | Links on other sites that still point at the domain | The old site's content (unless restored) |
 | Type-in traffic and bookmarks | The old owner's reputation with customers |
 | The name itself, its length, words and TLD | Any guarantee that search engines treat the domain as before |
-| Entries in link indexes and archives | Manual actions are not public, so you cannot check them before buying |
+| Entries in link indexes and archives | |
+| Any unresolved manual action, which only Search Console shows, so you cannot check for one before buying | |
 
 Links decay over time: pages are edited, sites close, and links to a dead domain are removed by careful webmasters. A link index's historic data can overstate what still exists, which is why fresh-versus-historic distinctions matter (see [[backlinks]]).
 

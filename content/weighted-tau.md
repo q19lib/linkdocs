@@ -41,7 +41,7 @@ In-degree and HITS authority agree with PageRank on the top node, C, and on most
 
 ## On real data
 
-For a random sample of 3,000 domains from the 2026-09-23 auction inventory that appear in Common Crawl's graph, harmonic and PageRank positions have Kendall τ_b = 0.51 but weighted τ = 0.70. The two centralities agree considerably better on the best-ranked domains in the sample than on its long tail, where small value differences and ties shuffle positions. The top is what a buyer looks at first, and on the top the two Common Crawl rankings tell a more consistent story than classical τ suggests.
+For a random sample of 4,000 domains from the 2026-09-23 auction inventory that appear in Common Crawl's graph, the same sample as in the [[kendall-tau]] entry, harmonic and PageRank positions have Kendall τ_b = 0.51 but weighted τ = 0.72. The two centralities agree considerably better on the best-ranked domains in the sample than on its long tail, where small value differences and ties shuffle positions. The top is what a buyer looks at first, and on the top the two Common Crawl rankings tell a more consistent story than classical τ suggests.
 
 ## Properties
 

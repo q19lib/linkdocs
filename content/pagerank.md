@@ -48,7 +48,7 @@ On the running example with $\alpha = 0.85$, power iteration converges to a chan
 C wins, as in-degree predicts. The surprises are lower down:
 
 - **G beats B,** though both have one in-link. G's link comes from C, the top node, which splits its score two ways. B's comes from A, which has a lower score and also splits two ways.
-- **E gets the minimum.** Nothing links to E, so it receives only the teleport share plus its share of the dangling mass: $(0.15 + 0.85 \times (0.0653 + 0.1774))/7 = 0.0509$. Every node with no in-links in any graph gets exactly this floor.
+- **E gets the minimum.** Nothing links to E, so it receives only the teleport share plus its share of the dangling mass: $(0.15 + 0.85 \times (0.0653 + 0.1774))/7 = 0.0509$. In exact arithmetic, every node with no in-links gets this same floor.
 - **D and F tie.** Each has a single in-link from E, which splits three ways: $0.0509 + 0.85 \times 0.0509 / 3 = 0.0653$.
 
 Try it yourself. Change α or add a link from G back to E, and watch E climb:
@@ -82,7 +82,7 @@ The extreme case sits further down. `chaussurespuma.net` has seven referring dom
 
 ## What it means for a domain
 
-Google's production ranking has used many signals beyond PageRank for decades, and its link analysis runs on pages, not domains, with spam filtering and [[link-attributes]] applied. A domain graph's PageRank is a useful, reproducible proxy for one question: how much of the web's link attention flows to this domain? [[reading-domain-metrics]] explains how to read Common Crawl's PageRank position next to the vendor scores, and [[pagerank-history]] tells the story of the public Toolbar PageRank, a log-scaled 0–10 version of this number that Google retired in 2016.
+Google's production ranking has used many signals beyond PageRank for decades, and its link analysis runs on pages, not domains, with spam filtering and [[link-attributes]] applied. A domain graph's PageRank is a useful, reproducible proxy for one question: how much of the web's link attention flows to this domain? [[reading-domain-metrics]] explains how to read Common Crawl's PageRank position next to the vendor scores, and the [[pagerank-history|history of PageRank]] entry tells the story of the public Toolbar PageRank, a log-scaled 0–10 version of this number that Google retired in 2016.
 
 ## References
 

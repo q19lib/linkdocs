@@ -34,9 +34,9 @@
 <h2 id="what-goes-into-it">What goes into it</h2>
 <p>Semrush’s knowledge base describes Authority Score as “a compound metric that grades the overall quality of a website or a webpage,” built from:</p>
 <ul>
-<li><strong>Link Power:</strong> the quality and quantity of backlinks, the heaviest-weighted part.</li>
-<li><strong>Organic Traffic:</strong> Semrush’s estimate of the domain’s monthly search traffic, the next heaviest.</li>
-<li><strong>Spam Factors</strong> (also called <em>Natural Profile</em>): signs of manipulation, such as an unnaturally high share of dofollow links, an imbalance between links and traffic, many referring domains sharing IP addresses, or domains with near-identical backlink profiles.</li>
+<li><strong>Link Power:</strong> the quality and quantity of backlinks.</li>
+<li><strong>Organic Traffic:</strong> Semrush’s estimate of the domain’s monthly search traffic.</li>
+<li><strong>Spam Factors</strong> (also called <em>Natural Profile</em>): signs of manipulation, such as an unnaturally high share of dofollow links, an imbalance between links and traffic, many referring domains sharing IP addresses, or domains with near-identical backlink profiles. These make up six of the score’s eight weighted factors; link power and organic traffic are one each.</li>
 </ul>
 <p>Semrush says the score is recalculated regularly, and it does not publish the weights or the formula.</p>
 <p>The design reflects lessons from <a href="link-spam">link spam</a>: a domain whose links are plentiful but whose traffic is negligible, or whose referring domains look like a network, should not score as highly as its link count alone suggests. In this encyclopedia’s terms, it combines a <a href="pagerank">PageRank</a>-like link signal with a usage signal and a <a href="spam-mass">spam mass</a>-like penalty.</p>
@@ -69,7 +69,7 @@
 </tbody>
 </table></div>
 <p>Splitting the domains by how many referring domains they have in Common Crawl’s graph barely moves the median: it is 2 for domains Common Crawl never saw linked and still 2 for the 676 domains with more than 100 Common Crawl referring domains. Only the upper tail responds: the 90th percentile rises from 2 to 6 and the 99th from 6 to 27 between those groups. Across the 119,453 listed domains present in Common Crawl’s graph, the Spearman correlation between Authority Score and Common Crawl in-degree is 0.16.</p>
-<p>For filtering an auction list, the column is close to constant: nine domains in ten share the same value. That is plausible for a metric that discounts links unaccompanied by traffic, since most expiring domains have little of either, but it means the score carries almost no information for ranking such a list. The same feed’s “Indexed Pages” column matches its Semrush backlink count to within 2% on 95.9% of rows (Spearman correlation 0.999), so it duplicates the backlink count rather than adding a separate signal (see <a href="metric-audit">metric audit</a>).</p>
+<p>For filtering an auction list, the column is close to constant: nine domains in ten share the same value. That is plausible for a metric that discounts links unaccompanied by traffic, since most expiring domains have little of either, but it means the score carries almost no information for ranking such a list. The same feed’s “Indexed Pages” column matches its Semrush backlink count to within 2% on 94.0% of rows (Spearman correlation 0.999), so it duplicates the backlink count rather than adding a separate signal (see <a href="metric-audit">metric audit</a>).</p>
 <p>These numbers describe Semrush’s values as delivered in GoDaddy’s feed on one day; Semrush’s own tools may show different or more current values.</p>
 <h2 id="reading-as-for-a-domain">Reading AS for a domain</h2>
 <ul>

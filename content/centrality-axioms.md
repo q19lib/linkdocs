@@ -26,13 +26,13 @@ Harmonic centrality passes. A clique node is at distance 1 from the other $k - 1
 
 Now join a $k$-clique and a $p$-cycle by a single bidirectional arc between a clique node $x$ and a cycle node $y$. Call the graph $D_{k,p}$. When $k = p$ both sides have the same number of nodes, but the clique has far more arcs. A measure satisfies the **density axiom** if, for $k = p$, $x$ scores strictly higher than $y$: being embedded in a denser neighbourhood should help.
 
-Most spectral measures pass this test, since the dominant eigenvector concentrates where arcs are dense. Closeness, Lin's index and betweenness fail it. Betweenness fails because $y$ also carries the cycle's own traffic: in a directed cycle, every path between two other nodes that wraps past $y$ runs through it, while the clique's nodes are all adjacent and carry none of each other's paths.
+All spectral measures pass this test, since the dominant eigenvector concentrates where arcs are dense. Closeness, Lin's index and betweenness fail it. Betweenness fails because $y$ also carries the cycle's own traffic: in a directed cycle, every path between two other nodes that wraps past $y$ runs through it, while the clique's nodes are all adjacent and carry none of each other's paths.
 
 ## Score monotonicity
 
 The third axiom is about change. A measure satisfies **score monotonicity** if, for every graph and every pair of nodes $x$ and $y$ with no arc from $x$ to $y$, adding the arc $x \to y$ strictly increases $y$'s score. Receiving a new link should always help.
 
-It sounds trivial, yet several famous measures fail it. Adding an arc never lengthens a distance, yet it can lower $y$'s closeness: nodes that could not reach $y$ before now can, and each adds a term to $y$'s sum of distances. Eigenvector centrality and HITS can shift their dominant eigenvector away from $y$'s part of the graph.
+It sounds trivial, yet several famous measures fail it. Adding an arc never lengthens a distance, yet it can lower $y$'s closeness: nodes that could not reach $y$ before now can, and each adds a term to $y$'s sum of distances. HITS can shift its dominant eigenvector away from $y$'s part of the graph, and eigenvector centrality can leave $y$ at zero: in a graph made of a clique and two isolated nodes, a link between the isolated nodes changes nothing.
 
 ## The results
 
@@ -61,7 +61,7 @@ The axioms are tests, not a definition. A measure that fails one is not useless;
 The tests do expose behaviour that matters on the web:
 
 - **Closeness fails everything** because of how it treats unreachable nodes. On a web graph, where most pairs cannot reach each other, that is fatal (see [[closeness-centrality]]).
-- **PageRank fails size** because it normalises scores to a probability distribution and spreads teleportation evenly. A large community and a small one of the same shape get the same per-node scores.
+- **PageRank fails size** because each node divides its score among its out-links. In a graph made of separate regular communities, such as a clique and a cycle, every node gets the same score, whatever the communities' sizes.
 - **Harmonic centrality passes all three**, at the cost of being expensive to compute exactly: it needs the distances from every node. The [[hyperball]] algorithm makes approximate harmonic centrality affordable on graphs with billions of arcs.
 
 Later work by Boldi, Luongo and Vigna added *rank monotonicity*, which asks that a new link to $y$ never let a node that was below $y$ overtake it. That axiom, too, separates measures that look alike on paper.

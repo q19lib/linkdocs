@@ -53,7 +53,7 @@ Take A and B as the good core in the running example, with $\alpha = 0.85$:
 
 (The linear PageRank sums to 0.42, not 1, because mass that reaches the dangling nodes F and G leaks away.)
 
-D, E and F have relative mass 1: the good core cannot reach them, so all of their PageRank comes from elsewhere. C, the top node, gets 58% of its PageRank from outside the core, because D and E both feed it. That illustrates the method's main caution: a high relative mass flags a node for review, not for condemnation. Here the "outside" nodes D and E are not spam at all; the core is simply too small.
+D, E and F have relative mass 1: the good core cannot reach them, so all of their PageRank comes from elsewhere. C, the top node, gets 58% of its PageRank from outside the core: 26% from random jumps landing on C itself and 32% from D and E. That illustrates the method's main caution: a high relative mass flags a node for review, not for condemnation. Here the "outside" nodes D and E are not spam at all; the core is simply too small.
 
 ## Using it to find spam
 

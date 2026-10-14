@@ -17,7 +17,7 @@ Keep two vectors: an estimate $p$, initially zero, and a residual $r$, initially
 2. spread the remaining $\alpha\, r(u)$ equally over $u$'s out-neighbours' residuals (from a dangling node, send it back to the seed);
 3. set $r(u) = 0$.
 
-Repeat pushes at any node whose residual is at least $\varepsilon \cdot d^+(u)$, in any order, until none is left. The key invariant is that the exact answer equals the estimate plus the personalized PageRank of the residual:
+Repeat pushes at any node whose residual is at least $\varepsilon \cdot d^+(u)$, counting a dangling node's out-degree as 1, in any order, until none is left. The key invariant is that the exact answer equals the estimate plus the personalized PageRank of the residual:
 
 $$
 p_s = p + \sum_u r(u)\, p_u ,
@@ -41,7 +41,7 @@ At $\varepsilon = 10^{-3}$ the estimate is E 0.306, C 0.228, A 0.134, G 0.097, D
 
 ## Local clustering
 
-Andersen, Chung and Lang used push to find communities. Compute an approximate personalized PageRank from a seed, sort nodes by $p(u)/d(u)$, and scan the prefixes of that order for the set with the lowest *conductance*, the ratio of arcs leaving the set to arcs inside it. They proved that this finds a cluster of near-optimal conductance around the seed in time proportional to the cluster's size, not the graph's. The method underlies many local community-detection tools (see [[community-detection]]).
+Andersen, Chung and Lang used push to find communities. Compute an approximate personalized PageRank from a seed, sort nodes by $p(u)/d(u)$, and scan the prefixes of that order for the set with the lowest *conductance*: the number of arcs leaving the set divided by its *volume*, the sum of its nodes' degrees (or by the rest of the graph's volume, if smaller). They proved that from most seeds inside a set of conductance $\phi$ and volume $k$, the sweep finds a set of conductance $O(\sqrt{\phi \log k})$, in time roughly proportional to the cluster's size, not the graph's. The method underlies many local community-detection tools (see [[community-detection]]).
 
 ## Backward push
 

@@ -38,7 +38,7 @@ DR and Common Crawl's domain PageRank share their core idea but differ in inputs
 | Graph | Ahrefs' crawl, followed links only | Common Crawl's three-month crawl, every reference including `nofollow`, scripts and `<link>` elements |
 | Link counting | first link per linking domain | one arc per domain pair |
 | Output | 0–100, logarithmic | raw probability, sums to 1 |
-| Spam handling | not described in detail | none |
+| Spam handling | none: Ahrefs says DR does not account for spam links | none |
 | Availability | commercial | free, reproducible |
 
 The differences in link definitions matter most at the top: Common Crawl's ranking is led by script and font hosts that a followed-anchor graph would rank much lower. For ordinary domains the two should broadly agree in order, if not in scale. Where they disagree strongly, the cause is usually crawl coverage, spam links counted by one and not the other, or `nofollow` links.

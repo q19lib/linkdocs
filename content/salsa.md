@@ -39,11 +39,11 @@ In the running example, A links to B and C, so B and C are co-cited; C links to 
 | SALSA authority | 0.4 | 0.2 | 0.1 | 0.1 | 0.1 | 0.1 | 0 |
 | HITS authority | 0.438 | 0.148 | 0.104 | 0.137 | 0.137 | 0.035 | 0 |
 
-Hub scores work the same way: every node with out-links shares the target C with another, so SALSA hub is out-degree over 10, giving E 0.3, A, C and D 0.2, and B 0.1. HITS separates D and F from B and G by who links to them; SALSA does not.
+Hub scores work the same way: shared targets join every node with out-links into one component (A, B, D and E all link to C, and C shares A with D), so SALSA hub is out-degree over 10, giving E 0.3, A, C and D 0.2, and B 0.1. HITS separates D and F from B and G by who links to them; SALSA does not.
 
 ## Why it resists topic drift
 
-HITS multiplies scores through $A^\top A$, so a block of $k$ pages that all link to each other contributes eigenvalues around $k$ and can dominate. In SALSA the walk moves through normalised probabilities, and a dense block simply forms its own component, whose share is proportional to its *size*, not its density. The *tightly knit community* effect disappears. The price is that SALSA learns nothing from the identity of the linking hubs: within a component, a link from the best hub counts the same as a link from the worst.
+HITS multiplies scores through $A^\top A$, so a block of $k$ pages that all link to each other contributes an eigenvalue of $(k-1)^2$ and can dominate. In SALSA the walk moves through normalised probabilities, and a dense block simply forms its own component, whose share is proportional to its *size*, not its density. The *tightly knit community* effect disappears. The price is that SALSA learns nothing from the identity of the linking hubs: within a component, a link from the best hub counts the same as a link from the worst.
 
 ## Axioms
 

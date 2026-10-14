@@ -13,7 +13,7 @@ Two nodes are **strongly connected** when each can reach the other by following 
 
 The running example (see [[web-graph]]) has five SCCs:
 
-![[running-core]] The core A → B → C → A (with the shortcut A → C and the return C → A) is the only component with more than one node. D, E, F and G each form a component of their own.
+![[running-core]] The core is the cycle A → B → C → A plus the shortcut A → C, so A and C link both ways. It is the only component with more than one node. D, E, F and G each form a component of their own.
 
 A, B and C reach each other, so they form one component. Every other node is a component by itself: D reaches the core but the core never reaches D; G is reached from the core but reaches nothing; E reaches everything and nothing reaches it; F only receives a link.
 
@@ -39,7 +39,7 @@ The condensation shows the large-scale flow of a graph at a glance. Components w
 
 Two classic algorithms find all SCCs in linear time, $O(n + m)$:
 
-- **Tarjan's algorithm** (1972) runs one depth-first search. Each node records the order in which the search discovered it and the earliest-discovered node reachable from its subtree that is still on the stack (its *low-link*). When a node's low-link equals its own discovery index, the nodes above it on the stack form a complete component.
+- **Tarjan's algorithm** (1972) runs one depth-first search. Each node records the order in which the search discovered it and the earliest-discovered node reachable from its subtree that is still on the stack (its *low-link*). When a node's low-link equals its own discovery index, that node and the nodes above it on the stack form a complete component.
 - **Kosaraju's algorithm** runs two searches: one on the graph to record finishing order, then one on the transposed graph in reverse finishing order. Each tree of the second search is a component.
 
 Both are depth-first, and web graphs have paths millions of nodes long, so a recursive implementation overflows any call stack. Production code keeps an explicit stack. Common Crawl computes its components with the WebGraph framework's `StronglyConnectedComponents`, which works directly on the compressed graph.

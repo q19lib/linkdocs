@@ -34,7 +34,7 @@ The memory does not depend on how many items are counted: 12 KB estimates a bill
 
 ## Merging counters
 
-Two HLL counters built with the same hash function and the same $m$ merge by taking, for each register, the larger of the two values. The result is exactly the counter that would have been built from the union of the two streams. No other common sketch makes union this cheap, and it is the property that graph algorithms exploit: the set of nodes within distance $t + 1$ of $x$ is the union of $x$'s own ball and the balls of its neighbours, so one round of register-wise maxima over all arcs grows every node's ball by one step.
+Two HLL counters built with the same hash function and the same $m$ merge by taking, for each register, the larger of the two values. The result is exactly the counter that would have been built from the union of the two streams. This cheap union is the property that graph algorithms exploit: the set of nodes within distance $t + 1$ of $x$ is the union of $x$'s own ball and the balls of its neighbours, so one round of register-wise maxima over all arcs grows every node's ball by one step.
 
 Intersections are not so easy. Estimating the overlap of two sets from their HLL counters, by inclusion–exclusion, has large errors when the overlap is small relative to the sets.
 

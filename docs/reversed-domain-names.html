@@ -30,7 +30,7 @@
 <main class="article">
 <p class="kicker">Foundations</p><h1>Reversed domain names and public suffixes</h1>
 <p class="lede">Why web graphs write google.com as com.google, and how the Public Suffix List decides where a registrable domain begins.</p>
-<p>Common Crawl’s vertex files list <code>com.google</code>, <code>com.facebook</code> and <code>uk.co.bbc</code>, not <code>google.com</code>. Writing host names with their labels reversed is a small trick with large consequences: sorted alphabetically, reversed names keep every host of a domain, and every domain of a top-level domain, next to each other. Graph compression, range queries and prefix grouping all depend on that locality. The second half of the story is deciding where the domain part of a name ends, which takes a list, not a rule.</p>
+<p>Common Crawl’s vertex files list <code>com.google</code>, <code>com.facebook</code> and <code>uk.co.bbc</code>, not <code>google.com</code>. Writing host names with their labels reversed is a small trick with large consequences: sorted alphabetically, reversed names keep the hosts of a domain, and the domains of a top-level domain, close together. Graph compression, range queries and prefix grouping all depend on that locality. The second half of the story is deciding where the domain part of a name ends, which takes a list, not a rule.</p>
 <h2 id="reversing-labels">Reversing labels</h2>
 <p>A host name is a sequence of labels separated by dots, most specific first: <code>blog.example.co.uk</code>. Reversing the labels gives <code>uk.co.example.blog</code>, most general first, like a file path. Sorting reversed names produces a hierarchy:</p>
 <pre><code>com.example
@@ -40,7 +40,7 @@ com.examples
 uk.co.example
 uk.co.example.blog
 </code></pre>
-<p>All of <code>example.com</code>’s hosts form one contiguous run, and all <code>.uk</code> names come after all <code>.com</code> names. Sorting the forward names instead would scatter them: <code>blog.example.com</code> sorts among the b’s and <code>shop.example.com</code> among the s’s.</p>
+<p>All of <code>example.com</code>’s hosts form one run, and all <code>.uk</code> names come after all <code>.com</code> names. The run is not quite watertight: in byte order <code>-</code> sorts before <code>.</code>, so <code>com.example-shop</code> lands between <code>com.example</code> and <code>com.example.blog</code>. Sorting the forward names instead would scatter them: <code>blog.example.com</code> sorts among the b’s and <code>shop.example.com</code> among the s’s.</p>
 <p>The convention is old. Java package names (<code>org.apache.commons</code>) use it, and web archives sort their indexes by SURT, the <em>Sort-friendly URI Reordering Transform</em>, which writes <code>http://www.example.com/a</code> as <code>com,example,www)/a</code>. Common Crawl’s own URL index uses SURT keys.</p>
 <h2 id="why-graphs-care">Why graphs care</h2>
 <p>Web graph tools number nodes in sorted order. With reversed names, the numbers of related hosts sit close together:</p>
@@ -50,7 +50,7 @@ uk.co.example.blog
 <li><strong>Tie-breaking.</strong> Rankings with tied scores fall back on node id. Common Crawl sorts its ranks file by score with a stable sort, so ties end up in id order, which is reversed-name order (see <a href="ranks-and-scores">ranks and scores</a>).</li>
 </ul>
 <h2 id="public-suffixes">Public suffixes</h2>
-<p>Where does the registrable domain begin? For <code>www.example.com</code> it is <code>example.com</code>, the last two labels. For <code>www.example.co.uk</code> it is <code>example.co.uk</code>, the last three, because <code>co.uk</code> is a suffix under which anyone can register names. No rule computes this from the name. The <strong>Public Suffix List</strong> (PSL), maintained by volunteers at Mozilla since 2007, lists such suffixes: <code>com</code>, <code>co.uk</code>, <code>ac.jp</code>, <code>pvt.k12.ma.us</code> and thousands more. The <em>registrable domain</em>, also called eTLD+1, is the public suffix plus one more label.</p>
+<p>Where does the registrable domain begin? For <code>www.example.com</code> it is <code>example.com</code>, the last two labels. For <code>www.example.co.uk</code> it is <code>example.co.uk</code>, the last three, because <code>co.uk</code> is a suffix under which anyone can register names. No rule computes this from the name. The <strong>Public Suffix List</strong> (PSL), a Mozilla initiative since 2007 maintained by volunteers, lists such suffixes: <code>com</code>, <code>co.uk</code>, <code>ac.jp</code>, <code>pvt.k12.ma.us</code> and thousands more. The <em>registrable domain</em>, also called eTLD+1, is the public suffix plus one more label.</p>
 <p>The list has two sections:</p>
 <ul>
 <li>The <strong>ICANN section</strong> holds suffixes delegated through the domain name system: TLDs and the second-level structures registries define, such as <code>co.uk</code>.</li>
@@ -93,7 +93,7 @@ uk.co.example.blog
 <h2 id="pitfalls">Pitfalls</h2>
 <ul>
 <li><strong>Matching on the last two labels is wrong</strong> for every country with second-level registries: it folds every <code>.co.uk</code> site into one node called <code>co.uk</code>.</li>
-<li><strong>The list changes.</strong> New gTLDs and new private suffixes appear every month. A graph built with an old copy of the PSL and one built with a new copy disagree on some nodes.</li>
+<li><strong>The list changes.</strong> New private suffixes appear every month, and new gTLDs arrive in ICANN’s application rounds. A graph built with an old copy of the PSL and one built with a new copy disagree on some nodes.</li>
 <li><strong>Hosts are not domains.</strong> A name such as <code>www.example.com</code> in one dataset and <code>example.com</code> in another are different nodes at the host level and the same node at the domain level. Normalise before joining datasets.</li>
 <li><strong>Host counts measure DNS habits, not reach.</strong> A domain that answers for any subdomain can generate unlimited hosts, and some sites mint a subdomain per page or per user. In the 2026 graph <code>hub.biz</code> folds 1,222,261 hosts and <code>adgo.kr</code> 423,413, yet <code>adgo.kr</code> ranks below position 3,000,000 by harmonic centrality (see <a href="link-spam">link spam</a>).</li>
 </ul>

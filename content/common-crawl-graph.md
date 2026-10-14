@@ -51,7 +51,7 @@ Positions are 1-based. Ties in value keep vertex order, that is reversed-name or
 1. **Extract links.** From the WAT metadata of every crawled page, Common Crawl's extractor collects every URL the page references: anchors, `<link>` elements, scripts, many `<meta>` URLs such as `og:image`, HTTP redirects, `Link` and `Content-Location` headers, and sitemap lines from `robots.txt`. It does not filter `nofollow`. Only links between different hosts are kept.
 2. **Normalise hosts.** Host names are lower-cased, IDNA-encoded and reversed; IP addresses and single-label hosts are dropped.
 3. **Build the host graph** from the distinct host-to-host pairs, then **fold it into domains**. The folding treats `blogspot.com` (4,113,910 hosts) and `github.io` (310,784 hosts) each as one domain, although the Public Suffix List's private section lists both as public suffixes.
-4. **Compress** with WebGraph and compute **ranks** with the LAW library: `HyperBall` for harmonic centrality, with counters on disk, and `PageRankParallelGaussSeidel` for PageRank, both on the transposed graph.
+4. **Compress** with WebGraph and compute **ranks**: WebGraph's `HyperBall` for harmonic centrality, reading the graph from disk, and the LAW library's `PageRankParallelGaussSeidel` for PageRank, both on the transposed graph.
 
 ## Reading the ranks
 

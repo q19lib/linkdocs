@@ -13,9 +13,9 @@ aliases: AS, Semrush AS, Semrush Authority Score
 
 Semrush's knowledge base describes Authority Score as "a compound metric that grades the overall quality of a website or a webpage," built from:
 
-- **Link Power:** the quality and quantity of backlinks, the heaviest-weighted part.
-- **Organic Traffic:** Semrush's estimate of the domain's monthly search traffic, the next heaviest.
-- **Spam Factors** (also called *Natural Profile*): signs of manipulation, such as an unnaturally high share of dofollow links, an imbalance between links and traffic, many referring domains sharing IP addresses, or domains with near-identical backlink profiles.
+- **Link Power:** the quality and quantity of backlinks.
+- **Organic Traffic:** Semrush's estimate of the domain's monthly search traffic.
+- **Spam Factors** (also called *Natural Profile*): signs of manipulation, such as an unnaturally high share of dofollow links, an imbalance between links and traffic, many referring domains sharing IP addresses, or domains with near-identical backlink profiles. These make up six of the score's eight weighted factors; link power and organic traffic are one each.
 
 Semrush says the score is recalculated regularly, and it does not publish the weights or the formula.
 
@@ -33,7 +33,7 @@ GoDaddy's inventory for 2026-09-23 lists an Authority Score for each of its 1,06
 
 Splitting the domains by how many referring domains they have in Common Crawl's graph barely moves the median: it is 2 for domains Common Crawl never saw linked and still 2 for the 676 domains with more than 100 Common Crawl referring domains. Only the upper tail responds: the 90th percentile rises from 2 to 6 and the 99th from 6 to 27 between those groups. Across the 119,453 listed domains present in Common Crawl's graph, the Spearman correlation between Authority Score and Common Crawl in-degree is 0.16.
 
-For filtering an auction list, the column is close to constant: nine domains in ten share the same value. That is plausible for a metric that discounts links unaccompanied by traffic, since most expiring domains have little of either, but it means the score carries almost no information for ranking such a list. The same feed's "Indexed Pages" column matches its Semrush backlink count to within 2% on 95.9% of rows (Spearman correlation 0.999), so it duplicates the backlink count rather than adding a separate signal (see [[metric-audit]]).
+For filtering an auction list, the column is close to constant: nine domains in ten share the same value. That is plausible for a metric that discounts links unaccompanied by traffic, since most expiring domains have little of either, but it means the score carries almost no information for ranking such a list. The same feed's "Indexed Pages" column matches its Semrush backlink count to within 2% on 94.0% of rows (Spearman correlation 0.999), so it duplicates the backlink count rather than adding a separate signal (see [[metric-audit]]).
 
 These numbers describe Semrush's values as delivered in GoDaddy's feed on one day; Semrush's own tools may show different or more current values.
 

@@ -14,7 +14,7 @@ aliases: DA, Moz DA, Page Authority, PA, Domain Authority 2.0
 Moz does not publish the formula. It describes the inputs and method in general terms:
 
 - **Link data from Moz's index**, chiefly the number of distinct *linking root domains* (referring domains, see [[backlinks]]) and the total number of links, along with signals of the quality of those linking domains.
-- **A machine-learning model.** Since *Domain Authority 2.0*, released in March 2019, the score comes from a model trained to predict whether one domain outranks another in Google's results, rather than from a hand-tuned combination of link counts. Moz said the 2019 version also incorporated its Spam Score and patterns of link manipulation to resist inflated profiles.
+- **A machine-learning model.** Since *Domain Authority 2.0*, released in March 2019, the score comes from a neural network trained on how domains rank in Google's results, which replaced the earlier linear model. Moz said the 2019 version also incorporated its Spam Score and patterns of link manipulation to resist inflated profiles.
 - **Scaling to 1–100.** The model's output is mapped onto a 1–100 scale on which, by Moz's account, it is much easier to move from 20 to 30 than from 70 to 80, the behaviour of a logarithmic scale (see [[ranks-and-scores]]).
 
 **Page Authority** (PA) is the page-level counterpart, predicting how well a single page will rank.

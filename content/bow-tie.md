@@ -29,7 +29,7 @@ In the running example (see [[web-graph]]) the core is {A, B, C}. D and E form I
 The decomposition costs a few linear passes:
 
 1. Find the strongly connected components and pick the largest, $C$ (Tarjan's algorithm, one depth-first search).
-2. Run a breadth-first search forward from all of $C$ at once. Every node it reaches outside $C$ belongs to OUT or to the parts hanging off it.
+2. Run a breadth-first search forward from all of $C$ at once. Every node it reaches outside $C$ belongs to OUT.
 3. Run a breadth-first search backward, on the transposed graph, from $C$. Every node it reaches outside $C$ belongs to IN.
 4. Search forward from IN and backward from OUT, skipping the core, to separate tendrils and tubes from the disconnected remainder.
 
@@ -45,7 +45,7 @@ The proportions depend heavily on the crawl:
 | CORE | 27.7% | 51.3% |
 | IN | 21.3% | 32.0% |
 | OUT | 21.2% | 6.1% |
-| Everything else (tendrils, tubes, disconnected) | 29.7% | 10.7% |
+| Everything else (tendrils, tubes, disconnected) | 29.8% | 10.7% |
 
 Broder's crawl gave four parts of nearly equal size, a striking symmetry that became textbook material. Thirteen years later, Meusel, Vigna, Lehmberg and Bizer found a core twice as large and a tiny OUT set in Common Crawl's 2012 page graph. They argued that the proportions depend largely on how a crawl is gathered, so they describe the crawler as much as the web. The shape recurs; the sizes do not.
 
@@ -54,12 +54,12 @@ Common Crawl's 2026 domain graph has a core of 30,219,288 domains, 25.2% of the 
 ## Why the parts matter for ranking
 
 - **Random surfers drain into OUT.** A [[random-walks|random walk]] can leave the core for OUT but never return. Without teleportation, all of [[pagerank]]'s probability would end up in OUT and in other sinks. The [[damping-factor]] and the treatment of [[dangling-nodes]] exist largely because of this part of the bow tie.
-- **IN pages have no in-link credit from the core.** Under [[eigenvector-centrality]], IN nodes score exactly zero, since no walk from the core reaches them. [[harmonic-centrality]] gives them small but nonzero scores, from whatever IN nodes link to them.
+- **IN pages have no in-link credit from the core.** Under [[eigenvector-centrality]], IN nodes score exactly zero, since no walk from the core reaches them. [[harmonic-centrality]] gives them small scores, from whatever IN nodes link to them, and zero to IN nodes that nothing links to.
 - **Core membership is a quality signal.** A site that the core links to and that links back into it is embedded in the web's mainstream. Spam networks often sit outside the core: they link to popular sites, or to each other and their targets, but the core rarely links back. [[trustrank]] exploits the same asymmetry by spreading trust outward from hand-checked sites, which seldom link to spam.
 
 ## The fractal view
 
-Each part of the bow tie, examined alone, often looks like a smaller bow tie. Dill and colleagues found the pattern in thematically and geographically defined subsets of the web as early as 2002. The bow tie is less a fixed architecture than the generic shape of a directed graph built by many independent actors who link mostly to things that already exist.
+Each part of the bow tie, examined alone, often looks like a smaller bow tie. Dill and colleagues found the pattern in thematically and geographically defined subsets of the web soon after Broder's study. The bow tie is less a fixed architecture than the generic shape of a directed graph built by many independent actors who link mostly to things that already exist.
 
 ## References
 

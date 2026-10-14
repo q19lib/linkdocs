@@ -50,7 +50,7 @@ The raw coefficients are close to zero, as expected on a graph whose largest deg
 
 ## Measuring it on heavy-tailed graphs
 
-Pearson's $r$ is dominated by the few largest degrees, and Litvak and van der Hofstad showed that on large scale-free graphs it converges towards zero whatever the actual mixing. Rank-based versions, such as Spearman's correlation of the degrees at the two ends of each arc (see [[spearman-rho]]), or correlations of log-degrees, are more reliable for web-scale graphs. Report which version you use.
+Pearson's $r$ is dominated by the few largest degrees, and Litvak and van der Hofstad showed that on disassortative scale-free graphs its magnitude shrinks as the graph grows, so a large graph looks nearly neutral whatever its actual mixing. Rank-based versions, such as Spearman's correlation of the degrees at the two ends of each arc (see [[spearman-rho]]), or correlations of log-degrees, are more reliable for web-scale graphs. Report which version you use.
 
 ## References
 

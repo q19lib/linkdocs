@@ -133,13 +133,15 @@ export function katz(g, beta, iters = 2000) {
 }
 
 // Eigenvector centrality: the dominant left eigenvector of A, scaled to sum to 1.
-// Returns the eigenvalue estimate too.
+// Iterates with A + I, which has the same eigenvectors but cannot oscillate on a
+// periodic core (a 2-cycle has eigenvalues 1 and -1; A + I has 2 and 0).
+// Returns the eigenvalue estimate of A too.
 export function eigenvector(g, iters = 5000) {
   let x = new Array(g.n).fill(1 / g.n);
   let lambda = 0;
   for (let k = 0; k < iters; k++) {
-    const y = g.inn.map((ins) => ins.reduce((s, u) => s + x[u], 0));
-    lambda = y.reduce((a, b) => a + b, 0);
+    const y = g.inn.map((ins, v) => ins.reduce((s, u) => s + x[u], x[v]));
+    lambda = y.reduce((a, b) => a + b, 0) - 1;
     x = sum1(y);
   }
   return { scores: x, lambda };

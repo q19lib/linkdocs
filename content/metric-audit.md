@@ -64,7 +64,7 @@ More than half of the best-linked listings show no Majestic data. Where values e
 
 ## Finding 5: a duplicated column
 
-The feed's Semrush "Indexed Pages" value lies within 2% of its Semrush backlink count on 95.9% of rows, with a Spearman correlation of 0.999. Despite its name, the column repeats the backlink count.
+The feed's Semrush "Indexed Pages" value lies within 2% of its Semrush backlink count on 94.0% of rows, and equals it exactly on 42.9%, with a Spearman correlation of 0.999. Despite its name, the column repeats the backlink count.
 
 ## Caveats
 

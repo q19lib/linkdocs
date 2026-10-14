@@ -50,7 +50,7 @@ Pull-style parallel passes split nodes among threads. A node with 17 million in-
 ## Stopping and verifying
 
 - **Pick the tolerance from the use.** If you publish positions, stop when the positions you care about have stopped changing; the tail of a 120-million-node ranking is decided by floating-point noise long before values converge (see [[ranks-and-scores]]).
-- **Check the invariants.** Scores must be positive and sum to 1 within rounding, every node with no in-links must sit at the same floor, and two runs with different thread counts should agree to the tolerance.
+- **Check the invariants.** Scores must be positive and sum to 1 within rounding, every node with no in-links must sit at the same floor up to rounding, and two runs with different thread counts should agree to the tolerance.
 - **Cross-check on a sample.** [[monte-carlo-pagerank]] gives an independent estimate for the top nodes in minutes.
 
 ## References

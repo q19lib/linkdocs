@@ -27,7 +27,7 @@ $$
 \text{RBO}(S, T, p) = (1 - p) \sum_{d=1}^{\infty} p^{d-1} A_d .
 $$
 
-The *persistence* $p \in (0, 1)$ models a reader who looks at item $d + 1$ with probability $p$ after seeing item $d$. Small $p$ makes RBO focus sharply on the top; $p$ close to 1 spreads attention deeper. Webber and colleagues computed that with $p = 0.9$ the first ten depths carry about 86% of the total weight. RBO is 1 for identical infinite rankings and 0 for rankings that share no items at any depth.
+The *persistence* $p \in (0, 1)$ models a reader who looks at item $d + 1$ with probability $p$ after seeing item $d$. Small $p$ makes RBO focus sharply on the top; $p$ close to 1 spreads attention deeper. Webber and colleagues computed that with $p = 0.9$ the first ten ranks carry about 86% of the weight of the evaluation. RBO is 1 for identical infinite rankings and 0 for rankings that share no items at any depth.
 
 ## Truncated lists
 
@@ -58,11 +58,11 @@ Common Crawl's 2026 domain graph, top 12 by each centrality:
 | 11 | `cloudflare.com` | `linkedin.com` |
 | 12 | `gravatar.com` | `cloudflareinsights.com` |
 
-The agreement starts at 1 (both put `googleapis.com` first), dips to 0.5 at depth 2, returns to 1 at depths 3 and 5, and settles near 0.75 to 0.8 from depth 10 to depth 30. Over the top 30 lists, RBO_ext is 0.81 with $p = 0.9$ and 0.85 with $p = 0.5$: the two centralities largely agree on the very top of the web, and diverge more as the lists get longer, as the [[pagerank]] entry's examples of PageRank-only domains show.
+The agreement starts at 1 (both put `googleapis.com` first), dips to 0.5 at depth 2, returns to 1 at depths 3 and 5, and then wanders between 0.65 and 0.91 from depth 10 to depth 30, ending at 0.77. Over the top 30 lists, RBO_ext is 0.81 with $p = 0.9$ and 0.85 with $p = 0.5$: the two centralities largely agree on the very top of the web, and diverge more as the lists get longer, as the [[pagerank]] entry's examples of PageRank-only domains show.
 
 ## Properties
 
-- **Order within the top matters.** Swapping positions 1 and 2 lowers $A_1$ to 0 if neither list has the other's first item at depth 1, and the deep terms barely notice.
+- **Order within the top matters.** Swapping the first two items of one of two identical lists drops $A_1$ to 0 and leaves every deeper $A_d$ at 1, so RBO falls by $1 - p$: a tenth at $p = 0.9$, half at $p = 0.5$.
 - **No common universe needed.** Items that appear in only one list simply never count towards overlap, so a vendor's top list can be compared with Common Crawl's even if neither covers the other's domains.
 - **Ties need a convention.** RBO assumes strict orders; Webber and colleagues describe how to treat tied items as sharing their depths.
 - **Not a correlation.** RBO is a similarity between 0 and 1, not a coefficient between −1 and 1, and a value of 0.8 does not mean the same thing as $\tau = 0.8$.

@@ -47,7 +47,7 @@ For a node with PageRank $p$, the number of visits among $N$ total steps is roug
 ## Disadvantages
 
 - **Random access.** Each step jumps to an arbitrary node's adjacency list, which is slow when the graph lives on disk or in compressed form, where sequential scans are cheap and random access is not (see [[pagerank-at-scale]]).
-- **Noisy tails.** Nodes near the floor get a handful of visits or none, so their positions are essentially random. For the 63.8% of Common Crawl domains with no out-links and most of the 87.6% with fewer than 10 in-links, sampled positions would mean little.
+- **Noisy tails.** Nodes near the floor get a handful of visits or none, so their positions are essentially random. For most of the 90.6% of Common Crawl domains with fewer than 10 in-links, sampled positions would mean little.
 - **Ties broken by chance.** Two nodes with identical true PageRank, such as D and F in the running example, get different estimates and different positions in every run.
 
 ## Where it is used

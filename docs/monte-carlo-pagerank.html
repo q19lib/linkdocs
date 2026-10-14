@@ -156,7 +156,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">â€
 <h2 id="disadvantages">Disadvantages</h2>
 <ul>
 <li><strong>Random access.</strong> Each step jumps to an arbitrary nodeâ€™s adjacency list, which is slow when the graph lives on disk or in compressed form, where sequential scans are cheap and random access is not (see <a href="pagerank-at-scale">PageRank at scale</a>).</li>
-<li><strong>Noisy tails.</strong> Nodes near the floor get a handful of visits or none, so their positions are essentially random. For the 63.8% of Common Crawl domains with no out-links and most of the 87.6% with fewer than 10 in-links, sampled positions would mean little.</li>
+<li><strong>Noisy tails.</strong> Nodes near the floor get a handful of visits or none, so their positions are essentially random. For most of the 90.6% of Common Crawl domains with fewer than 10 in-links, sampled positions would mean little.</li>
 <li><strong>Ties broken by chance.</strong> Two nodes with identical true PageRank, such as D and F in the running example, get different estimates and different positions in every run.</li>
 </ul>
 <h2 id="where-it-is-used">Where it is used</h2>

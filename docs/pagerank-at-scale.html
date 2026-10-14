@@ -88,7 +88,7 @@
 <h2 id="stopping-and-verifying">Stopping and verifying</h2>
 <ul>
 <li><strong>Pick the tolerance from the use.</strong> If you publish positions, stop when the positions you care about have stopped changing; the tail of a 120-million-node ranking is decided by floating-point noise long before values converge (see <a href="ranks-and-scores">ranks and scores</a>).</li>
-<li><strong>Check the invariants.</strong> Scores must be positive and sum to 1 within rounding, every node with no in-links must sit at the same floor, and two runs with different thread counts should agree to the tolerance.</li>
+<li><strong>Check the invariants.</strong> Scores must be positive and sum to 1 within rounding, every node with no in-links must sit at the same floor up to rounding, and two runs with different thread counts should agree to the tolerance.</li>
 <li><strong>Cross-check on a sample.</strong> <a href="monte-carlo-pagerank">Monte Carlo PageRank</a> gives an independent estimate for the top nodes in minutes.</li>
 </ul>
 <h2 id="references">References</h2>

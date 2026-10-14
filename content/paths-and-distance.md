@@ -9,7 +9,7 @@ aliases: Distance, Shortest path, Reachability, Breadth-first search, BFS, Geode
 
 A **path** from $u$ to $v$ is a sequence of arcs that starts at $u$, follows links, and ends at $v$. The **distance** $d(u, v)$ is the length of the shortest such path, counted in arcs. On the web it is the minimum number of clicks a reader needs to get from one site to another. If no path exists, $v$ is *unreachable* from $u$ and $d(u, v) = \infty$.
 
-Distances matter because a family of rankings, the *geometric* centralities, score a node by how close the rest of the graph is to it: [[closeness-centrality]], [[harmonic-centrality]] and [[betweenness-centrality]], which counts how many shortest paths pass through a node.
+Distances matter because a family of rankings, the *geometric* centralities, score a node by how close the rest of the graph is to it: [[closeness-centrality]] and [[harmonic-centrality]]. [[betweenness-centrality]] also rests on shortest paths, counting how many of them pass through a node.
 
 ## Distance is not symmetric
 

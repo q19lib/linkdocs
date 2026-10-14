@@ -39,7 +39,7 @@ C earns 6. It is the only route for A → G, B → A, B → G, D → G and E →
 
 ## Axioms
 
-In Boldi and Vigna's tests betweenness satisfies only the $p$ half of the size axiom: in a graph made of a clique and a separate long cycle, cycle nodes carry many paths while clique nodes carry none, because every pair of clique nodes is directly linked. It fails density and score monotonicity: a new link to $x$ can create shortcuts that bypass $x$ and lower its score (see [[centrality-axioms]]). These are not defects so much as a reminder that betweenness measures brokerage, not prominence.
+In Boldi and Vigna's tests betweenness satisfies only the $p$ half of the size axiom: in a graph made of a clique and a separate long cycle, cycle nodes carry many paths while clique nodes carry none, because every pair of clique nodes is directly linked. It fails density and score monotonicity: a new link to $x$ never lowers its score, but it need not raise it either, as when $x$ and the linking node are both isolated (see [[centrality-axioms]]). These are not defects so much as a reminder that betweenness measures brokerage, not prominence.
 
 ## Computing it
 

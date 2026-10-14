@@ -7,7 +7,7 @@ summary: For each distance t, how many pairs of nodes are within t links of each
 aliases: Distance distribution, Effective diameter, Average distance, Hop plot, spid
 ---
 
-The **neighbourhood function** $N(t)$ of a graph counts the ordered pairs of nodes $(x, y)$ with $d(x, y) \le t$: the pairs within $t$ links of each other. It summarises the whole distance structure of a graph in one increasing curve, and its derivatives give the statistics that network scientists actually use to compare graphs: the distribution of distances, the average distance and the effective diameter. Palmer, Gibbons and Faloutsos called its plot the *hop plot* and showed how to approximate it for large graphs; [[hyperball|HyperANF]] made the approximation fast enough for billion-node graphs.
+The **neighbourhood function** $N(t)$ of a graph counts the ordered pairs of nodes $(x, y)$ with $d(x, y) \le t$: the pairs within $t$ links of each other. It summarises the whole distance structure of a graph in one increasing curve, and its derivatives give the statistics that network scientists actually use to compare graphs: the distribution of distances, the average distance and the effective diameter. Its plot is the *hop plot* of Faloutsos, Faloutsos and Faloutsos's 1999 study of the internet's topology; Palmer, Gibbons and Faloutsos showed how to approximate it for large graphs; [[hyperball|HyperANF]] made the approximation fast enough for billion-node graphs.
 
 ## Definitions
 
@@ -54,6 +54,7 @@ Exact computation needs all distances, a breadth-first search from every node. A
 
 ## References
 
+- Faloutsos, M., Faloutsos, P., & Faloutsos, C. (1999). On power-law relationships of the Internet topology. *SIGCOMM 1999*, 251–262.
 - Palmer, C. R., Gibbons, P. B., & Faloutsos, C. (2002). ANF: A fast and scalable tool for data mining in massive graphs. *KDD 2002*, 81–90.
 - Boldi, P., Rosa, M., & Vigna, S. (2011). HyperANF: Approximating the neighbourhood function of very large graphs on a budget. *WWW 2011*, 625–634.
 - Leskovec, J., Kleinberg, J., & Faloutsos, C. (2005). Graphs over time: Densification laws, shrinking diameters and possible explanations. *KDD 2005*, 177–187.

@@ -30,7 +30,7 @@ In graph terms, devaluation deletes arcs before the ranking is computed. A site 
 
 ## Manual actions
 
-Google's human reviewers can apply a *manual action* for **unnatural links to your site** (links pointing in look manipulative) or **unnatural links from your site** (the site sells or exchanges links). A manual action is reported in the site owner's Search Console account, can affect part of a site or all of it, and stays until the owner fixes the problem and files a *reconsideration request*. Only a verified owner can see manual actions, so a domain's buyer usually learns about one only after taking ownership.
+Google's human reviewers can apply a *manual action* for **unnatural links to your site** (links pointing in look manipulative) or **unnatural links from your site** (the site sells or exchanges links). A manual action is reported in the site owner's Search Console account, can affect part of a site or all of it, and stays until the owner fixes the problem and files a *reconsideration request*. Only the site's owners in Search Console and the users they add can see manual actions, so a domain's buyer usually learns about one only after taking ownership.
 
 ## The disavow tool
 

@@ -34,7 +34,7 @@ The running example's PageRank at several damping factors:
 | 0.10 | 0.165 | 0.148 | 0.141 | 0.140 | 0.137 | 0.133 | 10 |
 | 0.50 | 0.242 | 0.176 | 0.150 | 0.134 | 0.105 | 0.090 | 24 |
 | 0.85 | 0.298 | 0.205 | 0.177 | 0.138 | 0.065 | 0.051 | 43 |
-| 0.99 | 0.319 | 0.216 | 0.193 | 0.143 | 0.047 | 0.035 | 57 |
+| 0.99 | 0.319 | 0.216 | 0.193 | 0.142 | 0.047 | 0.035 | 57 |
 
 At $\alpha = 0.1$ the scores barely differ from the uniform $1/7 \approx 0.143$. As $\alpha$ grows, probability flows into the core (A, B, C) and towards G, which hangs off it, and drains from D, E and F, which only feed the core. On this small graph the order never changes; on large graphs it does, as the next sections show. Iterations are counted until the total change falls below $10^{-12}$. Move the α slider in the lab and watch the same flow:
 
@@ -52,7 +52,7 @@ iterations: 113 for $\varepsilon = 10^{-8}$ at $\alpha = 0.85$, but 1,833 at $\a
 
 ## Sensitivity as α approaches 1
 
-As $\alpha \to 1$ the teleport vanishes, and PageRank approaches the stationary distribution of the raw walk, which puts all its mass in closed components such as the OUT side of the [[bow-tie]] and dense spam clusters that link only to themselves. Boldi, Santini and Vigna studied PageRank as a function of $\alpha$ and showed that the limit as $\alpha \to 1$ exists but concentrates on those closed components, the nodes "where the surfer gets stuck." Rankings near $\alpha = 1$ are therefore dominated by rank sinks and change sharply with $\alpha$. Small $\alpha$ has the opposite risk: the ranking barely uses the link structure at all.
+As $\alpha \to 1$ the teleport vanishes, and PageRank approaches the stationary distribution of the raw walk, which puts all its mass in closed components such as the OUT side of the [[bow-tie]] and dense spam clusters that link only to themselves. Boldi, Santini and Vigna studied PageRank as a function of $\alpha$ and showed that the limit as $\alpha \to 1$ exists but concentrates on the recurrent states: the closed components, where the surfer gets stuck. Rankings near $\alpha = 1$ are therefore dominated by rank sinks and change sharply with $\alpha$. Small $\alpha$ has the opposite risk: the ranking barely uses the link structure at all.
 
 ## Why 0.85?
 

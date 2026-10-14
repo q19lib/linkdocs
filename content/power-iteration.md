@@ -27,7 +27,7 @@ The loop over arcs is the whole cost. On a graph with $m$ arcs and $n$ nodes, on
 
 ## Why it converges
 
-One pass computes $p_{k+1} = p_k G$, where $G$ is the PageRank matrix: the row-stochastic matrix combining links, dangling jumps and teleportation. $G$ has largest eigenvalue 1 with the PageRank vector as its eigenvector (see [[perron-frobenius]]). Writing the error in terms of $G$'s other eigenvectors, each pass multiplies the component along eigenvector $i$ by $\lambda_i$, so the error decays like $|\lambda_2|^k$, where $\lambda_2$ is the second-largest eigenvalue in modulus. Haveliwala and Kamvar showed that $|\lambda_2| \le \alpha$ for the PageRank matrix, so
+One pass computes $p_{k+1} = p_k G$, where $G$ is the PageRank matrix: the row-stochastic matrix combining links, dangling jumps and teleportation. $G$ has largest eigenvalue 1 with the PageRank vector as its eigenvector (see [[perron-frobenius]]). Writing the error in terms of $G$'s other eigenvectors, each pass multiplies the component along eigenvector $i$ by $\lambda_i$, so the error decays like $|\lambda_2|^k$, where $\lambda_2$ is the second-largest eigenvalue in modulus. Haveliwala and Kamvar showed that $|\lambda_2| \le \alpha$ for the PageRank matrix. A direct argument bounds every pass, not only the long run: the error sums to zero, so the teleport term cancels and one pass shrinks the error's L1 norm by at least a factor $\alpha$. The starting error is at most 2, so
 
 $$
 \| p_k - p \|_1 \le 2\alpha^k .
@@ -41,7 +41,7 @@ On the running example, starting from the uniform vector $1/7$:
 
 | Pass | C | A | G | B | D, F | E | Change |
 |---|---|---|---|---|---|---|---|
-| 1 | 0.340 | 0.178 | 0.117 | 0.117 | 0.097 | 0.056 | $4.6 \times 10^{-1}$ |
+| 1 | 0.339 | 0.178 | 0.117 | 0.117 | 0.097 | 0.056 | $4.6 \times 10^{-1}$ |
 | 2 | 0.279 | 0.233 | 0.192 | 0.123 | 0.063 | 0.047 | $2.7 \times 10^{-1}$ |
 | 5 | 0.293 | 0.208 | 0.181 | 0.137 | 0.065 | 0.051 | $2.5 \times 10^{-2}$ |
 | 10 | 0.298 | 0.205 | 0.178 | 0.138 | 0.065 | 0.051 | $1.4 \times 10^{-3}$ |

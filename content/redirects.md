@@ -25,7 +25,7 @@ Permanent redirects say "update your records": search engines should replace the
 
 For years SEO lore held that a 301 passed about 85% of a page's PageRank, by analogy with the [[damping-factor]], and that 302s passed none. In 2016 Google's Gary Illyes stated that 30x redirects no longer lose PageRank. Google's documentation now treats permanent redirects as a strong signal that the target should be canonical and temporary ones as a weaker signal, without describing any loss. Whether a specific redirect passes value in practice also depends on relevance: a redirect from a page about one thing to an unrelated page may be treated like a deleted page.
 
-In a plain link graph the arithmetic is simpler. A redirecting domain is a node with one out-link. Under [[pagerank]] it passes $\alpha = 85\%$ of its score to the target each step and keeps the teleport share for itself; nothing in the formula knows it is a redirect.
+In a plain link graph the arithmetic is simpler. A redirecting domain is a node with one out-link. Under [[pagerank]] it passes $\alpha = 85\%$ of its score to the target each step, and teleportation spreads the other 15% over all nodes, as it does for every node; nothing in the formula knows it is a redirect.
 
 ## Redirects in Common Crawl's graph
 

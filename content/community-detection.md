@@ -4,7 +4,7 @@ group: Network structure
 order: 4
 link: community detection
 summary: Finding groups of nodes that link to each other much more than to the rest of the graph. Modularity, Louvain, Leiden, label propagation and Infomap are the standard tools; on the web they find topics, regions and link farms.
-aliases: Communities, Clustering, Modularity, Louvain, Leiden, Label propagation, Infomap, Graph partitioning
+aliases: Communities, Graph clustering, Modularity, Louvain, Leiden, Label propagation, Infomap, Graph partitioning
 ---
 
 Link graphs are not uniformly tangled. Sites about the same topic, in the same language or run by the same owner link to each other far more than to outsiders. **Community detection** finds such groups automatically from the links alone. The problem has no single correct answer, since "community" has no single definition, but a few methods dominate practice because they are fast and usually sensible. On web graphs they find topical clusters and national webs, they produce the node orders that make graphs compress well, and they expose link farms, which are communities by construction.
@@ -26,7 +26,7 @@ Treating the running example as undirected gives 9 edges (A ⇄ C counts once). 
 | Partition | Modularity |
 |---|---|
 | {A, B, C, G}, {D, E, F} | 0.142 |
-| {A, B, C, D, G}, {E, F} | 0.124 |
+| {A, B, C, D, G}, {E, F} | 0.123 |
 | {A, B, C}, {D, E, F}, {G} | 0.093 |
 | everything together | 0 |
 

@@ -35,13 +35,13 @@ The passes continue until no counter changes, which takes as many passes as the 
 
 - **ANF** (Palmer, Gibbons and Faloutsos, 2002) introduced the approach with Flajolet–Martin counters.
 - **HyperANF** (Boldi, Rosa and Vigna, 2011) switched to HyperLogLog counters, packed registers into machine words and computed register-wise maxima with *broadword* tricks, many registers per instruction. It made the neighbourhood function of billion-node graphs routine on a single machine.
-- **HyperBall** (Boldi and Vigna, 2013) generalised HyperANF to compute geometric centralities for every node, added the changed-counter optimisation, and could keep counters on disk (`--offline`) to fit very large graphs.
+- **HyperBall** (Boldi and Vigna, 2013) generalised HyperANF to compute geometric centralities for every node. Its WebGraph implementation can read the graph from disk instead of loading it (`--offline`) and write each pass's counter updates to disk instead of holding a second copy of the counters (`--external`).
 
 HyperANF produced the most-cited distance result of its era. In 2011, Backstrom, Boldi, Rosa, Ugander and Vigna ran it on Facebook's entire friendship graph, 721 million active users and 69 billion friendship links, and found an average distance of 4.74: "four degrees of separation", not six.
 
 ## Cost
 
-Each pass reads the graph once, sequentially, which is fast for a graph in compressed [[webgraph-compression|WebGraph]] form, and touches every counter. Memory is dominated by the counters: $n$ nodes times $m$ registers of 5 or 6 bits, times two if the previous and current counters are kept separately. For 119.7 million domains with $m = 64$ registers of 5 bits, one set of counters takes 4.8 GB. Halving the error means quadrupling $m$, and the memory with it, which is why HyperBall's offline mode streams counters from disk.
+Each pass reads the graph once, sequentially, which is fast for a graph in compressed [[webgraph-compression|WebGraph]] form, and touches every counter. Memory is dominated by the counters: $n$ nodes times $m$ registers of 5 or 6 bits, times two if the previous and current counters are kept separately. For 119.7 million domains with $m = 64$ registers of 5 bits, one set of counters takes 4.8 GB. Halving the error means quadrupling $m$, and the memory with it, which is why HyperBall's external mode keeps only one copy of the counters in memory.
 
 ## Accuracy
 

@@ -17,7 +17,7 @@ $$
 t = \alpha\, t P + (1 - \alpha)\, v_S ,
 $$
 
-with $P$ the row-normalised [[adjacency]] matrix and $\alpha$ a decay parameter; the paper used $\alpha = 0.85$ and stopped after 20 iterations. Two forms of decay are built in:
+with $P$ the row-normalised [[adjacency]] matrix and $\alpha$ a decay parameter; the paper used $\alpha = 0.85$ and stopped after 20 iterations. In the paper, trust that reaches a site with no out-links leaks away; the worked example below returns it to the seeds instead, which scales every score by the same factor and leaves the order unchanged. Two forms of decay are built in:
 
 - **Dampening.** Trust shrinks by a factor $\alpha$ with each link it crosses, so a site $k$ links from the seeds receives at most $\alpha^k$ of a seed's trust.
 - **Splitting.** A site divides its trust among its out-links, so a site that links to thousands of others passes each one very little. This is the same rule [[pagerank]] uses, and it means a page full of paid links dilutes whatever trust it has.
@@ -47,11 +47,11 @@ D, E and F get exactly zero trust: no path leads from A to them. G, reached thro
 
 ## Anti-TrustRank
 
-Krishnan and Raj (2006) ran the idea in reverse. Start from a set of known spam sites and propagate *distrust* backwards along in-links: a site that links to spam is probably spam, or at least careless. The computation is TrustRank on the transposed graph with a spam seed set. Combining the two scores separates more spam than either alone.
+Krishnan and Raj (2006) ran the idea in reverse. Start from a set of known spam sites and propagate *distrust* backwards along in-links: a site that links to spam is probably spam, or at least careless. The computation is TrustRank on the transposed graph with a spam seed set. They found that it picked out spam with higher precision than TrustRank, and left combining the two scores to future work.
 
 ## TrustRank and the SEO industry
 
-The paper left a lasting mark on how practitioners talk about links. "Trust" and "distance from trusted seeds" became common vocabulary, and commercial metrics borrowed the idea. Majestic describes its Trust Flow as a score based on how closely a site links to manually reviewed trusted seed sites ([[trust-flow]]). Ahrefs and Moz do not describe seed-based trust in their headline metrics, which rest on link quantity and the strength of the linking domains ([[domain-rating]], [[domain-authority]]).
+The paper left a lasting mark on how practitioners talk about links. "Trust" and "distance from trusted seeds" became common vocabulary, and commercial metrics borrowed the idea. Majestic describes its Trust Flow as a score based on how closely a site is linked from manually reviewed trusted seed sites ([[trust-flow]]). Ahrefs and Moz do not describe seed-based trust in their headline metrics, which rest on link quantity and the strength of the linking domains ([[domain-rating]], [[domain-authority]]).
 
 Whatever Google does internally is not public. The safe reading for a domain buyer: links from sites that reputable sites themselves link to are worth far more than links from sites only spam links to, and no amount of the second kind substitutes for a few of the first. [[spam-mass]] turns that intuition into a number.
 

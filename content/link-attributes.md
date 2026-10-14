@@ -25,7 +25,7 @@ On 10 September 2019 Google added two values:
 | `rel="ugc"` | the link appears in user-generated content | comments, forum posts, profiles |
 | `rel="nofollow"` | any link the site does not want to vouch for | catch-all, still valid |
 
-Values can be combined, as in `rel="ugc nofollow"`. In the same announcement Google changed what all three mean: they became *hints* about which links to consider or exclude within Search, rather than directives to ignore the link. From 1 March 2020 they also became hints for crawling and indexing. Google may now use a nofollowed link as a signal, for example to discover a URL or understand a page, when it judges that useful.
+Values can be combined, as in `rel="ugc nofollow"`. In the same announcement Google changed what all three mean: they became *hints* about which links to consider or exclude within Search, rather than directives to ignore the link. From 1 March 2020 `nofollow` also became a hint for crawling and indexing. Google may now use a nofollowed link as a signal, for example to discover a URL or understand a page, when it judges that useful.
 
 ## How link graphs treat them
 

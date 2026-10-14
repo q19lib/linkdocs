@@ -63,6 +63,6 @@ The single biggest factor in compression is the order of node ids. Lexicographic
 ## References
 
 - Boldi, P., & Vigna, S. (2004). The WebGraph Framework I: Compression techniques. *WWW 2004*, 595–602.
-- Randall, K. H., Stata, R., Wiener, J. L., & Wickremesinghe, R. G. (2002). The Link Database: Fast access to graphs of the Web. *Data Compression Conference 2002*, 122–131.
+- Randall, K. H., Stata, R., Wickremesinghe, R. G., & Wiener, J. L. (2002). The Link Database: Fast access to graphs of the Web. *Data Compression Conference 2002*, 122–131.
 - Boldi, P., & Vigna, S. (2005). Codes for the World Wide Web. *Internet Mathematics* 2(4), 407–429.
 - Brisaboa, N. R., Ladra, S., & Navarro, G. (2014). Compact representation of Web graphs with extended functionality. *Information Systems* 39, 152–174.

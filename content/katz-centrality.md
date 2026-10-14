@@ -42,7 +42,7 @@ The running example's largest eigenvalue is 1.3247, so $\beta$ must stay below $
 | Katz ($\beta = 0.3$) | 1.868 | 1.250 | 0.860 | 0.675 | 0.300 | 0.300 | 0 |
 | Eigenvector | 0.325 | 0.245 | 0.245 | 0.185 | 0 | 0 | 0 |
 
-D and F each receive one walk of length 1, from E, and nothing longer, since nothing reaches E: their score is exactly $\beta = 0.3$. Unlike eigenvector centrality, Katz separates A from G: A gets walks from inside the core, G only through C. Drag β towards 0.75 in the lab and watch the scores explode as the series approaches divergence:
+D and F each receive one walk of length 1, from E, and nothing longer, since nothing reaches E: their score is exactly $\beta = 0.3$. Unlike eigenvector centrality, Katz separates A from G: both receive C's walks, but A also receives walks from D and, through D, from E, which eigenvector centrality ignores because D and E score zero. Drag β towards 0.75 in the lab and watch the scores explode as the series approaches divergence:
 
 <div class="lab" data-measure="katz"></div>
 

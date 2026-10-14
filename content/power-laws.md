@@ -38,11 +38,11 @@ Both curves fall roughly as straight lines over several orders of magnitude. Rea
 | 1,000,000 | 45 | |
 | 10,000,000 | 5 | |
 
-Between 10 and 10,000 links, each tenfold rise in degree divides the count by about seven: a straight line on the plot. Then the line shows a shelf and a cliff. About 39,400 domains have in-degree between 19,000 and 29,000, where the smooth tail predicts fewer than 2,000, and out-degrees show a matching bump between 22,000 and 38,000. The natural reading is one network of tens of thousands of domains that each link to most of the others: the signature of a [[link-spam|link farm]], or of a large group of sites that share a sitewide footer. Past the bump the tail resumes, with 334 domains above 100,000 in-links and 5 above ten million.
+Between 10 and 1,000 links, each tenfold rise in degree divides the count by about seven: a straight line on the plot. Then the line shows a shelf and a cliff. About 39,400 domains have in-degree between 19,000 and 29,000, where the smooth tail predicts fewer than 2,000, and out-degrees show a matching bump between 22,000 and 38,000. The natural reading is one network of tens of thousands of domains that each link to most of the others: the signature of a [[link-spam|link farm]], or of a large group of sites that share a sitewide footer. Past the bump the tail resumes, with 334 domains above 100,000 in-links and 5 above ten million.
 
 Fitting the tail by maximum likelihood gives an exponent of $\gamma \approx 1.82$ for in-degrees of at least 10, drifting up to 1.92 for in-degrees of at least 1,000. Out-degrees give similar values (1.84 to 1.99). Exponents below 2 match what the totals say directly: the top 1% of domains receive 79.4% of all links, and the top 0.1% receive 61.0%.
 
-Page-level graphs measured in earlier studies give steeper tails. Broder and colleagues reported $\gamma \approx 2.1$ for in-degree and 2.72 for out-degree on 203 million pages; Barabási and Albert reported 2.1 and 2.45 on the `nd.edu` domain in 1999. Domain graphs concentrate further because one domain collects the links aimed at all its pages.
+Page-level graphs measured in earlier studies give steeper tails. Broder and colleagues reported $\gamma \approx 2.1$ for in-degree and 2.72 for out-degree on 203 million pages; Albert, Jeong and Barabási reported 2.1 and 2.45 on the `nd.edu` domain in 1999. Domain graphs concentrate further because one domain collects the links aimed at all its pages.
 
 ## Fit carefully
 
@@ -59,12 +59,13 @@ The classic explanation is **preferential attachment**: new sites link to existi
 ## Why it matters for rankings and metrics
 
 - **Averages mislead.** The mean in-degree is 20.5 but the median is 1. Any summary of link metrics should use medians, percentiles or logarithms.
-- **Scores need logarithmic scales.** Proprietary metrics such as [[domain-rating]] and [[domain-authority]] map raw link signals onto 0–100 scales that their vendors describe as logarithmic: moving from 70 to 80 is far harder than from 20 to 30. The old Toolbar PageRank used a 0–10 log scale (see [[pagerank-history]]).
+- **Scores need logarithmic scales.** Proprietary metrics such as [[domain-rating]] and [[domain-authority]] map raw link signals onto 100-point scales that their vendors describe as logarithmic: moving from 70 to 80 is far harder than from 20 to 30. The old Toolbar PageRank used a 0–10 log scale (see [[pagerank-history]]).
 - **Most domains sit at the floor.** Any link metric piles a large share of domains onto its minimum value. Among the 2026-09-23 auction domains, 89% are absent from Common Crawl's graph altogether (see [[metric-audit]]).
 - **Hubs dominate computation.** A node with 17 million in-links makes load balancing in parallel algorithms hard and shapes the compression of the graph (see [[webgraph-compression]]).
 
 ## References
 
+- Albert, R., Jeong, H., & Barabási, A.-L. (1999). Diameter of the World-Wide Web. *Nature* 401(6749), 130–131.
 - Barabási, A.-L., & Albert, R. (1999). Emergence of scaling in random networks. *Science* 286(5439), 509–512.
 - Broder, A., et al. (2000). Graph structure in the Web. *Computer Networks* 33(1–6), 309–320.
 - Clauset, A., Shalizi, C. R., & Newman, M. E. J. (2009). Power-law distributions in empirical data. *SIAM Review* 51(4), 661–703.

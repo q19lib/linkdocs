@@ -47,7 +47,7 @@ Running at query time makes the scores topic-specific, which PageRank's single g
 
 - **Topic drift.** If the base set contains a dense, tightly knit group of pages on a different subject, its mutual links dominate the dominant eigenvector, and the results drift to that group. Lempel and Moran called this the *tightly knit community* effect; [[salsa]] was designed to resist it.
 - **Easy to game.** Anyone can make a strong hub: publish a page linking to well-known authorities. Then add links from that hub to your own pages. The hub score is earned by out-links, which cost nothing.
-- **Non-uniqueness.** If the largest eigenvalue of $A^\top A$ is repeated, which happens when the base set splits into disconnected parts, the limit depends on the starting vector, and small changes to the graph can swing the results.
+- **Non-uniqueness.** If the largest eigenvalue of $A^\top A$ is repeated, which can happen when the base set splits into disconnected parts whose top eigenvalues tie, the limit depends on the starting vector, and small changes to the graph can swing the results.
 - **Axioms.** HITS authority satisfies density and only the $k$ half of size, and fails score monotonicity: a new in-link can shift the dominant eigenvector to another part of the graph and lower a node's authority (see [[centrality-axioms]]).
 
 ## Improvements
