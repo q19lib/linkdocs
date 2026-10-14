@@ -14,6 +14,7 @@ The site is plain static HTML in `docs/`, built from Markdown in `content/`, and
 | `content/figures/*.svg` | figures, inlined into pages at build time |
 | `assets/` | stylesheet, search and menu script, the graph lab, the shared centrality code |
 | `build.mjs` | the build: Markdown → `docs/`, with gates |
+| `wrangler.jsonc` | Cloudflare Worker settings for serving `docs/` |
 | `tools/example.mjs` | prints every measure on the running example |
 | `docs/` | the generated site (committed, served by GitHub Pages) |
 
@@ -36,7 +37,7 @@ The build fails, listing every problem, when:
 - a figure named by `![[name]]` is missing from `content/figures/`;
 - TeX fails to parse.
 
-Open `docs/index.html` in a browser to check the result; search needs a web server (`python3 -m http.server -d docs`) because browsers block `fetch` on `file://`.
+Preview with `npx serve docs` and open <http://localhost:3000>. Pages link to each other without `.html`, the way Cloudflare serves them; `serve` resolves `/pagerank` to `pagerank.html`, while opening the files straight from disk does not.
 
 ## Writing an entry
 
@@ -69,16 +70,15 @@ Seven nodes and ten links, defined in `assets/running.js`; `assets/centrality.js
 
 ## Deploying
 
-Cloudflare Pages builds and serves the site from this repository:
+Cloudflare serves the site as a Worker with static assets, configured by `wrangler.jsonc`: it names the Worker (`linkdocs`, which must match the name in the Cloudflare dashboard or the deploy is refused), serves `docs/`, answers unknown paths with `docs/404.html`, and serves `pagerank.html` at `/pagerank`. The Worker's build settings:
 
 | Setting | Value |
 |---|---|
-| Framework preset | None |
 | Build command | `npm run build` |
-| Build output directory | `docs` |
+| Deploy command | `npx wrangler deploy` |
 | Environment variable | `NODE_VERSION` = `20` |
 
-Cloudflare installs the pinned dependencies from `package-lock.json` before building, and serves `docs/404.html` for unknown paths. All links are relative, so the site works at the root of any domain. `docs/` stays committed so that the repository is browsable and the output of every content change is reviewable in its diff; rebuild before committing.
+Cloudflare installs the pinned dependencies from `package-lock.json` before building. `docs/` stays committed so that the repository is browsable and every content change shows its output in the diff; rebuild before committing.
 
 ## License
 

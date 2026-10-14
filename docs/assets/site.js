@@ -40,7 +40,7 @@
     selected = 0;
     results.hidden = hits.length === 0;
     results.innerHTML = hits.map((e, i) =>
-      `<li><a href="${e.s}.html"${i === 0 ? ' class="sel"' : ""}><b>${esc(e.t)}</b><span>${esc(e.d)}</span></a></li>`).join("");
+      `<li><a href="${e.s}"${i === 0 ? ' class="sel"' : ""}><b>${esc(e.t)}</b><span>${esc(e.d)}</span></a></li>`).join("");
   }
 
   async function search() {

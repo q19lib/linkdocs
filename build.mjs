@@ -103,7 +103,7 @@ function linkWikis(art, src, bySlug) {
     if (!text && SENTENCE_START.test(src.slice(Math.max(0, offset - 12), offset))) {
       label = label[0].toUpperCase() + label.slice(1);
     }
-    return `[${label}](${slug}.html)`;
+    return `[${label}](${slug})`;
   });
 }
 
@@ -175,7 +175,7 @@ const ICON = "data:image/svg+xml," + encodeURIComponent(
 function nav(articles, current) {
   return GROUPS.map((g) => {
     const items = articles.filter((a) => a.group === g).map((a) =>
-      `<li><a href="${a.slug}.html"${a.slug === current ? ' aria-current="page"' : ""}>${esc(a.title)}</a></li>`);
+      `<li><a href="${a.slug}"${a.slug === current ? ' aria-current="page"' : ""}>${esc(a.title)}</a></li>`);
     return `<h2>${esc(g)}</h2><ul>${items.join("")}</ul>`;
   }).join("\n");
 }
@@ -189,7 +189,7 @@ function page({ title, summary, slug, group, body, toc = [], articles, math, lab
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${slug === "index" ? SITE : `${esc(title)} · ${SITE}`}</title>
+${slug === "404" ? '<base href="/">\n' : ""}<title>${slug === "index" ? SITE : `${esc(title)} · ${SITE}`}</title>
 <meta name="description" content="${esc(summary)}">
 <link rel="icon" href="${ICON}">
 ${math ? '<link rel="stylesheet" href="assets/katex/katex.min.css">\n' : ""}<link rel="stylesheet" href="assets/style.css">
@@ -198,12 +198,12 @@ ${lab ? '<script type="module" src="assets/lab.js"></script>\n' : ""}</head>
 <body>
 <header class="top">
 <button class="menu" aria-label="Contents" aria-controls="side" aria-expanded="false">☰</button>
-<a class="brand" href="index.html">${SITE}</a>
+<a class="brand" href="./">${SITE}</a>
 <div class="search"><input id="q" type="search" placeholder="Search entries" aria-label="Search entries" autocomplete="off"><ol id="results" hidden></ol></div>
 </header>
 <div class="layout">
 <nav class="side" id="side" aria-label="Entries">
-<p class="side-links"><a href="index.html">Home</a> · <a href="a-z.html">A–Z index</a></p>
+<p class="side-links"><a href="./">Home</a> · <a href="a-z">A–Z index</a></p>
 ${nav(articles, slug)}
 </nav>
 <main class="article">
@@ -224,12 +224,12 @@ function articleFooter(art, articles, bySlug, ordered) {
   const back = articles.filter((a) => a.links.has(art.slug) && a.slug !== "index")
     .sort((a, b) => a.title.localeCompare(b.title));
   const backHtml = back.length
-    ? `<section class="backlinks"><h2>Links here</h2><p>${back.map((a) => `<a href="${a.slug}.html">${esc(a.title)}</a>`).join(" · ")}</p></section>`
+    ? `<section class="backlinks"><h2>Links here</h2><p>${back.map((a) => `<a href="${a.slug}">${esc(a.title)}</a>`).join(" · ")}</p></section>`
     : "";
   const i = ordered.indexOf(art);
   const prev = ordered[i - 1];
   const next = ordered[i + 1];
-  const pn = `<nav class="prevnext">${prev ? `<a href="${prev.slug}.html">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="${next.slug}.html">${esc(next.title)} →</a>` : ""}</nav>`;
+  const pn = `<nav class="prevnext">${prev ? `<a href="${prev.slug}">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="${next.slug}">${esc(next.title)} →</a>` : ""}</nav>`;
   const edit = `<p class="edit"><a href="${REPO}/blob/main/content/${art.file}">Edit this entry on GitHub</a></p>`;
   return backHtml + pn + edit;
 }
@@ -246,11 +246,11 @@ function centralEntries(articles) {
 function homeExtras(articles) {
   const groups = GROUPS.map((g) => {
     const items = articles.filter((a) => a.group === g)
-      .map((a) => `<li><a href="${a.slug}.html">${esc(a.title)}</a> <span>${esc(a.summary)}</span></li>`);
+      .map((a) => `<li><a href="${a.slug}">${esc(a.title)}</a> <span>${esc(a.summary)}</span></li>`);
     return `<section class="group-card"><h2 id="${slugify(g)}">${esc(g)}</h2><ul>${items.join("")}</ul></section>`;
   });
   const central = centralEntries(articles).map(({ a, s }) =>
-    `<li><a href="${a.slug}.html">${esc(a.title)}</a> <span class="num">${s.toFixed(3)}</span></li>`);
+    `<li><a href="${a.slug}">${esc(a.title)}</a> <span class="num">${s.toFixed(3)}</span></li>`);
   return `<div class="groups">${groups.join("\n")}</div>
 <section class="central"><h2 id="central-entries">Most central entries</h2>
 <p>PageRank (α = 0.85) over this site's own cross-references, recomputed on every build: an entry ranks high when central entries link to it.</p>
@@ -272,8 +272,8 @@ function azPage(articles) {
       out.push(`<h2 id="${/[A-Z]/.test(l) ? l : `u${l.codePointAt(0)}`}">${esc(l)}</h2><dl>`);
     }
     out.push(e.alias
-      ? `<dt>${esc(e.term)}</dt><dd>See <a href="${e.a.slug}.html">${esc(e.a.title)}</a>.</dd>`
-      : `<dt><a href="${e.a.slug}.html">${esc(e.term)}</a></dt><dd>${esc(e.a.summary)}</dd>`);
+      ? `<dt>${esc(e.term)}</dt><dd>See <a href="${e.a.slug}">${esc(e.a.title)}</a>.</dd>`
+      : `<dt><a href="${e.a.slug}">${esc(e.term)}</a></dt><dd>${esc(e.a.summary)}</dd>`);
   }
   out.push("</dl>");
   return out.join("\n");
