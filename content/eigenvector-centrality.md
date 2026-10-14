@@ -41,7 +41,7 @@ The zeros are the important part. D, E and F score exactly 0, though D and E lin
 - **Zero outside the dominant component.** On a graph that is not strongly connected, every node that the dominant [[strongly-connected-components|strongly connected component]] cannot reach scores zero. On the web, that means most of the IN set of the [[bow-tie]] and everything hanging off it.
 - **No dilution by out-degree.** A node with a million out-links passes its full score along each one. Hubs inflate the scores of everything they touch, and a link farm whose members link densely to each other can build a large eigenvalue of its own and capture the whole vector.
 - **Localisation.** On large graphs with heavy-tailed degrees, the dominant eigenvector tends to concentrate on the highest-degree node and its immediate neighbours, giving vanishing scores to everyone else. Martin, Zhang and Newman showed this in 2014 and proposed a non-backtracking variant to avoid it.
-- **Periodicity.** Computing the vector by [[power-iteration]] fails to converge on graphs whose cycles all share a common length divisor; the iterates oscillate. The running example is safe because its core has cycles of lengths 2 and 3.
+- **Periodicity.** Computing the vector by [[power-iteration]] fails to converge on graphs whose cycles all share a common length divisor; the iterates oscillate. The running example is safe because its core has cycles of lengths 2 and 3. Iterating with $A + I$, which has the same eigenvectors, cures the oscillation; the lab does this, so deleting A → B, which leaves only the 2-cycle A ⇄ C, still gives an answer.
 
 In Boldi and Vigna's [[centrality-axioms]] eigenvector centrality satisfies density, only the $k$ half of size, and fails score monotonicity.
 

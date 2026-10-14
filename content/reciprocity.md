@@ -37,7 +37,7 @@ Checking a uniform random sample of 2,000,000 of the 2,450,405,793 arcs of Commo
 
 | Quantity | Value |
 |---|---|
-| Reciprocity $r$ | 12.85% (± 0.05 percentage points) |
+| Reciprocity $r$ | 12.85% (± 0.05 percentage points, two standard errors) |
 | Density $\bar a$ | $1.7 \times 10^{-7}$ |
 | Garlaschelli–Loffredo $\rho$ | 0.1285 |
 | Reciprocated arcs, extrapolated | about 315 million (157 million mutual pairs) |
