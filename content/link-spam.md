@@ -37,6 +37,7 @@ Spam leaves structural fingerprints:
 - **Degree anomalies.** Common Crawl's 2026 in-degree distribution has a bump of about 39,400 domains with in-degree between 19,000 and 29,000, where the smooth tail predicts fewer than 2,000, with a matching bump in out-degree (see [[power-laws]]). Organic link growth produces smooth distributions; coordinated networks produce bumps.
 - **Dense, isolated clusters.** Farms link internally far more than to the outside, so they show up as tight communities with high [[clustering-coefficient|clustering]], deep [[k-core|cores]] and few in-links from the rest of the web (see [[community-detection]]).
 - **Mass from outside the trusted web.** A high-ranking node whose PageRank comes mostly from nodes unreachable from reputable seeds has high [[spam-mass]].
+- **Returned links.** About one domain-level link in eight is reciprocated on the web as a whole; a profile where most referring domains are also linked back suggests link exchanges (see [[reciprocity]]).
 - **Uniform patterns.** Identical anchor texts, links appearing in bursts on newly registered domains, shared hosting, templates and analytics IDs. These are not graph features, but link indexes and search engines combine them with graph features.
 
 ## How search engines respond

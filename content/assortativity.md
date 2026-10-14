@@ -37,6 +37,17 @@ Every version is negative. E, the node with the most out-links, links to D and F
 
 Popular sites receive links from enormous numbers of small sites, and small sites rarely receive links from popular ones. Infrastructure domains embedded on millions of pages (see [[common-crawl-graph]]) are the extreme case. Link farms push the other way: a farm of domains that all link to each other is a group of nodes with similar, often high, degrees, a locally assortative pocket in a disassortative graph (see [[link-spam]]).
 
+## The Common Crawl domain graph
+
+Computed over all 2,450,405,793 arcs of Common Crawl's 2026 domain graph:
+
+| Pairing (source, target) | Pearson $r$ on degrees | Pearson $r$ on $\log(1 + d)$ |
+|---|---|---|
+| out-degree, in-degree | −0.041 | −0.135 |
+| in-degree, in-degree | −0.013 | +0.059 |
+
+The raw coefficients are close to zero, as expected on a graph whose largest degrees run into the millions (see below). The log-degree versions are clearer. Domains that link out a lot tend to link to domains that receive few links: the out–in pairing is disassortative, the signature of link lists, directories and mass out-linkers such as `mp3fresh.net` (see [[cheirank]]). At the same time, domains that are themselves well linked lean slightly towards linking to other well-linked domains: the in–in pairing is mildly assortative.
+
 ## Measuring it on heavy-tailed graphs
 
 Pearson's $r$ is dominated by the few largest degrees, and Litvak and van der Hofstad showed that on large scale-free graphs it converges towards zero whatever the actual mixing. Rank-based versions, such as Spearman's correlation of the degrees at the two ends of each arc (see [[spearman-rho]]), or correlations of log-degrees, are more reliable for web-scale graphs. Report which version you use.

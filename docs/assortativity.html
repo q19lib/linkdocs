@@ -24,7 +24,7 @@
 <h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
 <h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
 <h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
-<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html" aria-current="page">Assortativity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html" aria-current="page">Assortativity</a></li><li><a href="reciprocity.html">Reciprocity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
 <h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
 <h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
 </nav>
@@ -71,6 +71,30 @@
 <p>Every version is negative. E, the node with the most out-links, links to D and F, which have one in-link each, while the most-linked node, C, receives links from nodes of every kind.</p>
 <h2 id="why-the-web-is-disassortative">Why the web is disassortative</h2>
 <p>Popular sites receive links from enormous numbers of small sites, and small sites rarely receive links from popular ones. Infrastructure domains embedded on millions of pages (see <a href="common-crawl-graph.html">Common Crawl web graph</a>) are the extreme case. Link farms push the other way: a farm of domains that all link to each other is a group of nodes with similar, often high, degrees, a locally assortative pocket in a disassortative graph (see <a href="link-spam.html">link spam</a>).</p>
+<h2 id="the-common-crawl-domain-graph">The Common Crawl domain graph</h2>
+<p>Computed over all 2,450,405,793 arcs of Common Crawl’s 2026 domain graph:</p>
+<div class="table"><table>
+<thead>
+<tr>
+<th>Pairing (source, target)</th>
+<th>Pearson <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> on degrees</th>
+<th>Pearson <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> on <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\log(1 + d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>out-degree, in-degree</td>
+<td>−0.041</td>
+<td>−0.135</td>
+</tr>
+<tr>
+<td>in-degree, in-degree</td>
+<td>−0.013</td>
+<td>+0.059</td>
+</tr>
+</tbody>
+</table></div>
+<p>The raw coefficients are close to zero, as expected on a graph whose largest degrees run into the millions (see below). The log-degree versions are clearer. Domains that link out a lot tend to link to domains that receive few links: the out–in pairing is disassortative, the signature of link lists, directories and mass out-linkers such as <code>mp3fresh.net</code> (see <a href="cheirank.html">CheiRank</a>). At the same time, domains that are themselves well linked lean slightly towards linking to other well-linked domains: the in–in pairing is mildly assortative.</p>
 <h2 id="measuring-it-on-heavy-tailed-graphs">Measuring it on heavy-tailed graphs</h2>
 <p>Pearson’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> is dominated by the few largest degrees, and Litvak and van der Hofstad showed that on large scale-free graphs it converges towards zero whatever the actual mixing. Rank-based versions, such as Spearman’s correlation of the degrees at the two ends of each arc (see <a href="spearman-rho.html">Spearman’s rho</a>), or correlations of log-degrees, are more reliable for web-scale graphs. Report which version you use.</p>
 <h2 id="references">References</h2>
@@ -79,9 +103,9 @@
 <li>Foster, J. G., Foster, D. V., Grassberger, P., &amp; Paczuski, M. (2010). Edge direction and the structure of networks. <em>PNAS</em> 107(24), 10815–10820.</li>
 <li>Litvak, N., &amp; van der Hofstad, R. (2013). Uncovering disassortativity in large scale-free networks. <em>Physical Review E</em> 87(2), 022801.</li>
 </ul>
-<section class="backlinks"><h2>Links here</h2><p><a href="degree.html">Degree</a> · <a href="random-graph-models.html">Random graph models</a></p></section><nav class="prevnext"><a href="k-core.html">← k-core decomposition</a><a href="random-graph-models.html">Random graph models →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/assortativity.md">Edit this entry on GitHub</a></p>
+<section class="backlinks"><h2>Links here</h2><p><a href="degree.html">Degree</a> · <a href="random-graph-models.html">Random graph models</a></p></section><nav class="prevnext"><a href="k-core.html">← k-core decomposition</a><a href="reciprocity.html">Reciprocity →</a></nav><p class="edit"><a href="https://github.com/q19lib/linkdocs/blob/main/content/assortativity.md">Edit this entry on GitHub</a></p>
 </main>
-<aside class="toc"><h2>On this page</h2><ul><li><a href="#definition">Definition</a></li><li><a href="#worked-example">Worked example</a></li><li><a href="#why-the-web-is-disassortative">Why the web is disassortative</a></li><li><a href="#measuring-it-on-heavy-tailed-graphs">Measuring it on heavy-tailed graphs</a></li><li><a href="#references">References</a></li></ul></aside>
+<aside class="toc"><h2>On this page</h2><ul><li><a href="#definition">Definition</a></li><li><a href="#worked-example">Worked example</a></li><li><a href="#why-the-web-is-disassortative">Why the web is disassortative</a></li><li><a href="#the-common-crawl-domain-graph">The Common Crawl domain graph</a></li><li><a href="#measuring-it-on-heavy-tailed-graphs">Measuring it on heavy-tailed graphs</a></li><li><a href="#references">References</a></li></ul></aside>
 </div>
 </body>
 </html>

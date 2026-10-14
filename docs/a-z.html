@@ -23,7 +23,7 @@
 <h2>PageRank in depth</h2><ul><li><a href="random-surfer.html">The random surfer</a></li><li><a href="damping-factor.html">The damping factor</a></li><li><a href="dangling-nodes.html">Dangling nodes</a></li><li><a href="power-iteration.html">Power iteration</a></li><li><a href="perron-frobenius.html">The Perron–Frobenius theorem</a></li><li><a href="pagerank-linear-system.html">PageRank as a linear system</a></li><li><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></li><li><a href="push-algorithms.html">Push algorithms</a></li><li><a href="pagerank-history.html">A short history of PageRank</a></li></ul>
 <h2>Computing at scale</h2><ul><li><a href="webgraph-compression.html">WebGraph compression</a></li><li><a href="node-orderings.html">Node orderings</a></li><li><a href="hyperloglog.html">HyperLogLog</a></li><li><a href="hyperball.html">HyperBall</a></li><li><a href="brandes-algorithm.html">Brandes' algorithm</a></li><li><a href="pagerank-at-scale.html">PageRank at scale</a></li></ul>
 <h2>Comparing rankings</h2><ul><li><a href="ranks-and-scores.html">Ranks and scores</a></li><li><a href="kendall-tau.html">Kendall's tau</a></li><li><a href="spearman-rho.html">Spearman's rho</a></li><li><a href="weighted-tau.html">Weighted tau</a></li><li><a href="rank-biased-overlap.html">Rank-biased overlap</a></li></ul>
-<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html">Assortativity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
+<h2>Network structure</h2><ul><li><a href="clustering-coefficient.html">Clustering coefficient</a></li><li><a href="small-world.html">Small worlds</a></li><li><a href="neighbourhood-function.html">The neighbourhood function</a></li><li><a href="community-detection.html">Community detection</a></li><li><a href="k-core.html">k-core decomposition</a></li><li><a href="assortativity.html">Assortativity</a></li><li><a href="reciprocity.html">Reciprocity</a></li><li><a href="random-graph-models.html">Random graph models</a></li></ul>
 <h2>Links in practice</h2><ul><li><a href="backlinks.html">Backlinks and referring domains</a></li><li><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></li><li><a href="anchor-text.html">Anchor text</a></li><li><a href="redirects.html">Redirects and canonicalisation</a></li><li><a href="link-spam.html">Link spam</a></li><li><a href="link-penalties.html">Link penalties and the disavow tool</a></li><li><a href="expired-domains.html">Expired domains</a></li></ul>
 <h2>Domain metrics</h2><ul><li><a href="common-crawl-graph.html">The Common Crawl web graph</a></li><li><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></li><li><a href="domain-authority.html">Domain Authority (Moz)</a></li><li><a href="domain-rating.html">Domain Rating (Ahrefs)</a></li><li><a href="trust-flow.html">Trust Flow and Citation Flow (Majestic)</a></li><li><a href="authority-score.html">Authority Score (Semrush)</a></li><li><a href="metric-audit.html">Auditing vendor metrics</a></li></ul>
 </nav>
@@ -247,6 +247,7 @@
 <dt><a href="link-attributes.html">Link attributes (nofollow, sponsored, ugc)</a></dt><dd>The rel values that let a publisher say a link is not an endorsement. Introduced in 2005 against comment spam, extended in 2019, and since then treated by Google as hints rather than commands.</dd>
 <dt>Link equity</dt><dd>See <a href="expired-domains.html">Expired domains</a>.</dd>
 <dt>Link equity transfer</dt><dd>See <a href="redirects.html">Redirects and canonicalisation</a>.</dd>
+<dt>Link exchange</dt><dd>See <a href="reciprocity.html">Reciprocity</a>.</dd>
 <dt>Link farm</dt><dd>See <a href="link-spam.html">Link spam</a>.</dd>
 <dt>Link graph</dt><dd>See <a href="web-graph.html">The web graph</a>.</dd>
 <dt>Link metrics guide</dt><dd>See <a href="reading-domain-metrics.html">Reading a domain's link metrics</a>.</dd>
@@ -273,6 +274,7 @@
 <dt>Modularity</dt><dd>See <a href="community-detection.html">Community detection</a>.</dd>
 <dt><a href="monte-carlo-pagerank.html">Monte Carlo PageRank</a></dt><dd>Estimate PageRank by actually running random surfers and counting their visits. A few walks per node rank the important nodes well, the walks parallelise trivially, and they can be updated as links change.</dd>
 <dt>Moz DA</dt><dd>See <a href="domain-authority.html">Domain Authority (Moz)</a>.</dd>
+<dt>Mutual links</dt><dd>See <a href="reciprocity.html">Reciprocity</a>.</dd>
 </dl>
 <h2 id="N">N</h2><dl>
 <dt>Node importance</dt><dd>See <a href="centrality.html">Centrality</a>.</dd>
@@ -338,6 +340,8 @@
 <dt>Reachability</dt><dd>See <a href="paths-and-distance.html">Paths, distance and reachability</a>.</dd>
 <dt><a href="reading-domain-metrics.html">Reading a domain's link metrics</a></dt><dd>A practical guide for buyers. Which numbers to look at, what thresholds mean on real data, how to tell real link standing from noise, and two worked examples from the 2026-09-23 auction inventory.</dd>
 <dt>Reasonable surfer</dt><dd>See <a href="random-surfer.html">The random surfer</a>.</dd>
+<dt>Reciprocal links</dt><dd>See <a href="reciprocity.html">Reciprocity</a>.</dd>
+<dt><a href="reciprocity.html">Reciprocity</a></dt><dd>The share of links that are returned. In Common Crawl's 2026 domain graph about one link in eight has a link back, hundreds of thousands of times more than chance, from sites under common ownership, communities that cite each other and link exchanges.</dd>
 <dt>Redirect</dt><dd>See <a href="redirects.html">Redirects and canonicalisation</a>.</dd>
 <dt><a href="redirects.html">Redirects and canonicalisation</a></dt><dd>How 301s, 302s and canonical tags move link signals from one URL to another. They decide where a moved site's links end up, and they are the main mechanism by which an expired domain's links are put to new use.</dd>
 <dt>Ref domains</dt><dd>See <a href="backlinks.html">Backlinks and referring domains</a>.</dd>
