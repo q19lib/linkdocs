@@ -4,7 +4,7 @@ An encyclopedia of link graphs: PageRank and the other centralities, the structu
 
 Real-world numbers come from Common Crawl's domain graph `cc-main-2026-jun-jul-aug` (119,722,885 domains, 2,450,405,793 links) and from GoDaddy's auction inventory of 2026-09-23.
 
-The site is plain static HTML in `docs/`, built from Markdown in `content/`. Once GitHub Pages serves this repository from `main` / `docs`, it lives at <https://q19lib.github.io/linkdocs/>.
+The site is plain static HTML in `docs/`, built from Markdown in `content/`, and is deployed with Cloudflare Pages.
 
 ## Layout
 
@@ -69,7 +69,16 @@ Seven nodes and ten links, defined in `assets/running.js`; `assets/centrality.js
 
 ## Deploying
 
-The repository serves itself: in GitHub, *Settings → Pages → Build and deployment → Deploy from a branch*, branch `main`, folder `/docs`. `docs/.nojekyll` disables Jekyll processing. Rebuild and commit `docs/` with every content change.
+Cloudflare Pages builds and serves the site from this repository:
+
+| Setting | Value |
+|---|---|
+| Framework preset | None |
+| Build command | `npm run build` |
+| Build output directory | `docs` |
+| Environment variable | `NODE_VERSION` = `20` |
+
+Cloudflare installs the pinned dependencies from `package-lock.json` before building, and serves `docs/404.html` for unknown paths. All links are relative, so the site works at the root of any domain. `docs/` stays committed so that the repository is browsable and the output of every content change is reviewable in its diff; rebuild before committing.
 
 ## License
 
