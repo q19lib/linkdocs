@@ -4,7 +4,7 @@ An encyclopedia of link graphs: PageRank and the other centralities, the structu
 
 Real-world numbers come from Common Crawl's domain graph `cc-main-2026-jun-jul-aug` (119,722,885 domains, 2,450,405,793 links) and from GoDaddy's auction inventory of 2026-09-23.
 
-The site is plain static HTML in `docs/`, built from Markdown in `content/`, and is deployed with Cloudflare Pages.
+The site is plain static HTML in `docs/`, built from Markdown in `content/`, and is deployed with Cloudflare at <https://links.stephenliang.com>.
 
 ## Layout
 
