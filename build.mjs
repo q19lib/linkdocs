@@ -89,7 +89,7 @@ function renderMath(html, store) {
 
 // A bare [[slug]] reads as the target's `link` name (its title if none), capitalised
 // when it starts a sentence, a line, a list item or a table cell.
-const SENTENCE_START = /(?:(?:^|\n)\s*|[.!?]\s+|(?:^|\n)\s*(?:[-*+]|\d+\.)\s+|\|\s*)(?:\*\*)?$/;
+const SENTENCE_START = /(?:(?:^|\n)\s*|[.!?](?:\*\*|[\"”’)])?\s+|(?:^|\n)\s*(?:[-*+]|\d+\.)\s+|\|\s*)(?:\*\*)?$/;
 
 function linkWikis(art, src, bySlug) {
   return src.replace(/(?<!!)\[\[([a-z0-9-]+)(?:\\?\|([^\]]+))?\]\]/g, (_, slug, text, offset) => {
@@ -269,7 +269,7 @@ function azPage(articles) {
     if (l !== letter) {
       if (letter) out.push("</dl>");
       letter = l;
-      out.push(`<h2 id="${/[A-Z]/.test(l) ? l : "sym"}">${esc(l)}</h2><dl>`);
+      out.push(`<h2 id="${/[A-Z]/.test(l) ? l : `u${l.codePointAt(0)}`}">${esc(l)}</h2><dl>`);
     }
     out.push(e.alias
       ? `<dt>${esc(e.term)}</dt><dd>See <a href="${e.a.slug}.html">${esc(e.a.title)}</a>.</dd>`

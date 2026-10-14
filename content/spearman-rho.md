@@ -50,6 +50,7 @@ On the 119,453 domains from GoDaddy's 2026-09-23 auction inventory that appear i
 |---|---|
 | Harmonic centrality and PageRank | 0.69 |
 | Harmonic centrality and in-degree | 0.69 |
+| PageRank and in-degree | 0.73 |
 | Semrush referring domains and Common Crawl in-degree, all 119,453 | 0.27 |
 | Same, only the 10,045 with at least 6 referring domains in Common Crawl | 0.45 |
 

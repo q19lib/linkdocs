@@ -81,7 +81,7 @@ E → F
 <h2 id="why-ranking-cares">Why ranking cares</h2>
 <ul>
 <li><strong>Random surfers get trapped in sink components.</strong> A <a href="random-walks.html">random walk</a> that enters a component with no exits never leaves. Without teleportation, all of <a href="pagerank.html">PageRank</a>’s probability would drain into sinks; the <a href="damping-factor.html">damping factor</a> exists to pull it back out.</li>
-<li><strong>Spectral rankings see only part of the graph.</strong> <a href="eigenvector-centrality.html">eigenvector centrality</a> gives zero to every node that the dominant component cannot reach. In the running example, D, E and F all get exactly zero, though D and E link into the core.</li>
+<li><strong>Spectral rankings see only part of the graph.</strong> <a href="eigenvector-centrality.html">Eigenvector centrality</a> gives zero to every node that the dominant component cannot reach. In the running example, D, E and F all get exactly zero, though D and E link into the core.</li>
 <li><strong>Reachability bounds geometric centralities.</strong> A node’s <a href="harmonic-centrality.html">harmonic centrality</a> counts only the nodes that can reach it. A node in a large component, or downstream of one, has far more candidates to count.</li>
 </ul>
 <h2 id="finding-the-components">Finding the components</h2>

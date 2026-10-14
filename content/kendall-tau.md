@@ -50,7 +50,7 @@ For a random sample of 4,000 domains from the 2026-09-23 auction inventory that 
 |---|---|---|
 | Harmonic position, PageRank position | 0.51 | 0.69 |
 | Harmonic centrality, in-degree | 0.53 | 0.69 |
-| PageRank, in-degree | 0.58 | |
+| PageRank, in-degree | 0.58 | 0.73 |
 
 Kendall's τ is typically smaller in magnitude than Spearman's ρ on the same data, so the two are not interchangeable; always say which one you report (see [[spearman-rho]]). A τ of 0.51 means that for a random pair of these domains, the two Common Crawl centralities order them the same way about three times in four.
 

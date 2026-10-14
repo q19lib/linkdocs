@@ -47,6 +47,7 @@ Create `content/<slug>.md`:
 title: Harmonic centrality
 group: Centrality
 order: 5
+link: harmonic centrality
 summary: One sentence, shown under the title, in the A–Z index and in search.
 aliases: Harmonic, hc
 ---
@@ -55,7 +56,7 @@ Body in Markdown.
 ```
 
 - **Groups**, in sidebar order: Foundations, Centrality, PageRank in depth, Computing at scale, Comparing rankings, Network structure, Links in practice, Domain metrics. `order` sorts entries within a group.
-- **Cross-references:** `[[slug]]` links with the target's title; `[[slug|text]]` with your own text. Inside a table, write `[[slug\|text]]`. Every entry lists the entries that link to it at the bottom.
+- **Cross-references:** `[[slug]]` links with the target's `link` name, the short form that reads naturally mid-sentence (`link:` in its front matter; the title if absent), capitalised automatically at the start of a sentence, line, list item or table cell. `[[slug|text]]` links with your own text; inside a table, write `[[slug\|text]]`. Every entry lists the entries that link to it at the bottom.
 - **Math:** `$…$` inline and `$$…$$` on their own lines, rendered by KaTeX at build time. Prices such as $5 are safe, because inline math needs a non-space character right after the opening `$` and right before the closing one, and no digit right after the closing one; write `\$` to force a literal dollar sign.
 - **Figures:** a line `![[name]] Caption text` inlines `content/figures/name.svg`. Style SVG elements with the classes in `assets/style.css` (`n`, `hl`, `e`, `ea`, `tip`, `t`, `m`, …) so figures follow the light and dark themes.
 - **The lab:** `<div class="lab" data-measure="pagerank"></div>` embeds the interactive running example. Measures: `indegree`, `outdegree`, `closeness`, `lin`, `harmonic`, `betweenness`, `eigenvector`, `katz`, `pagerank`, `ppr`, `authority`, `hub`.
